@@ -12,12 +12,12 @@ export default function HomeScreen() {
       <View className="max-w-md">
         <Text
           className="text-2xl font-bold  text-center"
-          style={{ fontFamily: "Lato-Black" }}
         >
           Home Screen
         </Text>
 
-        <Text className="mt-4 text-red-400 text-center">
+        <Text className="mt-4 text-blue-400 text-center font"
+        >
           Welcome to the Home Screen! This is where you can find the latest
           updates and features of our app. Explore the tabs below to navigate
           through different sections and discover more.

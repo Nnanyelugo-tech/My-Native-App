@@ -10,8 +10,7 @@ export default function Settings() {
     style={{
       paddingTop: top + 10
     }}>
-      <Text className='text-2xl font-bold text-center'
-      style={{fontFamily: "RobotoCondensed-Italic-VariableFont_wght"}}>
+      <Text className='text-2xl font-bold text-center'>
         Settings
       </Text>
     </View>
