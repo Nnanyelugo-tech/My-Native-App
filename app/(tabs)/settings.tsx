@@ -4,13 +4,16 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function Settings() {
   const {top} = useSafeAreaInsets();
-  
+
   return (
-    <View className='pb-4 border-b border-gray-200 dark:border-gray-800'
+    <View className='flex-1 items-center justify-center px-6'
     style={{
       paddingTop: top + 10
     }}>
-      <Text className='text-lg font-semibold'>Settings</Text>
+      <Text className='text-2xl font-bold text-center'
+      style={{fontFamily: "RobotoCondensed-Italic-VariableFont_wght"}}>
+        Settings
+      </Text>
     </View>
   )
 }

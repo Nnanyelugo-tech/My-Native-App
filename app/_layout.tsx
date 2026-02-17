@@ -8,7 +8,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
@@ -31,6 +31,7 @@ export default function RootLayout() {
     }
   }, [loaded]);
 
+  // Prevents app UI from rendering before fonts ready
   if (!loaded) {
     return null;
   }
