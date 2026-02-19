@@ -1,2 +1,12 @@
 @import 'tailwindcss';
 @import 'uniwind';
+
+
+@theme {
+  /* Other values */
+  /* ... */
+
+  /* Font families */
+  --font-lato: 'Lato-Black';
+  --font-roboto: 'RobotoCondensed-Italic-VariableFont_wght';
+}

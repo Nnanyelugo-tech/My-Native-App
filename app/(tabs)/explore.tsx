@@ -12,10 +12,7 @@ const {top} = useSafeAreaInsets();
           Explore Screen
         </Text>
 
-        <Text className="mt-4 text-red-400 text-center px-4 "
-        style={{
-          fontFamily: "RobotoCondensed-Italic-VariableFont_wght",
-        }}>
+        <Text className="mt-4 text-red-400 text-center px-4 font-roboto">
           Welcome to the Explore Screen! 
           This is where you can discover new content and features of our app. 
           Explore the tabs below to navigate through different sections and find out more.
