@@ -1,28 +1,8 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {IndexScreen} from "@/components/screen/IndexScreen/IndexScreen";
 
-export default function HomeScreen() {
-  const { top } = useSafeAreaInsets();
+
+export default function index() {
   return (
-    <View
-      className="flex-1 items-center justify-center px-6"
-      style={{ paddingTop: top + 10 }}
-    >
-      <View className="max-w-md">
-        <Text
-          className="text-2xl font-bold  text-center"
-        >
-          Home Screen
-        </Text>
-
-        <Text className="mt-4 text-blue-400 text-center font"
-        >
-          Welcome to the Home Screen! This is where you can find the latest
-          updates and features of our app. Explore the tabs below to navigate
-          through different sections and discover more.
-        </Text>
-      </View>
-    </View>
-  );
+    <IndexScreen />
+  )
 }
