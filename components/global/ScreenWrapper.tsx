@@ -1,20 +1,46 @@
-import { View } from 'react-native';
-import React from 'react'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React from "react";
+import {
+  View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+type ScreenWrapperProps = {
+  children: React.ReactNode;
+  className?: string;
+};
 
 export default function ScreenWrapper({
   children,
-  className
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-    const { top } = useSafeAreaInsets();
+  className,
+}: ScreenWrapperProps) {
+  const { top } = useSafeAreaInsets();
+
   return (
-    <View className={`flex-1 items-center justify-center px-6 ${className}`} 
-    style={{ paddingTop: top + 10 }}>
-      {children}
-    </View>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? top + 10 : 0}
+
+    >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View
+          className={`flex-1 w-full ${className}`}
+          style={{ paddingTop: top + 10 }}
+        >
+          {children}
+        </View>
+      </ScrollView>
+        </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
