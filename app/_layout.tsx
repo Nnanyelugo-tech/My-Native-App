@@ -7,6 +7,9 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import { SheetProvider } from "react-native-actions-sheet";
 import { MagicModalPortal } from "react-native-magic-modal";
+import {Sheets} from "../components/ui/actionSheet/Sheets";
+import { ToastMassage } from "../components/ui/toastMassage/toastMassage";
+
 
 export const unstable_settings = {
   anchor: "(tabs)",
@@ -34,8 +37,10 @@ export default function RootLayout() {
         />
       </Stack>
       <StatusBar style="auto" />
+      <Sheets />
       </SheetProvider>
-      <MagicModalPortal />
+    <MagicModalPortal />
+    <ToastMassage />
     </SafeAreaProvider>
     </GestureHandlerRootView>
     </QueryClientProvider>

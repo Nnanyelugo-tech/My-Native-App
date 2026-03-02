@@ -24,6 +24,7 @@ export function FormInput<T extends FieldValues>({
 
       <Controller
         control={control}
+        rules={{ required: true }}
         name={name}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
