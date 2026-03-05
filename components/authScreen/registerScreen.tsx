@@ -38,7 +38,7 @@ export function Signup() {
   );
 
   const onSubmit = (data: RegisterFormValues) => {
-    console.log(data);
+  console.log(data);
     login("mock-token");
     replace("/(tabs)/home");
   };

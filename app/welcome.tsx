@@ -2,6 +2,7 @@ import { Pressable, Text, View, BackHandler } from "react-native";
 import { useRouter, useFocusEffect } from "expo-router";
 import { storage, MMKV_KEYS } from "@/constants/mmkvStore";
 import { useCallback } from "react";
+import ScreenWrapper from "@/components/global/ScreenWrapper";
 
 
 export default function WelcomeScreen() {
@@ -25,6 +26,7 @@ export default function WelcomeScreen() {
   };
 
   return (
+    <ScreenWrapper>
     <View className="flex-1 justify-center items-center px-6">
       <Text className="text-2xl text-center text-black font-semibold">
         Welcome to my App
@@ -36,5 +38,6 @@ export default function WelcomeScreen() {
         <Text className="text-white text-lg font-semibold">Get Started</Text>
       </Pressable>
     </View>
+    </ScreenWrapper>
   );
 }

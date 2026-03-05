@@ -37,16 +37,16 @@ export default function IndexScreen() {
         )}
 
         <View className="ml-3 flex-1">
-          <Text className="text-lg font-bold text-black dark:text-blue-600">
+          <Text className="text-lg font-roboto font-bold text-black dark:text-blue-600">
             {info?.title}
           </Text>
 
-          <Text className="text-lg font-bold text-black dark:text-red-600">
+          <Text className="text-lg font-lato font-bold text-black dark:text-red-600">
             {info?.publishedDate}
           </Text>
            
           {info?.authors && (
-            <Text className="text-sm text-gray-500 dark:text-gray-700">
+            <Text className="text-sm text-gray-500 font-roboto dark:text-gray-700">
               {info.authors.join(", ")}
             </Text>
           )}

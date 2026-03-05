@@ -10,6 +10,7 @@ import { MagicModalPortal } from "react-native-magic-modal";
 import {Sheets} from "../components/ui/actionSheet/Sheets";
 import { ToastMassage } from "../components/ui/toastMassage/toastMassage";
 
+
 export const unstable_settings = {
   anchor: "(tabs)",
 };

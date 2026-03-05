@@ -18,9 +18,9 @@ export function ExploreScreen() {
 
   const handleOpenToast = () => {
     Toast.show({
-      type: "info",
+      type: "success",
       text1: "Hello",
-      text2: "This is a toast info",
+      text2: "This is a success toast",
       position: "top",
       visibilityTime: 3000,
       props: {
