@@ -23,7 +23,7 @@ export const CustomToastUi = ({
       case "error":
         return "bg-red-100";
       case "info":
-        return "bg-blue-100";
+        return "bg-blue-200";
       default:
         return "bg-yellow-100";
     }
@@ -66,12 +66,12 @@ export const CustomToastUi = ({
         )}
         <View className="flex-row space-x-2 items-start">
           <Text
-            className={"text-[14px] font-bold text-black text-center flex-1"}
+            className={"text-[14px] font-bold font-lato text-black text-center flex-1"}
           >
             {text1}
           </Text>
         </View>
-        <Text className="text-black font-[14px] leading-5.25 text-center">
+        <Text className="text-black font-[14px] font-roboto leading-5.25 text-center">
           {text2}
         </Text>
       </View>

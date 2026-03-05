@@ -6,20 +6,32 @@ type props = {
 };
 
 const toastConfig: ToastConfig = {
-  success: ({ text1, text2, icon, onClose }: props) => (
+  success: ({ text1, text2, props }: props) => (
     <CustomToastUi
       type="success"
       text1={text1 || ""}
       text2={text2 || ""}
-      icon={icon}
-      onClose={onClose}
+      icon={props?.icon}
+      onClose={props?.onClose}
     />
   ),
-  error: ({ text1, text2, onClose }: props) => (
-    <CustomToastUi type="error" text1={text1} text2={text2} onClose={onClose} />
+  error: ({ text1, text2, props }: props) => (
+    <CustomToastUi
+      type="error"
+      text1={text1 || ""}
+      text2={text2 || ""}
+      icon={props?.icon}
+      onClose={props?.onClose}
+    />
   ),
-  info: ({ text1, text2, onClose }: props) => (
-    <CustomToastUi type="info" text1={text1} text2={text2} onClose={onClose} />
+  info: ({ text1, text2, props }: props) => (
+    <CustomToastUi
+      type="info"
+      text1={text1 || ""}
+      text2={text2 || ""}
+      icon={props?.icon}
+      onClose={props?.onClose}
+    />
   ),
 };
 
