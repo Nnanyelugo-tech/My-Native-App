@@ -1,17 +1,17 @@
 {
   "expo": {
-    "name": "myApp",
-    "slug": "myApp",
+    "name": "fintrack",
+    "slug": "fintrack",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon.png",
-    "scheme": "myapp",
+    "scheme": "fintrack",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ugonnaya.myApp",
-      "scheme": "myapp"
+      "bundleIdentifier": "com.ugonnaya.fintrack",
+      "scheme": "fintrack"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,8 +19,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.ugonnaya.myApp",
-      "scheme": "myapp"
+      "package": "com.ugonnaya.fintrack",
+      "scheme": "fintrack"
     },
     "web": {
       "output": "static",
@@ -57,7 +57,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "b6ffee75-4817-4bc3-9adf-55a851c654f2"
+        "projectId": "388aa604-bfa0-416a-b2ed-b97a969b82fb"
       }
     },
     "owner": "ugonnaya"

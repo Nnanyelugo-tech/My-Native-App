@@ -1,6 +1,6 @@
 import { useAuthStore } from "@/base/hooks/store/useAuthStore";
 import { MMKV_KEYS, storage } from "@/constants/mmkvStore";
-import { Redirect, } from "expo-router";
+import { Redirect } from "expo-router";
 
 export default function Index() {
   const isNewUser = storage.getString(MMKV_KEYS.IS_NEW_USER);
@@ -8,7 +8,7 @@ export default function Index() {
 
   // First time - welcome screen
   if (!isNewUser) {
-    return <Redirect href="./welcome" />;
+    return <Redirect href="./onboarding/onboardingScreen" />;
   }
 
   // Not logged in - login screen
