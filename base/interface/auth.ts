@@ -10,3 +10,7 @@ export type LoginFormValues = {
   email: string;
   password: string;
 };
+
+export type ForgotPasswordValues = {
+  email: string;
+};

@@ -70,7 +70,7 @@ export default function OnboardingCarousel() {
         data={onboardingData}
         loop={false}
         snapEnabled={true}
-        scrollAnimationDuration={150}
+        scrollAnimationDuration={100}
         renderItem={renderItem}
         onProgressChange={(_, absoluteProgress) => {
           progress.value = absoluteProgress;

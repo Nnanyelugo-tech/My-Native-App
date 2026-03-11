@@ -1,4 +1,4 @@
-import {Signup} from "@/components/authScreen/registerScreen";
+import {Signup} from "@/components/authScreen/signUpScreen";
 
 export default function RegisterScreen() {
     return (

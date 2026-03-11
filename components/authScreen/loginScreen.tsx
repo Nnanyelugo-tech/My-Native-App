@@ -1,16 +1,18 @@
-import React, { useCallback } from "react";
-import { View, Text, Pressable, BackHandler } from "react-native";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useFocusEffect, useRouter } from "expo-router";
-import ScreenWrapper from "@/components/global/ScreenWrapper";
 import { useAuthStore } from "@/base/hooks/store/useAuthStore";
+import { LoginFormValues } from "@/base/interface/auth";
 import { loginSchema } from "@/base/validation/authSchema";
 import { FormInput } from "@/components/forms/formInput";
-import { LoginFormValues } from "@/base/interface/auth";
+import ScreenWrapper from "@/components/global/ScreenWrapper";
+import { Ionicons } from "@expo/vector-icons";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useFocusEffect, useRouter } from "expo-router";
+import React, { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { BackHandler, Pressable, Text, View } from "react-native";
+import { SocialAuthButtons } from "./SocialAuthButtons";
 
 export function Login() {
-  const router = useRouter();
+  const { replace, back, push } = useRouter();
   const login = useAuthStore((s) => s.login);
 
   const {
@@ -27,63 +29,99 @@ export function Login() {
 
   useFocusEffect(
     useCallback(() => {
-      const sub = BackHandler.addEventListener(
-        "hardwareBackPress",
-        () => true
-      );
+      const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+        back();
+        return true;
+      });
       return () => sub.remove();
-    }, [])
+    }, [back]),
   );
 
   const onSubmit = (data: LoginFormValues) => {
     console.log(data);
     login("mock-token");
-    router.replace("/(tabs)/home");
+    replace("/(tabs)/home");
   };
 
   return (
-    <ScreenWrapper>
-    <View className="flex-1 justify-center px-6 bg-white">
-      <Text className="text-2xl font-bold text-center mb-6 text-black">
-        Welcome back
-      </Text>
+    <ScreenWrapper className="px-6 pb-10 bg-white">
+      {/* Logo and Welcome Text */}
+      <View className="items-center mt-7 mb-10">
+        <View className="w-16 h-16 bg-[#1A237E] rounded-2xl items-center justify-center mb-4 shadow-sm shadow-indigo-200">
+          <Ionicons name="wallet-outline" size={32} color="white" />
+        </View>
+        <Text className="text-2xl font-black text-gray-900 text-center mb-2">
+          Welcome back
+        </Text>
+        <Text className="text-gray-500 text-center leading-5 px-4 font-medium">
+          Good to see you again! Please sign in to{"\n"}your account
+        </Text>
+      </View>
 
-      <FormInput
-        control={control}
-        name="email"
-        label="Email"
-        placeholder="Enter your email"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        error={errors.email?.message}
-      />
+      {/* Form Fields */}
+      <View className="gap-2">
+        <FormInput
+          control={control}
+          name="email"
+          label="Email Address"
+          placeholder="name@example.com"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          leftIcon={<Ionicons name="mail-outline" size={20} color="#9CA3AF" />}
+          error={errors.email?.message}
+        />
 
-      <FormInput
-        control={control}
-        name="password"
-        label="Password"
-        placeholder="Enter your password"
-        secureTextEntry
-        error={errors.password?.message}
-      />
+        <FormInput
+          control={control}
+          name="password"
+          label="Password"
+          placeholder="Enter your password"
+          isPassword
+          leftIcon={
+            <Ionicons name="lock-closed-outline" size={20} color="#9CA3AF" />
+          }
+          error={errors.password?.message}
+        />
+      </View>
 
       <Pressable
-        onPress={handleSubmit(onSubmit)}
-        className="bg-blue-600 py-4 rounded-xl mt-4"
+        onPress={() => push("/auth/forgot-password")}
+        className="self-end mb-8"
       >
-        <Text className="text-white text-center font-semibold">Login</Text>
-      </Pressable>
-
-      <Pressable
-        onPress={() => router.replace("/auth/register")}
-        className="mt-6"
-      >
-        <Text className="text-center text-gray-600">
-          Don&apos;t have an account?{" "}
-          <Text className="text-blue-600 font-semibold">Sign Up</Text>
+        <Text className="text-[#1A237E] font-bold text-sm">
+          Forgot Password?
         </Text>
       </Pressable>
-    </View>
+
+      {/* Login Button */}
+      <Pressable
+        onPress={handleSubmit(onSubmit)}
+        className="bg-[#1A237E] py-4 rounded-2xl shadow-lg shadow-indigo-100"
+      >
+        <Text className="text-white text-center font-bold text-lg">Log In</Text>
+      </Pressable>
+
+      {/* Divider */}
+      <View className="flex-row items-center my-8">
+        <View className="flex-1 h-px bg-gray-100" />
+        <Text className="mx-4 text-gray-400 text-xs font-bold tracking-widest uppercase">
+          OR CONTINUE WITH
+        </Text>
+        <View className="flex-1 h-px bg-gray-100" />
+      </View>
+
+      {/* Social Auth Buttons */}
+      <SocialAuthButtons variant="continue" />
+
+      {/* Footer */}
+      <View className="flex-row justify-center mt-auto pt-10">
+        <Text className="text-gray-500 font-medium">
+          Don&apos;t have an account?{" "}
+        </Text>
+        <Pressable onPress={() => replace("/auth/register")}>
+          <Text className="text-[#1A237E] font-bold">Sign Up</Text>
+        </Pressable>
+      </View>
     </ScreenWrapper>
   );
 }

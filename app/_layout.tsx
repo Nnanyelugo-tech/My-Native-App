@@ -37,7 +37,14 @@ export default function RootLayout() {
                 name="auth/register"
                 options={{ headerShown: false }}
               />
-
+              <Stack.Screen
+                name="auth/forgot-password"
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="auth/email-sent"
+                options={{ headerShown: false }}
+              />
               <Stack.Screen
                 name="modal"
                 options={{ presentation: "modal", title: "Modal" }}
