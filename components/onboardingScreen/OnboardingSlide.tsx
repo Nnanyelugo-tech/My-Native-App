@@ -21,7 +21,7 @@ export default function OnboardingSlide({ item, index }: Props) {
       </View>
 
       <View className="items-center">
-        <Text className="text-3xl font-lato text-[#0D143C] text-center mb-3 tracking-tight">
+        <Text className="text-2xl font-lato text-[#0D143C] text-center mb-3 tracking-tight">
           {item.title}
         </Text>
 

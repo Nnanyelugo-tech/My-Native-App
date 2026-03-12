@@ -38,7 +38,7 @@ export default function OnboardingCarousel() {
       const isLastSlide = index === onboardingData.length - 1;
 
       return (
-        <View style={{ width, height: height * 0.9 }}>
+        <View style={{ flex: 1 }}>
           <OnboardingHeader
             isLastSlide={isLastSlide}
             onSkip={goToRegister}
@@ -62,7 +62,14 @@ export default function OnboardingCarousel() {
   );
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white", paddingTop: insets.top }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+      }}
+    >
       <Carousel
         ref={carouselRef}
         width={width}

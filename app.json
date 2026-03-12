@@ -10,8 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ugonnaya.fintrack",
-      "scheme": "fintrack"
+      "bundleIdentifier": "com.ugonnaya.fintrack"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,8 +18,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.ugonnaya.fintrack",
-      "scheme": "fintrack"
+      "package": "com.ugonnaya.fintrack"
     },
     "web": {
       "output": "static",
