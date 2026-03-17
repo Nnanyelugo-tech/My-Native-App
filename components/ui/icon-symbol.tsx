@@ -22,6 +22,18 @@ const MAPPING = {
   history: "history",
   "bar-chart.fill": "bar-chart",
   "plus.circle.fill": "add",
+  "bell.fill": "notifications",
+  "arrow.down": "arrow-downward",
+  "arrow.up": "arrow-upward",
+  "cart.fill": "shopping-cart",
+  "cup.and.saucer.fill": "local-cafe",
+  "briefcase.fill": "work",
+  "dollarsign.circle.fill": "attach-money",
+  "car.fill": "directions-car",
+  "wifi": "wifi",
+  "receipt.fill": "receipt",
+  "wallet.pass.fill": "wallet",
+   "wallet-outline": "wallet",
 } as any;
 
 /**

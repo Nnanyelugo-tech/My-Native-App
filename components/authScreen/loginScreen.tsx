@@ -10,6 +10,7 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { BackHandler, Pressable, Text, View } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
+import { AppText } from "../global/AppText";
 
 export function Login() {
   const { replace, back, push } = useRouter();
@@ -44,18 +45,18 @@ export function Login() {
   };
 
   return (
-    <ScreenWrapper className="px-6 pb-10 bg-white">
+    <ScreenWrapper className="px-6 pb-10 bg-bgColor">
       {/* Logo and Welcome Text */}
       <View className="items-center mt-7 mb-10">
-        <View className="w-16 h-16 bg-[#1A237E] rounded-2xl items-center justify-center mb-4 shadow-sm shadow-indigo-200">
+        <View className="w-16 h-16 bg-brand-main rounded-2xl items-center justify-center mb-4 shadow-sm shadow-indigo-200">
           <Ionicons name="wallet-outline" size={32} color="white" />
         </View>
-        <Text className="text-2xl font-black text-gray-900 text-center mb-2">
+        <AppText className="text-2xl font-black text-gray-900 text-center mb-2">
           Welcome back
-        </Text>
-        <Text className="text-gray-500 text-center leading-5 px-4 font-medium">
+        </AppText>
+        <AppText className="text-gray-500 text-center font-lato leading-5 px-4 font-medium">
           Good to see you again! Please sign in to{"\n"}your account
-        </Text>
+        </AppText>
       </View>
 
       {/* Form Fields */}
@@ -88,20 +89,20 @@ export function Login() {
         onPress={() => push("/auth/forgot-password")}
         className="self-end mb-8"
       >
-        <Text className="text-[#1A237E] font-bold text-sm">
+        <Text className="text-brand-main font-bold text-sm">
           Forgot Password?
         </Text>
       </Pressable>
 
-      {/* Login Button */}
+  
       <Pressable
         onPress={handleSubmit(onSubmit)}
-        className="bg-[#1A237E] py-4 rounded-2xl shadow-lg shadow-indigo-100"
+        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100"
       >
         <Text className="text-white text-center font-bold text-lg">Log In</Text>
       </Pressable>
 
-      {/* Divider */}
+    
       <View className="flex-row items-center my-8">
         <View className="flex-1 h-px bg-gray-100" />
         <Text className="mx-4 text-gray-400 text-xs font-bold tracking-widest uppercase">
@@ -113,13 +114,13 @@ export function Login() {
       {/* Social Auth Buttons */}
       <SocialAuthButtons variant="continue" />
 
-      {/* Footer */}
+      
       <View className="flex-row justify-center mt-auto pt-10">
         <Text className="text-gray-500 font-medium">
           Don&apos;t have an account?{" "}
         </Text>
         <Pressable onPress={() => replace("/auth/register")}>
-          <Text className="text-[#1A237E] font-bold">Sign Up</Text>
+          <Text className="text-brand-main font-bold">Sign Up</Text>
         </Pressable>
       </View>
     </ScreenWrapper>

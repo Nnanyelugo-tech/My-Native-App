@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
@@ -31,11 +31,9 @@ export default function OnboardingHeader({
         onPress={onBack}
         hitSlop={{ top: 10, bottom: 1, left: 10, right: 10 }}
       >
-        <MaterialCommunityIcons name="arrow-left" size={28} color="#0D143C" />
+        <Ionicons name="arrow-back" size={28} color="#0D143C" />
       </TouchableOpacity>
-
       <Text className="text-xl font-bold text-[#0D143C]">Fintrack</Text>
-
       <View style={{ width: 28 }} />
     </View>
   );

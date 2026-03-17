@@ -43,7 +43,10 @@
         {
           "fonts": [
             "./assets/fonts/Lato-Black.ttf",
-            "./assets/fonts/RobotoCondensed-Italic-VariableFont_wght.ttf"
+            "./assets/fonts/RobotoCondensed-Italic-VariableFont_wght.ttf",
+            "./assets/fonts/Lato-BlackItalic.ttf",
+            "./assets/fonts/Lato-Regular.ttf",
+            "./assets/fonts/RobotoCondensed-VariableFont_wght.ttf"
           ]
         }
       ]

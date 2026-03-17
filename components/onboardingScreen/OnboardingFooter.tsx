@@ -1,15 +1,10 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
+import { Extrapolation, interpolate } from "react-native-reanimated";
 import { Pagination } from "react-native-reanimated-carousel";
-
-type Props = {
-  progress: any;
-  data: any[];
-  isLastSlide: boolean;
-  onNext: () => void;
-  onRegister: () => void;
-  onLogin: () => void;
-};
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import { OnboardingFooterProps } from "@/base/interface/onboarding";
 
 export default function OnboardingFooter({
   progress,
@@ -17,49 +12,76 @@ export default function OnboardingFooter({
   isLastSlide,
   onNext,
   onRegister,
-  onLogin,
-}: Props) {
+  onPressPagination,
+}: OnboardingFooterProps) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View className="pb-12 px-8 items-center w-full">
-      <View className="mb-10">
-        <Pagination.Basic
+    <View
+      className="px-8 items-center w-full"
+      style={{ paddingBottom: Math.max(insets.bottom + 20, 20) }}
+    >
+      <View className="mb-6">
+        <Pagination.Custom
           progress={progress}
           data={data}
-          dotStyle={{ backgroundColor: "#E2E8F0", borderRadius: 100 }}
-          activeDotStyle={{ backgroundColor: "#1A237E", borderRadius: 100 }}
-          containerStyle={{ gap: 10 }}
+          size={8}
+          dotStyle={{
+            height: 8,
+            width: 8,
+            borderRadius: 100,
+            backgroundColor: "#E2E8F0",
+          }}
+          activeDotStyle={{
+            height: 8,
+            width: 26,
+            borderRadius: 100,
+            backgroundColor: "#1A237E",
+          }}
+          containerStyle={{
+            gap: 6,
+            alignItems: "center",
+          }}
+          horizontal
+          onPress={onPressPagination}
+          customReanimatedStyle={(progress, index, length) => {
+            let val = Math.abs(progress - index);
+            if (index === 0 && progress > length - 1) {
+              val = Math.abs(progress - length);
+            }
+
+            const width = interpolate(
+              val,
+              [0, 1],
+              [26, 8],
+              Extrapolation.CLAMP,
+            );
+            const opacity = interpolate(
+              val,
+              [0, 1],
+              [1, 0.4],
+              Extrapolation.CLAMP,
+            );
+
+            return { width, opacity };
+          }}
         />
       </View>
 
-      {!isLastSlide ? (
-        <TouchableOpacity
-         activeOpacity={1}
-          onPress={onNext}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-          className="bg-[#1A237E] w-full py-5 rounded-[24px] flex-row justify-center"
-        >
-          <Text className="text-white text-xl font-bold mr-2">Next</Text>
-          <MaterialCommunityIcons name="arrow-right" size={24} color="white" />
-        </TouchableOpacity>
-      ) : (
-        <View className="w-full">
-          <TouchableOpacity
-            onPress={onRegister}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            className="bg-[#1A237E] w-full py-4 rounded-[24px] flex-row justify-center mb-4"
-          >
-            <Text className="text-white text-xl font-bold">Create Account</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={onLogin}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-            className="w-full py-4 rounded-[24px] border items-center"
-          >
-            <Text className="text-[#1A237E] text-xl font-bold">Log In</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={isLastSlide ? onRegister : onNext}
+        className="bg-[#1A237E] w-full py-3 rounded-[24px] flex-row justify-center items-center"
+      >
+        <Text className="text-white text-xl font-bold mr-2">
+          {isLastSlide ? "Get Started" : "Next"}
+        </Text>
+        <Ionicons
+          name={isLastSlide ? "checkmark" : "arrow-forward"}
+          size={24}
+          color="white"
+        />
+      </TouchableOpacity>
     </View>
   );
 }

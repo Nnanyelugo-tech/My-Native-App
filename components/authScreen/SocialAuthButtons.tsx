@@ -1,3 +1,4 @@
+
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
@@ -22,8 +23,8 @@ export function SocialAuthButtons({
         onPress={onGooglePress}
         className="flex-1 flex-row items-center justify-center border border-gray-100 py-3.5 rounded-2xl bg-white shadow-sm shadow-gray-100 active:bg-gray-50"
       >
-        <Ionicons name="logo-google" size={18} color="#EA4335" />
-        <Text className="ml-2 font-bold text-gray-700">
+        <Ionicons name="logo-google" size={20} color="#EA4335" />
+        <Text className="ml-2 font-bold text-gray-700 text-[14px]">
           {isSignup ? "Google" : "Google"}
         </Text>
       </Pressable>
@@ -32,12 +33,11 @@ export function SocialAuthButtons({
         onPress={onApplePress}
         className="flex-1 flex-row items-center justify-center border border-gray-100 py-3.5 rounded-2xl bg-white shadow-sm shadow-gray-100 active:bg-gray-50"
       >
-        <Ionicons name="logo-apple" size={18} color="#000000" />
-        <Text className="ml-2 font-bold text-gray-700">
+        <Ionicons name="logo-apple" size={20} color="#000000" />
+        <Text className="ml-2 font-bold text-gray-700 text-[14px]">
           {isSignup ? "Apple" : "Apple"}
         </Text>
       </Pressable>
     </View>
   );
 }
-

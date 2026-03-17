@@ -1,17 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
-import React from "react";
-import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import { Pressable, Text, TextInput, TextInputProps, View } from "react-native";
+import React, { useState } from "react";
+import { Controller, FieldValues } from "react-hook-form";
+import { Pressable, Text, TextInput, View } from "react-native";
+import { FormInputProps } from "@/base/interface/forms";
 
-type FormInputProps<T extends FieldValues> = {
-  control: Control<T>;
-  name: Path<T>;
-  label: string;
-  error?: string;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  isPassword?: boolean;
-} & TextInputProps;
+
 
 export function FormInput<T extends FieldValues>({
   control,
@@ -23,7 +16,7 @@ export function FormInput<T extends FieldValues>({
   isPassword,
   ...inputProps
 }: FormInputProps<T>) {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <View className="mb-4 w-full">
@@ -44,7 +37,7 @@ export function FormInput<T extends FieldValues>({
             {leftIcon && <View className="mr-3">{leftIcon}</View>}
 
             <TextInput
-              value={value as string}
+              value={value}
               onChangeText={onChange}
               onBlur={onBlur}
               placeholderTextColor="#9CA3AF"

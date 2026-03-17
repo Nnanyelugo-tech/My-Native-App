@@ -1,0 +1,69 @@
+import { View, TouchableOpacity } from "react-native";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { AppText } from "@/components/global/AppText";
+import { TRANSACTIONS } from "@/data/transactionListData";
+import { formatCurrency } from "@/utils/formatCurrency";
+
+export const TransactionList = () => {
+  return (
+    <View className="mb-10">
+      <View className="flex-row items-center justify-between mb-4">
+        <AppText className="text-lg" style={{ fontWeight: "800", color: "#1A1A2E" }}>
+          Recent Transactions
+        </AppText>
+        <TouchableOpacity activeOpacity={0.6}>
+          <AppText className="text-sm" style={{ color: "#1A237E", fontWeight: "800" }}>
+            See More
+          </AppText>
+        </TouchableOpacity>
+      </View>
+
+      {TRANSACTIONS.map((t) => (
+        <View
+          key={t.id}
+          className="bg-white rounded-[24px] px-4 py-4 mb-3 flex-row items-center"
+        >
+          <View
+            className="w-14 h-14 rounded-2xl items-center justify-center mr-4"
+            style={{ backgroundColor: t.iconBg }}
+          >
+            <IconSymbol
+              name={t.icon}
+              size={24}
+              color={t.iconColor}
+            />
+          </View>
+
+          <View className="flex-1 mr-3">
+            <AppText
+              className="text-[15px]"
+              style={{ fontWeight: "600", color: "#1A1A2E" }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {t.title}
+            </AppText>
+            <AppText
+              className="text-xs font-lato-regular mt-0.5"
+              style={{ color: "#9E9E9E" }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+            >
+              {t.category} • {t.date}
+            </AppText>
+          </View>
+
+          <AppText
+            className="text-[15px]"
+            style={{
+              fontWeight: "700",
+              color: t.type === "income" ? "#4CAF50" : "#EF5350",
+            }}
+          >
+            {t.type === "income" ? "+₦" : "-₦"}{formatCurrency(t.amount)}
+          </AppText>
+        </View>
+      ))}
+    </View>
+  );
+};

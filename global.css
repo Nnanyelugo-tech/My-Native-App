@@ -3,10 +3,69 @@
 
 
 @theme {
-  /* Other values */
-  /* ... */
 
   /* Font families */
   --font-lato: 'Lato-Black';
   --font-roboto: 'RobotoCondensed-Italic-VariableFont_wght';
+  --font-lato-italic: 'Lato-BlackItalic';
+  --font-lato-regular: 'Lato-Regular';
+  --font-roboto-condensed: 'RobotoCondensed-VariableFont_wght';
+
+  /* custom colors */
+  
+  --color-bgColor: #fff;
+  /* App main background */
+  --color-surface-main: #F9F9FB;
+  /* White cards */      
+  --color-surface-card: #FFFFFF; 
+  /* Transaction list dividers */
+  --color-border-subtle: #F0EEF6;     
+  
+  /* Icon Background Overlays */
+  --color-overlay-white-light: rgba(255,255,255,0.05);
+  --color-overlay-white-medium: rgba(255,255,255,0.06);
+  --color-overlay-white-heavy: rgba(255,255,255,0.12);
+  
+  /* --- Typography --- */
+  --color-text-primary: #1A1A2E;      
+  --color-text-secondary: #9E9E9E;        
+  --color-text-muted: #555555;          
+  --color-text-inverse: #FFFFFF;      
+
+  /* --- Semantic & Status Colors --- */
+  /* Success / Income / Green variants */
+  --color-success-main: #00E676;
+  --color-success-muted: #4CAF50;
+  --color-success-bg: #E8F5E9;
+
+  /* Danger / Expense / Red variants */
+  --color-danger-main: #FF1744;
+  --color-danger-muted: #EF5350;
+
+  /* Warning / Orange variants */
+  --color-warning-main: #FF9800;
+  --color-warning-bg: #FFF3E0;
+
+  /* Info / Blue variants */
+  --color-info-main: #00B0FF;
+  --color-info-muted: #42A5F5;
+
+  /* Charts & Categories */
+  --color-chart-shopping: #EC407A;
+  --color-chart-bills: #26A69A;
+  --color-chart-data: #CFD8DC;        
+  --color-chart-purple: #AB47BC;
+
+  /* Brand Purples / Deep Indigos */
+  --color-brand-main: #1A237E;
+  --color-brand-dark: #1D0D44;
+  --color-brand-purple: #2A1A5E;
+  --color-brand-indigo: #283593;
+  --color-brand-navy: #0D1B5E;
+  
+  /* Muted Purples for Icon Backgrounds */
+  --color-brand-bg-light: #F8F6FF;
+  --color-brand-bg-medium: #E8EAF6;
+  --color-brand-bg-dark: #EDE7F6;
+
 }

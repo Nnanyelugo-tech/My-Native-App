@@ -10,7 +10,6 @@ export function ResetConfirmation() {
   return (
     <ScreenWrapper className="px-6 pb-10 bg-white justify-center">
       <View className="items-center">
-        {/* Success Icon with nested circles */}
         <View className="w-28 h-28 bg-[#F3E5F5] rounded-full items-center justify-center mb-8">
           <View className="w-20 h-20 bg-[#D1C4E9] rounded-full items-center justify-center">
             <View className="w-12 h-12 bg-[#311B92] rounded-full items-center justify-center">
@@ -19,7 +18,6 @@ export function ResetConfirmation() {
           </View>
         </View>
 
-        {/* Text Content */}
         <Text className="text-3xl font-black text-gray-900 mb-4 text-center">
           Email Sent
         </Text>
@@ -28,7 +26,7 @@ export function ResetConfirmation() {
           check your inbox and follow the link to reset your password.
         </Text>
 
-        {/* Main Action */}
+          
         <Pressable
           onPress={() => replace("/auth/login")}
           className="bg-[#1A237E] py-4 rounded-2xl w-full shadow-lg shadow-indigo-100 mb-8"
@@ -38,7 +36,7 @@ export function ResetConfirmation() {
           </Text>
         </Pressable>
 
-        {/* Resend Option */}
+          
         <View className="items-center mb-10">
           <Text className="text-gray-400 text-sm mb-2 font-medium">
             Didn&apos;t receive the email?
@@ -50,7 +48,7 @@ export function ResetConfirmation() {
         </View>
       </View>
 
-      {/* Footer Support Link */}
+        
       <View className="mt-auto items-center">
         <Text className="text-sm text-gray-400 font-medium">
           Need help?{" "}

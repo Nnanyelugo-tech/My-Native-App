@@ -8,10 +8,10 @@ type Props = {
 
 export default function OnboardingSlide({ item, index }: Props) {
   return (
-    <View className="flex-1 items-center justify-center px-4">
+    <View className="flex-1 items-center px-6 py-4">
       <View
-        className={`w-full ${item.imageSize} rounded-[40px] overflow-hidden mb-4 
-        ${item.backgroundColor}`}
+        className={`w-full aspect-square rounded-[40px] overflow-hidden ${item.backgroundColor} mb-8`}
+        style={{ flex: 1, maxHeight: 400 }}
       >
         <Image
           source={item.image}
@@ -20,12 +20,11 @@ export default function OnboardingSlide({ item, index }: Props) {
         />
       </View>
 
-      <View className="items-center">
-        <Text className="text-2xl font-lato text-[#0D143C] text-center mb-3 tracking-tight">
+      <View className="items-center w-full pb-6">
+        <Text className="text-3xl font-bold text-[#0D143C] text-center mb-3 tracking-tight">
           {item.title}
         </Text>
-
-        <Text className="text-lg text-[#64748B] font-lato text-center px-4 leading-relaxed">
+        <Text className="text-lg text-[#64748B] text-center px-4 leading-relaxed">
           {item.description}
         </Text>
       </View>

@@ -1,65 +1,49 @@
-import React, { useCallback, useRef } from "react";
-import { Dimensions, View } from "react-native";
+import * as React from "react";
+import { useWindowDimensions, View } from "react-native";
 import { useSharedValue } from "react-native-reanimated";
-import Carousel from "react-native-reanimated-carousel";
-
+import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useOnboardingNavigation } from "@/base/hooks/useOnboardingNavigation";
 import { onboardingData } from "@/constants/onboardingData";
-
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import OnboardingFooter from "./OnboardingFooter";
 import OnboardingHeader from "./OnboardingHeader";
 import OnboardingSlide from "./OnboardingSlide";
+import { useCallback, useState } from "react";
 
-const { width, height } = Dimensions.get("window");
+const slides = onboardingData.map((item, index) => ({
+  ...item,
+  id: index,
+  isLast: index === onboardingData.length - 1,
+}));
 
 export default function OnboardingCarousel() {
-  const carouselRef = useRef<any>(null);
-  const progress = useSharedValue(0);
-  const { goToRegister, goToLogin } = useOnboardingNavigation();
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
+  const ref = React.useRef<ICarouselInstance>(null);
+  const progress = useSharedValue<number>(0);
+  const { goToRegister } = useOnboardingNavigation();
   const insets = useSafeAreaInsets();
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const scrollNext = useCallback((index: number) => {
-    carouselRef.current?.scrollTo({
-      index: index + 1,
-      animated: true,
-    });
-  }, []);
+  const lastIndex = slides.length - 1;
+  const isLastSlide = activeIndex === lastIndex;
 
-  const scrollBack = useCallback((index: number) => {
-    carouselRef.current?.scrollTo({
-      index: index - 1,
-      animated: true,
-    });
-  }, []);
-
-  const renderItem = useCallback(
-    ({ item, index }: any) => {
-      const isLastSlide = index === onboardingData.length - 1;
-
-      return (
-        <View style={{ flex: 1 }}>
-          <OnboardingHeader
-            isLastSlide={isLastSlide}
-            onSkip={goToRegister}
-            onBack={() => scrollBack(index)}
-          />
-
-          <OnboardingSlide item={item} index={index} />
-
-          <OnboardingFooter
-            progress={progress}
-            data={onboardingData}
-            isLastSlide={isLastSlide}
-            onNext={() => scrollNext(index)}
-            onRegister={goToRegister}
-            onLogin={goToLogin}
-          />
-        </View>
-      );
+  const onPressPagination = useCallback(
+    (index: number) => {
+      ref.current?.scrollTo({
+        count: index - progress.value,
+        animated: true,
+      });
     },
-    [scrollBack, scrollNext, goToRegister, goToLogin, progress],
+    [progress],
   );
+
+  const scrollNext = useCallback(() => {
+    ref.current?.scrollTo({ count: 1, animated: true });
+  }, []);
+
+  const scrollBack = useCallback(() => {
+    ref.current?.scrollTo({ count: -1, animated: true });
+  }, []);
 
   return (
     <View
@@ -70,18 +54,46 @@ export default function OnboardingCarousel() {
         paddingBottom: insets.bottom,
       }}
     >
-      <Carousel
-        ref={carouselRef}
-        width={width}
-        height={height}
-        data={onboardingData}
-        loop={false}
-        snapEnabled={true}
-        scrollAnimationDuration={100}
-        renderItem={renderItem}
-        onProgressChange={(_, absoluteProgress) => {
-          progress.value = absoluteProgress;
-        }}
+      <OnboardingHeader
+        isLastSlide={isLastSlide}
+        onSkip={goToRegister}
+        onBack={scrollBack}
+      />
+
+      <View style={{ flex: 1 }}>
+        <Carousel
+          ref={ref}
+          width={screenWidth}
+          height={screenHeight - (insets.top + insets.bottom + 200)}
+          data={slides}
+          loop={false}
+          snapEnabled
+          onProgressChange={(_, absoluteProgress) => {
+            // Sync dots animation and update active slide index as user swipes
+            progress.value = absoluteProgress;
+            const rounded = Math.round(absoluteProgress);
+            if (
+              rounded !== activeIndex &&
+              rounded >= 0 &&
+              rounded <= lastIndex
+            ) {
+              setActiveIndex(rounded);
+            }
+          }}
+          renderItem={({ item, index }) => (
+            // Render each slide with its data and position
+            <OnboardingSlide item={item} index={index} />
+          )}
+        />
+      </View>
+
+      <OnboardingFooter
+        progress={progress}
+        data={slides}
+        isLastSlide={isLastSlide}
+        onNext={scrollNext}
+        onRegister={goToRegister}
+        onPressPagination={onPressPagination}
       />
     </View>
   );

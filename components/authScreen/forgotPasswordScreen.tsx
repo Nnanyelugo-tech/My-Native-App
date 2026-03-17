@@ -44,25 +44,23 @@ export function Forgot() {
         <Ionicons name="arrow-back" size={24} color="#1F2937" />
       </Pressable>
 
-      {/* Header Icon */}
       <View className="mb-8">
         <View className="w-16 h-16 bg-[#F3E5F5] rounded-2xl items-center justify-center">
           <Ionicons name="refresh-circle-outline" size={36} color="#4A148C" />
         </View>
       </View>
 
-      {/* Welcome Text */}
       <View className="mb-10">
         <Text className="text-3xl font-black text-gray-900 mb-3">
           Forgot Password?
         </Text>
-        <Text className="text-gray-500 font-medium leading-6 text-[15px]">
+        <Text className="text-gray-500 font-medium font-lato leading-6 text-[15px]">
           Enter your email address and we&apos;ll send you a reset link to
           regain access to your Fintrack account.
         </Text>
       </View>
 
-      {/* Form */}
+    
       <View className="gap-4">
         <FormInput
           control={control}
@@ -85,7 +83,7 @@ export function Forgot() {
         </Pressable>
       </View>
 
-      {/* Footer */}
+      
       <View className="flex-row justify-center mt-10">
         <Text className="text-gray-500 font-medium">
           Remember your password?{" "}
