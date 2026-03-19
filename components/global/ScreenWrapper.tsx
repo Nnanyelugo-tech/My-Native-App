@@ -25,22 +25,21 @@ export default function ScreenWrapper({
       style={{ flex: 1 }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? top + 10 : 0}
-
     >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
       >
-        <View
-          className={`flex-1 w-full ${className}`}
-          style={{ paddingTop: top + 10 }}
-        >
-          {children}
-        </View>
-      </ScrollView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View
+            className={`flex-1 w-full ${className}`}
+            style={{ paddingTop: top + 10 }}
+          >
+            {children}
+          </View>
         </TouchableWithoutFeedback>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }

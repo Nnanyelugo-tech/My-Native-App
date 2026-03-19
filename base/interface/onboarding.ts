@@ -1,3 +1,4 @@
+import { ImageSourcePropType } from "react-native";
 import { SharedValue } from "react-native-reanimated";
 
 export type Slide = {
@@ -5,7 +6,7 @@ export type Slide = {
   isLast: boolean;
   title: string;
   description: string;
-  image: any;
+  image: ImageSourcePropType;
   backgroundColor: string;
   imageSize: string;
 };

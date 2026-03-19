@@ -1,14 +1,14 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import ScreenWrapper from "@/components/global/ScreenWrapper";
-
+import { AppText } from "@/components/global/AppText";
 
 export default function PlusScreen() {
-    return (
-        <ScreenWrapper>
-        <View>
-            <Text className="text-center font-bold text-xl">PlusScreen</Text>
-        </View>
-        </ScreenWrapper>
-    );
+  return (
+    <ScreenWrapper>
+      <View>
+        <AppText className="text-center text-xl" style={{ fontWeight: "700" }}>PlusScreen</AppText>
+      </View>
+    </ScreenWrapper>
+  );
 }

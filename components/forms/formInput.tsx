@@ -30,7 +30,7 @@ export function FormInput<T extends FieldValues>({
         rules={{required: true}}
         render={({ field: { onChange, onBlur, value } }) => (
           <View
-            className={`flex-row items-center border rounded-2xl px-4 bg-gray-50/50 ${
+            className={`flex-row items-center border rounded-2xl px-4 bg-red-50/50 ${
               error ? "border-red-500" : "border-gray-200"
             }`}
           >

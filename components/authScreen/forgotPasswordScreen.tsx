@@ -39,7 +39,7 @@ export function Forgot() {
   };
 
   return (
-    <ScreenWrapper className="px-6 pb-10 bg-white">
+    <ScreenWrapper className="px-6 pb-10 bg-surface-main">
       <Pressable onPress={() => back()} className="mt-4 mb-8">
         <Ionicons name="arrow-back" size={24} color="#1F2937" />
       </Pressable>
@@ -75,7 +75,7 @@ export function Forgot() {
 
         <Pressable
           onPress={handleSubmit(onSubmit)}
-          className="bg-[#1A237E] py-4 rounded-2xl shadow-lg shadow-indigo-100 mt-2"
+          className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 mt-2"
         >
           <Text className="text-white text-center font-bold text-lg">
             Send Reset Link
@@ -89,7 +89,7 @@ export function Forgot() {
           Remember your password?{" "}
         </Text>
         <Pressable onPress={() => replace("/auth/login")}>
-          <Text className="text-[#1A237E] font-bold">Log In</Text>
+          <Text className="text-brand-main font-bold">Log In</Text>
         </Pressable>
       </View>
     </ScreenWrapper>

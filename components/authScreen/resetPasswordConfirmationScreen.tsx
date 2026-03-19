@@ -8,11 +8,11 @@ export function ResetConfirmation() {
   const { replace } = useRouter();
 
   return (
-    <ScreenWrapper className="px-6 pb-10 bg-white justify-center">
+    <ScreenWrapper className="px-6 pb-10 bg-surface-main justify-center">
       <View className="items-center">
-        <View className="w-28 h-28 bg-[#F3E5F5] rounded-full items-center justify-center mb-8">
-          <View className="w-20 h-20 bg-[#D1C4E9] rounded-full items-center justify-center">
-            <View className="w-12 h-12 bg-[#311B92] rounded-full items-center justify-center">
+        <View className="w-28 h-28 bg-brand-bg-light rounded-full items-center justify-center mb-8">
+          <View className="w-20 h-20 bg-brand-bg-medium rounded-full items-center justify-center">
+            <View className="w-12 h-12 bg-brand-main rounded-full items-center justify-center">
               <Ionicons name="checkmark" size={30} color="white" />
             </View>
           </View>
@@ -29,7 +29,7 @@ export function ResetConfirmation() {
           
         <Pressable
           onPress={() => replace("/auth/login")}
-          className="bg-[#1A237E] py-4 rounded-2xl w-full shadow-lg shadow-indigo-100 mb-8"
+          className="bg-brand-main py-4 rounded-2xl w-full shadow-lg shadow-indigo-100 mb-8"
         >
           <Text className="text-white text-center font-bold text-lg">
             Back to Login
@@ -43,7 +43,7 @@ export function ResetConfirmation() {
           </Text>
           <Pressable className="flex-row items-center">
             <Ionicons name="refresh-outline" size={18} color="#1A237E" />
-            <Text className="text-[#1A237E] font-bold ml-2">Resend Email</Text>
+            <Text className="text-brand-main font-bold ml-2">Resend Email</Text>
           </Pressable>
         </View>
       </View>
@@ -52,7 +52,7 @@ export function ResetConfirmation() {
       <View className="mt-auto items-center">
         <Text className="text-sm text-gray-400 font-medium">
           Need help?{" "}
-          <Text className="text-[#1A237E] underline font-bold">
+          <Text className="text-brand-main underline font-bold">
             Contact Fintrack Support
           </Text>
         </Text>

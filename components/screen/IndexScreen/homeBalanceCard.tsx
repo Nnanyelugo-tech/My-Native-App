@@ -42,7 +42,13 @@ export const BalanceCard = () => {
   );
 };
 
-const Box = ({ label, val, up }: any) => {
+interface BoxProps {
+  label: string;
+  val: string;
+  up: boolean;
+}
+
+const Box = ({ label, val, up }: BoxProps) => {
   const textColor = up ? "#FF1744" : "#00E676";
   return (
     <View

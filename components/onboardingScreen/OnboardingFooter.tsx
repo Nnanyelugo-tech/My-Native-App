@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import {  TouchableOpacity, View } from "react-native";
 import { Extrapolation, interpolate } from "react-native-reanimated";
 import { Pagination } from "react-native-reanimated-carousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { OnboardingFooterProps } from "@/base/interface/onboarding";
+import { AppText } from "../global/AppText";
 
 export default function OnboardingFooter({
   progress,
@@ -71,11 +72,11 @@ export default function OnboardingFooter({
       <TouchableOpacity
         activeOpacity={1}
         onPress={isLastSlide ? onRegister : onNext}
-        className="bg-[#1A237E] w-full py-3 rounded-[24px] flex-row justify-center items-center"
+        className="bg-brand-main w-full py-3 rounded-[24px] flex-row justify-center items-center"
       >
-        <Text className="text-white text-xl font-bold mr-2">
+        <AppText className="text-white text-xl font-bold mr-2">
           {isLastSlide ? "Get Started" : "Next"}
-        </Text>
+        </AppText>
         <Ionicons
           name={isLastSlide ? "checkmark" : "arrow-forward"}
           size={24}

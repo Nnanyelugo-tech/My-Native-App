@@ -4,7 +4,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { SymbolWeight } from "expo-symbols";
 import { OpaqueColorValue, type StyleProp, type TextStyle } from "react-native";
 
-type IconSymbolName = keyof typeof MAPPING;
+export type IconSymbolName = keyof typeof MAPPING;
 
 /**
  * Add your SF Symbols to Material Icons mappings here.
@@ -34,7 +34,15 @@ const MAPPING = {
   "receipt.fill": "receipt",
   "wallet.pass.fill": "wallet",
    "wallet-outline": "wallet",
-} as any;
+  "bag.fill": "shopping-bag",
+  "doc.text.fill": "description",
+  "gift.fill": "card-giftcard",
+  "creditcard.fill": "credit-card",
+  "arrow.left": "arrow-back",
+  "line.3.horizontal.decrease": "filter-list",
+  magnifyingglass: "search",
+  calendar: "event",
+} satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.

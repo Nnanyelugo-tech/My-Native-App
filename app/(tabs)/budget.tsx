@@ -1,14 +1,14 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import ScreenWrapper from "@/components/global/ScreenWrapper";
+import { AppText } from "@/components/global/AppText";
 
 export default function BudgetScreen() {
   return (
     <ScreenWrapper>
-    <View>
-      <Text className="text-xl font-bold text-center">BudgetScreen</Text>
-    </View>
+      <View>
+        <AppText className="text-xl text-center" style={{ fontWeight: "700" }}>BudgetScreen</AppText>
+      </View>
     </ScreenWrapper>
   );
 }
-

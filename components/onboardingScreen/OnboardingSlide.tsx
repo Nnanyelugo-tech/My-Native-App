@@ -1,8 +1,10 @@
 import { Image } from "expo-image";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import { Slide } from "@/base/interface/onboarding";
+import { AppText } from "../global/AppText";
 
 type Props = {
-  item: any;
+  item: Slide;
   index: number;
 };
 
@@ -21,12 +23,12 @@ export default function OnboardingSlide({ item, index }: Props) {
       </View>
 
       <View className="items-center w-full pb-6">
-        <Text className="text-3xl font-bold text-[#0D143C] text-center mb-3 tracking-tight">
+        <AppText className="text-3xl font-bold text-[#0D143C] text-center mb-3 tracking-tight">
           {item.title}
-        </Text>
-        <Text className="text-lg text-[#64748B] text-center px-4 leading-relaxed">
+        </AppText>
+        <AppText className="text-lg text-[#64748B] text-center px-4 leading-relaxed">
           {item.description}
-        </Text>
+        </AppText>
       </View>
     </View>
   );

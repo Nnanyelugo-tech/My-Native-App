@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleProp, Text, TextStyle } from "react-native";
 
 interface IAppText {
@@ -6,7 +7,6 @@ interface IAppText {
   numberOfLines?: number;
   ellipsizeMode?: "head" | "tail" | "middle" | "clip";
   style?: StyleProp<TextStyle>;
-  fontFamily?: string;
 }
 
 export const AppText = ({
@@ -18,7 +18,7 @@ export const AppText = ({
 }: IAppText) => {
   return (
     <Text
-      className={`text-gray-900 font-lato-bold ${className}`}
+      className={`text-text-primary font-lato ${className}`}
       ellipsizeMode={ellipsizeMode}
       numberOfLines={numberOfLines}
       style={style}
