@@ -1,34 +1,44 @@
 import React from "react";
-import { View, ViewStyle, StyleProp } from "react-native";
+import { View, ScrollView, ViewStyle, StyleProp } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface ScreenContainerProps {
   children: React.ReactNode;
   className?: string;
   style?: StyleProp<ViewStyle>;
-  withPadding?: boolean;
+  scrollable?: boolean;
 }
 
 export default function ScreenContainer({
   children,
-  className,
+  className = "",
   style,
-  withPadding = false,
+  scrollable = false,
 }: ScreenContainerProps) {
   const { top, bottom } = useSafeAreaInsets();
 
+  const containerStyle = [
+    { paddingTop: top + 10, paddingBottom: bottom + 10 },
+    style,
+  ];
+
+  if (scrollable) {
+    return (
+      <ScrollView
+        className={`flex-1 bg-surface-main ${className}`}
+        style={containerStyle}
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
+      >
+        {children}
+      </ScrollView>
+    );
+  }
+
   return (
     <View
-      className={`flex-1 bg-surface-main ${
-        withPadding ? "px-5" : ""
-      } ${className}`}
-      style={[
-        {
-          paddingTop: top + 10,
-          paddingBottom: bottom + 10,
-        },
-        style,
-      ]}
+      className={`flex-1 bg-surface-main ${className}`}
+      style={containerStyle}
     >
       {children}
     </View>

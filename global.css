@@ -12,7 +12,6 @@
   --font-roboto-condensed: 'RobotoCondensed-VariableFont_wght';
 
   /* custom colors */
-  
   --color-bgColor: #fff;
   /* App main background */
   --color-surface-main: #F9F9FB;
@@ -32,7 +31,6 @@
   --color-text-muted: #555555;          
   --color-text-inverse: #FFFFFF;      
 
-  /* --- Semantic & Status Colors --- */
   /* Success / Income / Green variants */
   --color-success-main: #00E676;
   --color-success-muted: #4CAF50;
@@ -55,6 +53,7 @@
   --color-chart-bills: #26A69A;
   --color-chart-data: #CFD8DC;        
   --color-chart-purple: #AB47BC;
+  
 
   /* Brand Purples / Deep Indigos */
   --color-brand-main: #1A237E;

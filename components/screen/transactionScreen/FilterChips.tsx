@@ -4,28 +4,30 @@ import { AppText } from "@/components/global/AppText";
 import { filters } from "@/constants/filters";
 import { FilterLabel } from "@/types/transaction.types";
 
+interface FilterChipsProps {
+  activeFilter: FilterLabel;
+  setActiveFilter: (label: FilterLabel) => void;
+}
+
 export const FilterChips = ({
   activeFilter,
   setActiveFilter,
-}: {
-  activeFilter: FilterLabel;
-  setActiveFilter: (label: FilterLabel) => void;
-}) => (
-  <View className="flex-row px-5 mb-1 gap-2">
+}: FilterChipsProps) => (
+  <View className="flex-row px-5 mb-2 gap-2">
     {filters.map((label) => {
       const isActive = activeFilter === label;
 
       return (
         <TouchableOpacity
           key={label}
-          activeOpacity={0.7}
+          activeOpacity={0.8}
+          accessibilityRole="button"
           onPress={() => setActiveFilter(label)}
-          className="px-5 py-2 rounded-full"
-          style={{
-            backgroundColor: isActive ? "#1A237E" : "#FFFFFF",
-            borderWidth: isActive ? 0 : 1,
-            borderColor: "#E0E0E0",
-          }}
+          className={`px-5 py-2 rounded-full ${
+            isActive
+              ? "bg-brand-main"
+              : "bg-surface-card border border-border-subtle"
+          }`}
         >
           <AppText
             className="text-sm"

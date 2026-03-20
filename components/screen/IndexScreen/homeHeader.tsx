@@ -23,6 +23,7 @@ export const HomeHeader = () => {
 
       <TouchableOpacity
         activeOpacity={0.9}
+        accessibilityRole="button"
         className="w-11 h-11 rounded-full bg-brand-bg-light items-center justify-center"
         style={{
           shadowColor: "#000",

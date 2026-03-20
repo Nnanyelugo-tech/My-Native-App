@@ -18,6 +18,7 @@ export default function OnboardingHeader({
       <View className="flex-row justify-end px-6 pt-4">
         <TouchableOpacity
         activeOpacity={0.9}
+        accessibilityRole="button"
           onPress={onSkip}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
@@ -31,6 +32,7 @@ export default function OnboardingHeader({
     <View className="flex-row items-center justify-between px-6 pt-2 pb-2">
       <TouchableOpacity
       activeOpacity={0.9}
+      accessibilityRole="button"
         onPress={onBack}
         hitSlop={{ top: 10, bottom: 1, left: 10, right: 10 }}
       >

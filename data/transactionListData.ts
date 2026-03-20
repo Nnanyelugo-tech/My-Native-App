@@ -12,6 +12,7 @@ export type Transaction = {
   icon: IconSymbolName;
   iconBg: string;
   iconColor: string;
+  notes?: string;
 };
 
 export const TRANSACTIONS: Transaction[] = [
@@ -28,6 +29,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "car.fill",
     iconBg: "#E8F5E9",
     iconColor: "#00E676",
+    notes: "Bolt ride to the office",
   },
   {
     id: "2",
@@ -41,6 +43,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "cup.and.saucer.fill",
     iconBg: "#FFF3E0",
     iconColor: "#FF9800",
+    notes: "Lunch at the office",
   },
   {
     id: "3",

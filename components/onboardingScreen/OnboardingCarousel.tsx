@@ -49,7 +49,7 @@ export default function OnboardingCarousel() {
     <View
       style={{
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#F5F5F5",
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
       }}

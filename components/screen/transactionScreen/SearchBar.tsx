@@ -2,13 +2,12 @@ import React from "react";
 import { View, TextInput } from "react-native";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 
-export const SearchBar = ({
-  value,
-  onChange,
-}: {
+interface SearchBarProps {
   value: string;
   onChange: (text: string) => void;
-}) => (
+}
+
+export const SearchBar = ({ value, onChange }: SearchBarProps) => (
   <View className="mx-5 mt-2 mb-3">
     <View
       className="flex-row items-center bg-white rounded-2xl px-4 py-3"
@@ -25,7 +24,7 @@ export const SearchBar = ({
       <TextInput
         className="flex-1 ml-3 text-sm font-lato-regular"
         placeholder="Search transactions"
-        placeholderTextColor="#BDBDBD"
+        placeholderTextColor="#9E9E9E"
         value={value}
         onChangeText={onChange}
         autoCorrect={false}

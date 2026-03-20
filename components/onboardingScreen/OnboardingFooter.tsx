@@ -71,6 +71,7 @@ export default function OnboardingFooter({
 
       <TouchableOpacity
         activeOpacity={1}
+        accessibilityRole="button"
         onPress={isLastSlide ? onRegister : onNext}
         className="bg-brand-main w-full py-3 rounded-[24px] flex-row justify-center items-center"
       >

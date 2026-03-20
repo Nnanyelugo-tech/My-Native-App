@@ -18,7 +18,7 @@ export const AppText = ({
 }: IAppText) => {
   return (
     <Text
-      className={`text-text-primary font-lato ${className}`}
+      className={`text-text-primary font-lato${className}`}
       ellipsizeMode={ellipsizeMode}
       numberOfLines={numberOfLines}
       style={style}

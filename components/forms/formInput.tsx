@@ -1,8 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Controller, FieldValues } from "react-hook-form";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, TextInput, View } from "react-native";
 import { FormInputProps } from "@/base/interface/forms";
+import { AppText } from "../global/AppText";
 
 
 
@@ -20,9 +21,9 @@ export function FormInput<T extends FieldValues>({
 
   return (
     <View className="mb-4 w-full">
-      <Text className="text-sm font-medium text-gray-600 mb-1.5 ml-1">
+      <AppText className="text-sm font-medium text-gray-600 mb-1.5 ml-1">
         {label}
-      </Text>
+      </AppText>
 
       <Controller
         control={control}
@@ -59,16 +60,16 @@ export function FormInput<T extends FieldValues>({
               </Pressable>
             ) : (
               rightIcon &&
-              <Text className="ml-2">{rightIcon}</Text>
+              <AppText className="ml-2">{rightIcon}</AppText>
             )}
           </View>
         )}
       />
 
       {error && (
-        <Text className="text-red-500 text-[12px] mt-1 ml-1 font-medium">
+        <AppText className="text-red-500 text-[12px] mt-1 ml-1 font-medium">
           {error}
-        </Text>
+        </AppText>
       )}
     </View>
   );

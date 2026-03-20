@@ -20,7 +20,8 @@ export const ExpensePieChart = () => {
         <AppText className="text-lg text-text-primary" style={{ fontWeight: "800" }}>
           Expense Breakdown
         </AppText>
-        <TouchableOpacity activeOpacity={0.6}>
+        <TouchableOpacity activeOpacity={0.8}
+        accessibilityRole="button">
           <AppText className="text-sm text-brand-main" style={{ fontWeight: "700" }}>
             View All
           </AppText>
