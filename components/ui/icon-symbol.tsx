@@ -42,6 +42,7 @@ const MAPPING = {
   "line.3.horizontal.decrease": "filter-list",
   magnifyingglass: "search",
   calendar: "event",
+ 
 } satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**

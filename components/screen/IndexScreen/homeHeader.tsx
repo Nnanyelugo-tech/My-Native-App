@@ -34,7 +34,6 @@ export const HomeHeader = () => {
         }}
       >
         <IconSymbol name="bell.fill" size={20} color="#1A237E" />
-        <View className="absolute top-3 right-3 w-2 h-2 bg-danger-main rounded-full border border-white" />
       </TouchableOpacity>
     </View>
   );

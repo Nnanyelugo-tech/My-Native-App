@@ -5,7 +5,7 @@ import {
   flattenSections,
   matchesFilter,
   matchesSearch,
-} from "@/utils/transaction.utils";
+} from "@/utils/transactions/transaction.utils";
 import { FilterLabel } from "@/types/transaction.types";
 
 export const useTransactions = () => {
@@ -16,12 +16,15 @@ export const useTransactions = () => {
   const flatListData = useMemo(() => {
     const filtered = TRANSACTIONS.filter(
       (tx) =>
+        // Keep transactions that match the selected filter
         matchesFilter(tx, activeFilter) &&
         matchesSearch(tx, searchQuery)
     );
+    // Group transactions by date for sectioned display
     const sections = groupByDate(filtered);
+    // Flatten the sections into a list for LegendList
     return flattenSections(sections);
-  }, [activeFilter, searchQuery]);
+  }, [searchQuery, activeFilter]);
 
   return {
     searchQuery,

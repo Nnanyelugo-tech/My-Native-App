@@ -1,5 +1,6 @@
 export const onboardingData = [
   {
+    id: 1,
     title: "Track every penny",
     description:
       "Easily log your income and expenses to see exactly where your money goes.",
@@ -8,6 +9,7 @@ export const onboardingData = [
     imageSize: "aspect-square",
   },
   {
+    id: 2,
     title: "Visualize your progress",
     description:
       "Get clear insights into your spending habits with intuitive charts and reports.",
@@ -16,6 +18,7 @@ export const onboardingData = [
     imageSize: "aspect-square",
   },
   {
+    id: 3,
     title: "Build better habits",
     description:
       "Set budgets and reach your financial goals with personalized insights and tips tailored just for you.",

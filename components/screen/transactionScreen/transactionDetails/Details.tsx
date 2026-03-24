@@ -4,9 +4,10 @@ import { router } from "expo-router";
 import { AppText } from "@/components/global/AppText";
 
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { Transaction } from "@/data/transactionListData";
+import { Transaction } from "@/types/transactionType";
 import { formatCurrency } from "@/utils/formatCurrency";
 import ScreenContainer from "@/components/global/ScreenContainer";
+import { formatDateGroup, formatTime } from "@/utils/date";
 
 interface DetailsProps {
   transaction: Transaction;
@@ -28,84 +29,88 @@ const Details = ({ transaction }: DetailsProps) => {
 
   return (
     <ScreenContainer scrollable>
-      
-        <View className="flex-row items-center mb-8">
-          <TouchableOpacity
-            onPress={() => back()}
-            activeOpacity={0.8}
-            accessibilityRole="button"
-            className="w-10 h-10 items-center justify-center -ml-2"
-          >
-            <IconSymbol name="arrow.left" size={24} color="#1A237E" />
-          </TouchableOpacity>
-
-          <AppText className="ml-2 text-xl font-bold text-brand-main">
-            Transaction Details
-          </AppText>
-        </View>
-
-        {/* Icon + Amount */}
-        <View className="items-center mb-2">
-          <View
-            style={{ backgroundColor: transaction.iconBg }}
-            className="w-24 h-24 rounded-full items-center justify-center mb-2 shadow-sm"
-          >
-            <IconSymbol
-              name={transaction.icon}
-              size={40}
-              color={transaction.iconColor}
-            />
-          </View>
-
-          <AppText className="text-lg text-text-muted mb-1">
-            {transaction.title}
-          </AppText>
-
-          <AppText
-            className={`text-4xl font-bold ${
-              isExpense ? "text-danger-muted" : "text-success-muted"
-            }`}
-          >
-            {isExpense ? "-" : "+"}
-            {formatCurrency(transaction.amount)}
-          </AppText>
-        </View>
-
-        {/* Status */}
-        <View className="items-center mb-6">
-          <View
-            style={{ backgroundColor: `${statusColor}20` }}
-            className="px-6 py-2 rounded-full"
-          >
-            <AppText
-              style={{ color: statusColor }}
-              className="font-bold text-xs uppercase"
+      <View className="flex-1 items-center">
+        <View className="w-full px-5">
+          <View className="flex-row items-center mb-8">
+            <TouchableOpacity
+              onPress={() => back()}
+              activeOpacity={0.8}
+              accessibilityRole="button"
+              className="w-10 h-10 items-center justify-center -ml-2"
             >
-              {transaction.status}
+              <IconSymbol name="arrow.left" size={24} color="#1A237E" />
+            </TouchableOpacity>
+
+            <AppText className="ml-2 text-xl font-bold text-brand-main">
+              Transaction Details
             </AppText>
           </View>
-        </View>
 
-        {/* Info */}
-        <View className="bg-white rounded-[32px] p-6 mb-8 shadow-sm">
-          <DetailRow label="Category" value={transaction.category} />
-          <DetailRow label="Type" value={formattedType} />
-          <DetailRow label="Date" value={transaction.dateGroup} />
-          <DetailRow label="Time" value={transaction.time} />
-        </View>
+          {/* Icon + Amount */}
+          <View className="items-center mb-2">
+            <View
+              style={{ backgroundColor: transaction.iconBg }}
+              className="w-24 h-24 rounded-full items-center justify-center mb-2 shadow-sm"
+            >
+              <IconSymbol
+                name={transaction.icon}
+                size={40}
+                color={transaction.iconColor}
+              />
+            </View>
 
-        {/* Notes */}
-        <View className="flex-1">
-          <AppText className="text-text-muted font-bold mb-3 ml-1">
-            Notes
-          </AppText>
+            <AppText className="text-lg text-text-muted mb-1">
+              {transaction.title}
+            </AppText>
 
-          <View className="bg-white items-center rounded-2xl p-5 shadow-sm min-h-[80px]">
-            <AppText className="text-text-primary leading-5">
-              {transaction.notes || "No notes available for this transaction."}
+            <AppText
+              className={`text-4xl font-bold ${
+                isExpense ? "text-danger-muted" : "text-success-muted"
+              }`}
+            >
+              {isExpense ? "-" : "+"}
+              {formatCurrency(transaction.amount)}
             </AppText>
           </View>
+
+          {/* Status */}
+          <View className="items-center mb-6">
+            <View
+              style={{ backgroundColor: `${statusColor}20` }}
+              className="px-6 py-2 rounded-full"
+            >
+              <AppText
+                style={{ color: statusColor }}
+                className="font-bold text-xs uppercase"
+              >
+                {transaction.status}
+              </AppText>
+            </View>
+          </View>
+
+          {/* Info */}
+          <View className="bg-white rounded-[32px] p-6 mb-8 shadow-sm">
+            <DetailRow label="Category" value={transaction.category} />
+            <DetailRow label="Type" value={formattedType} />
+            <DetailRow label="Date" value={formatDateGroup(transaction.date)} />
+            <DetailRow label="Time" value={formatTime(transaction.date)} />
+          </View>
+
+          {/* Notes */}
+          <View className="flex-1">
+            <AppText className="text-text-muted font-bold mb-3 ml-1">
+              Notes
+            </AppText>
+
+            <View className="bg-white items-center rounded-2xl p-5 shadow-sm min-h-[80px]">
+              <AppText className="text-text-primary leading-5">
+                {transaction.Note ||
+                  "No notes available for this transaction."}
+              </AppText>
+            </View>
+          </View>
         </View>
+      </View>
     </ScreenContainer>
   );
 };

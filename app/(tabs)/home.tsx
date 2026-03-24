@@ -5,6 +5,7 @@ import { useFocusEffect } from "expo-router";
 import { HomeHeader } from "@/components/screen/IndexScreen/homeHeader";
 import { BalanceCard } from "@/components/screen/IndexScreen/homeBalanceCard";
 import { ExpensePieChart } from "@/components/screen/IndexScreen/homeExpensePieChart";
+import { IncomeVsExpensesChart } from "@/components/screen/IndexScreen/homeIncomeVsExpensesChart";
 import { TransactionList } from "@/components/screen/IndexScreen/homeTransactionList";
 import ScreenContainer from "@/components/global/ScreenContainer";
 
@@ -28,6 +29,7 @@ export default function Index() {
 
         <View className="px-5 pt-2 flex-1">
           <ExpensePieChart />
+          <IncomeVsExpensesChart />
           <TransactionList />
         </View>
       </ScrollView>

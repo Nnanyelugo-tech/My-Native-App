@@ -4,12 +4,14 @@ import { IconSymbol } from "@/components/ui/icon-symbol";
 import { AppText } from "@/components/global/AppText";
 import { TRANSACTIONS } from "@/data/transactionListData";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { formatTime } from "@/utils/date";
 import { EmptyState } from "@/components/screen/transactionScreen/EmptyState";
 
 export const TransactionList = () => {
-  const transactions = TRANSACTIONS.slice(0, 4);
+  const transactions = [...TRANSACTIONS]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 4);
   const { push } = router;
-
   const handleSeeMore = () => {
     push("/transaction");
   };
@@ -22,8 +24,10 @@ export const TransactionList = () => {
           Recent Transactions
         </AppText>
 
-        <TouchableOpacity activeOpacity={0.9} accessibilityRole="button"
-        onPress={handleSeeMore}
+        <TouchableOpacity
+          activeOpacity={0.9}
+          accessibilityRole="button"
+          onPress={handleSeeMore}
         >
           <AppText className="text-sm text-brand-main font-extrabold">
             See More
@@ -55,11 +59,7 @@ export const TransactionList = () => {
                 className="w-14 h-14 rounded-2xl items-center justify-center mr-4"
                 style={{ backgroundColor: t.iconBg }}
               >
-                <IconSymbol
-                  name={t.icon}
-                  size={24}
-                  color={t.iconColor}
-                />
+                <IconSymbol name={t.icon} size={24} color={t.iconColor} />
               </View>
 
               <View className="flex-1 mr-3">
@@ -68,7 +68,7 @@ export const TransactionList = () => {
                 </AppText>
 
                 <AppText className="text-xs font-lato-regular mt-0.5 text-text-secondary">
-                  {t.category} • {t.time}
+                  {t.category} • {formatTime(t.date)}
                 </AppText>
               </View>
 

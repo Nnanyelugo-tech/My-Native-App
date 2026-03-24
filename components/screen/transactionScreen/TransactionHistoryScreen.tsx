@@ -1,21 +1,15 @@
 import React, { useCallback } from "react";
 import { View, TouchableOpacity } from "react-native";
-
 import { LegendList } from "@legendapp/list";
-
 import { TransactionListItem } from "@/types/transaction.types";
-
 import ScreenContainer from "@/components/global/ScreenContainer";
-
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { AppText } from "@/components/global/AppText";
-
 import { SearchBar } from "./SearchBar";
 import { FilterChips } from "./FilterChips";
 import { TransactionItem } from "./TransactionItem";
 import { TransactionSectionHeader } from "./TransactionSectionHeader";
 import { EmptyState } from "@/components/screen/transactionScreen/EmptyState";
-
 import { useTransactions } from "@/base/hooks/transaction/useTransactions";
 import { router } from "expo-router";
 

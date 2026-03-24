@@ -60,10 +60,10 @@ export default function TabLayout() {
             <TouchableOpacity
               onPress={onPress}
               activeOpacity={1}
-              className="items-center justify-center -top-6 h-full"
+              className="items-center justify-center -top-5 h-full"
               accessibilityState={accessibilityState}
             >
-              <View className="w-[60px] h-[60px] rounded-full bg-[#1E1E5F] items-center justify-center border-4 border-white shadow-2xl">
+              <View className="w-[55px] h-[55px] rounded-full bg-[#1E1E5F] items-center justify-center border-4 border-white shadow-2xl">
                 <IconSymbol size={32} name="plus.circle.fill" color="#fff" />
               </View>
             </TouchableOpacity>

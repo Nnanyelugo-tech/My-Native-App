@@ -1,5 +1,5 @@
+import { Transaction } from "@/types/transactionType";
 import { SectionListData } from "react-native";
-import { Transaction } from "@/data/transactionListData";
 
 export type FilterLabel = "All" | "Income" | "Expenses";
 
