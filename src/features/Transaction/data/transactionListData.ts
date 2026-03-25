@@ -12,6 +12,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "car.fill",
     iconBg: "#E8F5E9",
     iconColor: "#00E676",
+    Note: "Book a Bolt ride to school",
   },
   {
     id: "2",
@@ -24,6 +25,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "wallet-outline",
     iconBg: "#EDE7F6",
     iconColor: "#1A237E",
+    Note: "Offering to the church",
   },
   {
     id: "3",
@@ -36,6 +38,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "cup.and.saucer.fill",
     iconBg: "#FFF3E0",
     iconColor: "#FF9800",
+    Note: "Lunch with friends",
   },
   {
     id: "4",
@@ -49,6 +52,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "briefcase.fill",
     iconBg: "#EDE7F6",
     iconColor: "#1A237E",
+    
   },
   {
     id: "5",
@@ -74,6 +78,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "briefcase.fill",
     iconBg: "#EDE7F6",
     iconColor: "#1A237E",
+    Note: "Salary for the month",
   },
   {
     id: "7",
@@ -86,6 +91,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "bag.fill",
     iconBg: "#FCE4EC",
     iconColor: "#EC407A",
+    Note: "Groceries for the week",
   },
   {
     id: "8",
@@ -98,6 +104,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "wifi",
     iconBg: "#E3F2FD",
     iconColor: "#42A5F5",
+    Note: "Data for the week",
   },
   {
     id: "9",
@@ -110,6 +117,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "cup.and.saucer.fill",
     iconBg: "#FFF3E0",
     iconColor: "#FF9800",
+    Note: "Dinner with friends",
   },
   {
     id: "10",
@@ -122,6 +130,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "car.fill",
     iconBg: "#E8F5E9",
     iconColor: "#00E676",
+    Note: "Fuel for the week",
   },
   {
     id: "11",
@@ -134,6 +143,7 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "cup.and.saucer.fill",
     iconBg: "#FFF3E0",
     iconColor: "#FF9800",
+    Note: "Dinner with friends",
   },
     {
     id: "12",
@@ -146,5 +156,19 @@ export const TRANSACTIONS: Transaction[] = [
     icon: "briefcase.fill",
     iconBg: "#EDE7F6",
     iconColor: "#1A237E",
+    Note: "Gift from my parents",
+  },
+    {
+    id: "13",
+    title: "Dinner",
+    category: "Food",
+    date: "2026-03-25T04:30:00+01:00",
+    amount: 45000,
+    type: "expense",
+    status: "completed",
+    icon: "cup.and.saucer.fill",
+    iconBg: "#FFF3E0",
+    iconColor: "#FF9800",
+    Note: "Dinner with friends",
   },
 ];
