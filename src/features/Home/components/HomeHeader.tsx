@@ -1,0 +1,40 @@
+import { View, TouchableOpacity } from "react-native";
+import { IconSymbol } from "@/src/components/UI/IconSymbol";
+import { AppText } from "@/src/components/Common/AppText";
+import { greet } from "@/src/utils/greet";
+
+export const HomeHeader = () => {
+  return (
+    <View className="px-5 flex-row items-center pb-3 justify-between">
+      <View className="flex-row items-center">
+        <View className="w-11 h-11 rounded-full bg-brand-bg-medium items-center justify-center mr-3">
+          <IconSymbol name="person.fill" size={24} color="#283593" />
+        </View>
+
+        <View>
+          <AppText className="text-text-muted text-xs font-roboto">
+            Welcome back,
+          </AppText>
+          <AppText className="text-text-primary text-lg" style={{ fontWeight: '800' }}>
+            {greet()}, Nego
+          </AppText>
+        </View>
+      </View>
+
+      <TouchableOpacity
+        activeOpacity={0.9}
+        accessibilityRole="button"
+        className="w-11 h-11 rounded-full bg-brand-bg-light items-center justify-center"
+        style={{
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.05,
+          shadowRadius: 8,
+          elevation: 2,
+        }}
+      >
+        <IconSymbol name="bell.fill" size={20} color="#1A237E" />
+      </TouchableOpacity>
+    </View>
+  );
+};

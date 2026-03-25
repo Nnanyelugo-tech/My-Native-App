@@ -1,5 +1,5 @@
-import { HapticTab } from "@/components/haptic-tab";
-import { IconSymbol } from "@/components/ui/icon-symbol";
+import { HapticTab } from "@/src/components/Common/HapticTab";
+import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";
 import { Tabs } from "expo-router";
 import React from "react";

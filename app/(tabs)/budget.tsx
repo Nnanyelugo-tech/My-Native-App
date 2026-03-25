@@ -1,4 +1,4 @@
-import { ReportScreen } from "@/components/screen/budgetsScreen/ReportScreen";
+import { ReportScreen } from "@/src/features/Budget/components/ReportScreen";
 
 export default function BudgetScreen() {
   return (

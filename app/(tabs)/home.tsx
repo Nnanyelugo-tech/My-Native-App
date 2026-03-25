@@ -1,13 +1,13 @@
-import { View, ScrollView, BackHandler } from "react-native";
-import { useCallback } from "react";
 import { useFocusEffect } from "expo-router";
+import { useCallback } from "react";
+import { BackHandler, ScrollView, View } from "react-native";
 
-import { HomeHeader } from "@/components/screen/IndexScreen/homeHeader";
-import { BalanceCard } from "@/components/screen/IndexScreen/homeBalanceCard";
-import { ExpensePieChart } from "@/components/screen/IndexScreen/homeExpensePieChart";
-import { IncomeVsExpensesChart } from "@/components/screen/IndexScreen/homeIncomeVsExpensesChart";
-import { TransactionList } from "@/components/screen/IndexScreen/homeTransactionList";
-import ScreenContainer from "@/components/global/ScreenContainer";
+import ScreenContainer from "@/src/components/Common/ScreenContainer";
+import { BalanceCard } from "@/src/features/Home/components/HomeBalanceCard";
+import { ExpensePieChart } from "@/src/features/Home/components/HomeExpensePieChart";
+import { HomeHeader } from "@/src/features/Home/components/HomeHeader";
+import { IncomeVsExpensesChart } from "@/src/features/Home/components/HomeIncomeVsExpensesChart";
+import { TransactionList } from "@/src/features/Home/components/HomeTransactionList";
 
 export default function Index() {
   useFocusEffect(

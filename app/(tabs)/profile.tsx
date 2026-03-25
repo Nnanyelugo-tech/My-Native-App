@@ -1,4 +1,4 @@
-import { ProfileScreen } from "@/components/screen/profileScreen/ProfileScreen";
+import { ProfileScreen } from "@/src/features/Profile/components/ProfileScreen";
 
 export default function Profile() {
   return (

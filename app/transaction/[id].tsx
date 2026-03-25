@@ -1,9 +1,9 @@
-import React from "react";
+import ScreenContainer from "@/src/components/Common/ScreenContainer";
+import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
+import Details from "@/src/features/Transaction/components/transactionDetails/Details";
 import { useLocalSearchParams } from "expo-router";
-import Details from "@/components/screen/transactionScreen/transactionDetails/Details";
-import { TRANSACTIONS } from "@/data/transactionListData";
-import ScreenContainer from "@/components/global/ScreenContainer";
-import { EmptyState } from "@/components/screen/transactionScreen/EmptyState";
+import React from "react";
 
 export default function TransactionDetailScreen() {
   const params = useLocalSearchParams<{ id?: string }>();

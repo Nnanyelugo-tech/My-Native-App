@@ -6,8 +6,8 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { MagicModalPortal } from "react-native-magic-modal";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Sheets } from "../components/ui/actionSheet/Sheets";
-import { ToastMassage } from "../components/ui/toastMassage/toastMassage";
+import { Sheets } from "@/src/components/UI/actionSheet/Sheets";
+import { ToastMassage } from "@/src/components/UI/ToastMessage/ToastMessage";
 import "../global.css";
 
 export const unstable_settings = {

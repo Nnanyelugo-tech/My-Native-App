@@ -1,5 +1,5 @@
-import { useAuthStore } from "@/base/hooks/store/useAuthStore";
-import { MMKV_KEYS, storage } from "@/constants/mmkvStore";
+import { useAuthStore } from "@/src/features/Auth/hooks/useAuthStore";
+import { MMKV_KEYS, storage } from "@/src/constants/mmkvStore";
 import { Redirect } from "expo-router";
 
 export default function Index() {

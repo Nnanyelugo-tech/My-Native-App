@@ -1,4 +1,4 @@
-import { Forgot } from "@/components/authScreen/forgotPasswordScreen";
+import { Forgot } from "@/src/features/Auth/components/ForgotPasswordScreen";
 
 export default function ForgotPasswordRoute() {
   return <Forgot />;
