@@ -1,4 +1,4 @@
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { filters } from "@/src/constants/filters";
 import { FilterLabel } from "@/src/features/Transaction/types/transaction.types";
 import React from "react";

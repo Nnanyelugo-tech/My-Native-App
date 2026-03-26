@@ -1,9 +1,9 @@
+import { AppText } from "@/src/components/Global/AppText";
 import { FormInputProps } from "@/src/types/forms";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Controller, FieldValues } from "react-hook-form";
 import { Pressable, TextInput, View } from "react-native";
-import { AppText } from "@/src/components/Common/AppText";
 
 export function FormInput<T extends FieldValues>({
   control,

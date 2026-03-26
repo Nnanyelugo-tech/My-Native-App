@@ -1,4 +1,4 @@
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { Transaction } from "@/src/features/Transaction/types/transactionType";
 import { formatTime } from "@/src/utils/date";

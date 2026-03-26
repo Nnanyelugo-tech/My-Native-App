@@ -1,9 +1,9 @@
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { router } from "expo-router";
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
 
-import ScreenContainer from "@/src/components/Common/ScreenContainer";
+import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { Transaction } from "@/src/features/Transaction/types/transactionType";
 import { formatDateGroup, formatTime } from "@/src/utils/date";
@@ -104,7 +104,7 @@ const Details = ({ transaction }: DetailsProps) => {
 
             <View className="bg-white items-center rounded-2xl p-5 shadow-sm min-h-[80px]">
               <AppText className="text-text-primary leading-5">
-                {transaction.Note || "No notes available for this transaction."}
+                {transaction.note || "No notes available for this transaction."}
               </AppText>
             </View>
           </View>

@@ -1,11 +1,11 @@
+import { AppText } from "@/src/components/Global/AppText";
+import { OnboardingFooterProps } from "@/src/features/Onboarding/types/onboarding";
+import { Ionicons } from "@expo/vector-icons";
 import * as React from "react";
-import {  TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { Extrapolation, interpolate } from "react-native-reanimated";
 import { Pagination } from "react-native-reanimated-carousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
-import { OnboardingFooterProps } from "@/src/features/Onboarding/types/onboarding";
-import { AppText } from "@/src/components/Common/AppText";
 
 export default function OnboardingFooter({
   progress,

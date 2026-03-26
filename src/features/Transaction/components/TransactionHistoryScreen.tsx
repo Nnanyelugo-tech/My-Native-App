@@ -1,5 +1,5 @@
-import { AppText } from "@/src/components/Common/AppText";
-import ScreenContainer from "@/src/components/Common/ScreenContainer";
+import { AppText } from "@/src/components/Global/AppText";
+import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
 import { useTransactions } from "@/src/features/Transaction/hooks/useTransactions";

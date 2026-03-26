@@ -1,4 +1,4 @@
-import ScreenWrapper from "@/src/components/Common/ScreenWrapper";
+import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -26,7 +26,6 @@ export function ResetConfirmation() {
           check your inbox and follow the link to reset your password.
         </Text>
 
-          
         <Pressable
           onPress={() => replace("/auth/login")}
           className="bg-brand-main py-4 rounded-2xl w-full shadow-lg shadow-indigo-100 mb-8"
@@ -36,7 +35,6 @@ export function ResetConfirmation() {
           </Text>
         </Pressable>
 
-          
         <View className="items-center mb-10">
           <Text className="text-gray-400 text-sm mb-2 font-medium">
             Didn&apos;t receive the email?
@@ -48,7 +46,6 @@ export function ResetConfirmation() {
         </View>
       </View>
 
-        
       <View className="mt-auto items-center">
         <Text className="text-sm text-gray-400 font-medium">
           Need help?{" "}

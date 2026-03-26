@@ -1,13 +1,13 @@
+import { AppText } from "@/src/components/Global/AppText";
+import { chartHeight } from "@/src/constants/chart";
+import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
+import {
+  formatCompactCurrency,
+  formatCurrency,
+} from "@/src/utils/formatCurrency";
 import React from "react";
 import { View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
-import { AppText } from "@/src/components/Common/AppText";
-import {
-  formatCurrency,
-  formatCompactCurrency,
-} from "@/src/utils/formatCurrency";
-import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
-import { chartHeight } from "@/src/constants/chart";
 
 export function IncomeVsExpensesChart() {
   const {

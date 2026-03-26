@@ -1,11 +1,13 @@
-import ScreenWrapper from "@/src/components/Common/ScreenWrapper";
+import { AppText } from "@/src/components/Global/AppText";
+import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import React from "react";
-import { AppText } from "@/src/components/Common/AppText";
 
 export function ProfileScreen() {
   return (
     <ScreenWrapper>
-      <AppText className="text-2xl text-center" style={{ fontWeight: "700" }}>Profile Screen</AppText>
+      <AppText className="text-2xl text-center" style={{ fontWeight: "700" }}>
+        Profile Screen
+      </AppText>
 
       <AppText className="mt-4 text-red-400 text-center px-4 font-lato">
         Welcome to the Profile Screen! This is where you can discover new

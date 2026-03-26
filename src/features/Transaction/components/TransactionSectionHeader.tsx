@@ -1,4 +1,4 @@
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import React from "react";
 import { View } from "react-native";
 

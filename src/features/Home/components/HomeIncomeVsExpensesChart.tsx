@@ -2,10 +2,13 @@ import { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
-import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { chartHeight } from "@/src/constants/chart";
-import { formatCompactCurrency, formatCurrency } from "@/src/utils/formatCurrency";
+import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
+import {
+  formatCompactCurrency,
+  formatCurrency,
+} from "@/src/utils/formatCurrency";
 
 type TrendType = "Today" | "Week";
 

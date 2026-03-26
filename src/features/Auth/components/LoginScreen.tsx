@@ -1,8 +1,9 @@
+import { FormInput } from "@/src/components/Forms/FormInput";
+import { AppText } from "@/src/components/Global/AppText";
+import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import { useAuthStore } from "@/src/features/Auth/hooks/useAuthStore";
 import { LoginFormValues } from "@/src/features/Auth/types/auth";
 import { loginSchema } from "@/src/features/Auth/validation/authSchema";
-import { FormInput } from "@/src/components/Forms/FormInput";
-import ScreenWrapper from "@/src/components/Common/ScreenWrapper";
 import { Ionicons } from "@expo/vector-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFocusEffect, useRouter } from "expo-router";
@@ -10,7 +11,6 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { BackHandler, Pressable, Text, View } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
-import { AppText } from "@/src/components/Common/AppText";
 
 export function Login() {
   const { replace, back, push } = useRouter();
@@ -93,7 +93,6 @@ export function Login() {
         </Text>
       </Pressable>
 
-  
       <Pressable
         onPress={handleSubmit(onSubmit)}
         className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100"
@@ -101,7 +100,6 @@ export function Login() {
         <Text className="text-white text-center font-bold text-lg">Log In</Text>
       </Pressable>
 
-    
       <View className="flex-row items-center my-8">
         <View className="flex-1 h-px bg-gray-200" />
         <Text className="mx-4 text-gray-500 text-xs font-bold tracking-widest uppercase">
@@ -113,7 +111,6 @@ export function Login() {
       {/* Social Auth Buttons */}
       <SocialAuthButtons variant="continue" />
 
-      
       <View className="flex-row justify-center mt-auto pt-10">
         <Text className="text-gray-500 font-medium">
           Don&apos;t have an account?{" "}

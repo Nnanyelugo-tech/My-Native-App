@@ -1,9 +1,9 @@
-import React from "react";
-import { View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { formatCurrency } from "@/src/utils/formatCurrency";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { View } from "react-native";
 
 type Props = {
   budgetLimit: number;
@@ -37,9 +37,7 @@ export function BudgetCard({ budgetLimit, totalSpent, remaining }: Props) {
         <IconSymbol name="wallet-outline" size={90} color="#FFFFFF" />
       </View>
 
-      <AppText className="text-gray-200 text-sm uppercase">
-        Budget Goal
-      </AppText>
+      <AppText className="text-gray-200 text-sm uppercase">Budget Goal</AppText>
       <AppText
         className="text-white mt-1 text-[27px]"
         style={{ fontWeight: "800" }}
@@ -47,8 +45,7 @@ export function BudgetCard({ budgetLimit, totalSpent, remaining }: Props) {
         {formatCurrency(budgetLimit)}
       </AppText>
 
-      <View className="flex-row mt-6"
-      >
+      <View className="flex-row mt-6">
         <StatTile label="Total Spent" value={totalSpent} arrowDir="down" />
         <View className="w-4" />
         <StatTile label="Remaining" value={remaining} arrowDir="up" />
@@ -62,15 +59,15 @@ function StatTile({ label, value, arrowDir }: StatTileProps) {
   const icon = arrowDir === "down" ? "arrow.down" : "arrow.up";
 
   return (
-    
     <View
       className="flex-1 px-4 py-3.5 rounded-2xl"
       style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
     >
       <View className="flex-row items-center mb-1">
         <IconSymbol name={icon} size={14} color={color} />
-        <AppText className="text-[12px] font-lato-regular text-gray-300 ml-1"
-        style={{ color }}
+        <AppText
+          className="text-[12px] font-lato-regular text-gray-300 ml-1"
+          style={{ color }}
         >
           {label}
         </AppText>
@@ -84,6 +81,5 @@ function StatTile({ label, value, arrowDir }: StatTileProps) {
         {formatCurrency(value)}
       </AppText>
     </View>
-    
   );
 }

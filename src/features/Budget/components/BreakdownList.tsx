@@ -1,4 +1,4 @@
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol, IconSymbolName } from "@/src/components/UI/IconSymbol";
 import type { CategoryBreakdownItem } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
 import { formatCurrency } from "@/src/utils/formatCurrency";

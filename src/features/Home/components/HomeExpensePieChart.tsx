@@ -1,8 +1,8 @@
-import { View, TouchableOpacity, useWindowDimensions } from "react-native";
-import { useRouter } from "expo-router";
-import { PieChart } from "react-native-gifted-charts";
-import { AppText } from "@/src/components/Common/AppText";
+import { AppText } from "@/src/components/Global/AppText";
 import { formatCompactCurrency } from "@/src/utils/formatCurrency";
+import { useRouter } from "expo-router";
+import { TouchableOpacity, useWindowDimensions, View } from "react-native";
+import { PieChart } from "react-native-gifted-charts";
 import {
   ExpenseBreakdownItem,
   useExpenseBreakdown,

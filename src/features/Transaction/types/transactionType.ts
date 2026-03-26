@@ -11,5 +11,5 @@ export type Transaction = {
     icon: IconSymbolName;
     iconBg: string;
     iconColor: string;
-    Note?: string;
+    note?: string;
 };

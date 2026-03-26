@@ -1,7 +1,7 @@
-import { View, TouchableOpacity } from "react-native";
+import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
-import { AppText } from "@/src/components/Common/AppText";
 import { greet } from "@/src/utils/greet";
+import { TouchableOpacity, View } from "react-native";
 
 export const HomeHeader = () => {
   return (
@@ -15,7 +15,10 @@ export const HomeHeader = () => {
           <AppText className="text-text-muted text-xs font-roboto">
             Welcome back,
           </AppText>
-          <AppText className="text-text-primary text-lg" style={{ fontWeight: '800' }}>
+          <AppText
+            className="text-text-primary text-lg"
+            style={{ fontWeight: "800" }}
+          >
             {greet()}, Nego
           </AppText>
         </View>

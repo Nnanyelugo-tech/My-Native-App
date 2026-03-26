@@ -1,15 +1,15 @@
-import React from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import ScreenContainer from "@/src/components/Common/ScreenContainer";
+import { AppText } from "@/src/components/Global/AppText";
+import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
-import { AppText } from "@/src/components/Common/AppText";
-import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
-import { useCategoryBreakdown } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
+import { BreakdownList } from "@/src/features/Budget/components/BreakdownList";
 import { BudgetCard } from "@/src/features/Budget/components/BudgetCard";
-import { ProgressCard } from "@/src/features/Budget/components/ProgressCard";
 import { SpendingChart } from "@/src/features/Budget/components/CategoryPieChart";
 import { IncomeVsExpensesChart } from "@/src/features/Budget/components/IncomeExpenseChart";
-import { BreakdownList } from "@/src/features/Budget/components/BreakdownList";
+import { ProgressCard } from "@/src/features/Budget/components/ProgressCard";
+import { useCategoryBreakdown } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
+import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
+import React from "react";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 
 const budgetLimit = 350000;
 

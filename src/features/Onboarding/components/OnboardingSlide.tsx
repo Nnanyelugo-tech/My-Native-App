@@ -1,7 +1,7 @@
+import { AppText } from "@/src/components/Global/AppText";
+import { Slide } from "@/src/features/Onboarding/types/onboarding";
 import { Image } from "expo-image";
 import { View } from "react-native";
-import { Slide } from "@/src/features/Onboarding/types/onboarding";
-import { AppText } from "@/src/components/Common/AppText";
 
 type Props = {
   item: Slide;

@@ -1,7 +1,7 @@
+import { AppText } from "@/src/components/Global/AppText";
+import { formatCurrency } from "@/src/utils/formatCurrency";
 import React from "react";
 import { View } from "react-native";
-import { AppText } from "@/src/components/Common/AppText";
-import { formatCurrency } from "@/src/utils/formatCurrency";
 
 type Props = {
   spent: number;

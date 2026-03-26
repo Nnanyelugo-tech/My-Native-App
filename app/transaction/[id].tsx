@@ -1,7 +1,7 @@
-import ScreenContainer from "@/src/components/Common/ScreenContainer";
-import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
 import Details from "@/src/features/Transaction/components/transactionDetails/Details";
+import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 

@@ -1,9 +1,9 @@
-import { View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
-import { AppText } from "@/src/components/Common/AppText";
-import { formatCurrency } from "@/src/utils/formatCurrency";
 import { useBalanceSummary } from "@/src/features/Home/hooks/useHomeBalanceSummary";
+import { formatCurrency } from "@/src/utils/formatCurrency";
+import { LinearGradient } from "expo-linear-gradient";
+import { View } from "react-native";
 
 type StatTileProps = {
   label: string;

@@ -1,7 +1,7 @@
+import { FormInput } from "@/src/components/Forms/FormInput";
+import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import { ForgotPasswordValues } from "@/src/features/Auth/types/auth";
 import { forgotPasswordSchema } from "@/src/features/Auth/validation/authSchema";
-import { FormInput } from "@/src/components/Forms/FormInput";
-import ScreenWrapper from "@/src/components/Common/ScreenWrapper";
 import { Ionicons } from "@expo/vector-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFocusEffect, useRouter } from "expo-router";
@@ -60,7 +60,6 @@ export function Forgot() {
         </Text>
       </View>
 
-    
       <View className="gap-4">
         <FormInput
           control={control}
@@ -83,7 +82,6 @@ export function Forgot() {
         </Pressable>
       </View>
 
-      
       <View className="flex-row justify-center mt-10">
         <Text className="text-gray-500 font-medium">
           Remember your password?{" "}

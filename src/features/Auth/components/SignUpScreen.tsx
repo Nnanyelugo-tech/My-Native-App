@@ -1,6 +1,6 @@
 import { FormInput } from "@/src/components/Forms/FormInput";
-import { AppText } from "@/src/components/Common/AppText";
-import ScreenWrapper from "@/src/components/Common/ScreenWrapper";
+import { AppText } from "@/src/components/Global/AppText";
+import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import { useAuthStore } from "@/src/features/Auth/hooks/useAuthStore";
 import { RegisterFormValues } from "@/src/features/Auth/types/auth";
 import { registerSchema } from "@/src/features/Auth/validation/authSchema";

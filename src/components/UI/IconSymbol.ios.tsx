@@ -1,5 +1,5 @@
 import { SymbolView, SymbolViewProps, SymbolWeight } from 'expo-symbols';
-import { StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, ViewStyle, TouchableOpacity } from 'react-native';
 
 export function IconSymbol({
   name,
@@ -7,14 +7,16 @@ export function IconSymbol({
   color,
   style,
   weight = 'regular',
+  onPress,
 }: {
   name: SymbolViewProps['name'];
   size?: number;
   color: string;
   style?: StyleProp<ViewStyle>;
   weight?: SymbolWeight;
+  onPress?: () => void;
 }) {
-  return (
+  const icon = (
     <SymbolView
       weight={weight}
       tintColor={color}
@@ -29,4 +31,15 @@ export function IconSymbol({
       ]}
     />
   );
+
+  if (onPress) {
+    return (
+      <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+        {icon}
+      </TouchableOpacity>
+    );
+  }
+
+  return icon;
 }
+

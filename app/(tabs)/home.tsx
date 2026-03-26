@@ -2,7 +2,7 @@ import { useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 import { BackHandler, ScrollView, View } from "react-native";
 
-import ScreenContainer from "@/src/components/Common/ScreenContainer";
+import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { BalanceCard } from "@/src/features/Home/components/HomeBalanceCard";
 import { ExpensePieChart } from "@/src/features/Home/components/HomeExpensePieChart";
 import { HomeHeader } from "@/src/features/Home/components/HomeHeader";
