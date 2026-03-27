@@ -5,6 +5,20 @@ export const formatCurrency = (n: number) =>
     minimumFractionDigits: 0,
   }).format(n);
 
+export const formatNumber = (n: number) =>
+  new Intl.NumberFormat("en-NG").format(n);
+
+export const cleanAmount = (val: string) => val.replace(/[^0-9.]/g, "");
+
+export const getCurrencySymbol = () => {
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+  })
+    .formatToParts(0)
+    .find((part) => part.type === "currency")?.value || "₦";
+};
+
 export const formatCompactCurrency = (n: number) => {
   if (n >= 1000000) return `₦${(n / 1000000).toFixed(n % 1000000 === 0 ? 0 : 1)}M`;
   if (n >= 1000) return `₦${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}K`;

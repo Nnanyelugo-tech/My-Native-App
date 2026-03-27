@@ -35,6 +35,7 @@
         "react-native-gifted-charts": "^1.4.76",
         "react-native-magic-modal": "^6.1.0",
         "react-native-mmkv": "^4.1.2",
+        "react-native-nitro-modules": "^0.35.2",
         "react-native-reanimated": "~4.1.1",
         "react-native-reanimated-carousel": "^4.0.3",
         "react-native-safe-area-context": "~5.6.0",
@@ -47,7 +48,7 @@
         "tailwindcss": "^4.1.18",
         "uniwind": "^1.3.1",
         "yup": "^1.7.1",
-        "zustand": "^5.0.11",
+        "zustand": "^5.0.12",
       },
       "devDependencies": {
         "@types/react": "~19.1.0",
@@ -1473,7 +1474,7 @@
 
     "react-native-mmkv": ["react-native-mmkv@4.1.2", "https://registry.npmmirror.com/react-native-mmkv/-/react-native-mmkv-4.1.2.tgz", { "peerDependencies": { "react": "*", "react-native": "*", "react-native-nitro-modules": "*" } }, "sha512-6LHb2DQBXuo96Aues13EugmlWw/HAYuh3KoJoQNrC4JsBwn3J3KiRYAg2mCm5Je0VYq2YsmbgZG7XJwX/WFYZA=="],
 
-    "react-native-nitro-modules": ["react-native-nitro-modules@0.33.9", "https://registry.npmmirror.com/react-native-nitro-modules/-/react-native-nitro-modules-0.33.9.tgz", { "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-BM9C5mCGYYjrc8CDWZZ0anLWU/knH2xaEuFzvzogKTOW6fzgS6mmsCdM3ty+AhImJNSYwK19DLrHaqwnrrwEzw=="],
+    "react-native-nitro-modules": ["react-native-nitro-modules@0.35.2", "https://registry.npmmirror.com/react-native-nitro-modules/-/react-native-nitro-modules-0.35.2.tgz", { "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-97cZcCh3ZAuWAfutel2Q3qLfc45XXh7F9Ei5tEjahP0kV3q8hQelwLIulKXmjN+f0JI5Zf/wCsfwwdVWYU2tKA=="],
 
     "react-native-reanimated": ["react-native-reanimated@4.1.6", "https://registry.npmmirror.com/react-native-reanimated/-/react-native-reanimated-4.1.6.tgz", { "dependencies": { "react-native-is-edge-to-edge": "^1.2.1", "semver": "7.7.2" }, "peerDependencies": { "@babel/core": "^7.0.0-0", "react": "*", "react-native": "*", "react-native-worklets": ">=0.5.0" } }, "sha512-F+ZJBYiok/6Jzp1re75F/9aLzkgoQCOh4yxrnwATa8392RvM3kx+fiXXFvwcgE59v48lMwd9q0nzF1oJLXpfxQ=="],
 
@@ -1813,7 +1814,7 @@
 
     "yup": ["yup@1.7.1", "https://registry.npmmirror.com/yup/-/yup-1.7.1.tgz", { "dependencies": { "property-expr": "^2.0.5", "tiny-case": "^1.0.3", "toposort": "^2.0.2", "type-fest": "^2.19.0" } }, "sha512-GKHFX2nXul2/4Dtfxhozv701jLQHdf6J34YDh2cEkpqoo8le5Mg6/LrdseVLrFarmFygZTlfIhHx/QKfb/QWXw=="],
 
-    "zustand": ["zustand@5.0.11", "https://registry.npmmirror.com/zustand/-/zustand-5.0.11.tgz", { "peerDependencies": { "@types/react": ">=18.0.0", "immer": ">=9.0.6", "react": ">=18.0.0", "use-sync-external-store": ">=1.2.0" }, "optionalPeers": ["@types/react", "immer", "react", "use-sync-external-store"] }, "sha512-fdZY+dk7zn/vbWNCYmzZULHRrss0jx5pPFiOuMZ/5HJN6Yv3u+1Wswy/4MpZEkEGhtNH+pwxZB8OKgUBPzYAGg=="],
+    "zustand": ["zustand@5.0.12", "https://registry.npmmirror.com/zustand/-/zustand-5.0.12.tgz", { "peerDependencies": { "@types/react": ">=18.0.0", "immer": ">=9.0.6", "react": ">=18.0.0", "use-sync-external-store": ">=1.2.0" }, "optionalPeers": ["@types/react", "immer", "react", "use-sync-external-store"] }, "sha512-i77ae3aZq4dhMlRhJVCYgMLKuSiZAaUPAct2AksxQ+gOtimhGMdXljRT21P5BNpeT4kXlLIckvkPM029OljD7g=="],
 
     "@babel/core/@babel/code-frame": ["@babel/code-frame@7.29.0", "https://registry.npmmirror.com/@babel/code-frame/-/code-frame-7.29.0.tgz", { "dependencies": { "@babel/helper-validator-identifier": "^7.28.5", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw=="],
 

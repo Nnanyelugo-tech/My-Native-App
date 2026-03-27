@@ -55,7 +55,8 @@ const MAPPING = {
   "banknote": "payments",
   "laptopcomputer": "laptop",
   "gift": "card-giftcard",
-  "folder": "folder",
+  folder: "folder",
+  pencil: "edit",
 } satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**

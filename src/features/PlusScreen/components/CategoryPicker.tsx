@@ -21,7 +21,7 @@ export function CategoryPicker({ categories, selectedId, activeColor, onSelect }
           const isSelected = selectedId === cat.id;
           return (
             <TouchableOpacity
-            activeOpacity={0.9}
+            activeOpacity={0.8}
               key={cat.id}
               onPress={() => onSelect(cat.id)}
               className="items-center mr-4 mt-2 w-16"
@@ -29,15 +29,15 @@ export function CategoryPicker({ categories, selectedId, activeColor, onSelect }
               <View
                 className="w-14 h-14 rounded-2xl items-center justify-center mb-2"
                 style={{
-                  backgroundColor: isSelected ? `${activeColor}15` : "#F7F7F9",
+                  backgroundColor: isSelected ? (cat.iconBg || `${activeColor}15`) : "#F7F7F9",
                   borderWidth: 2,
-                  borderColor: isSelected ? activeColor : "transparent",
+                  borderColor: isSelected ? (cat.iconColor || activeColor) : "transparent",
                 }}
               >
                 <IconSymbol
                   name={cat.icon}
                   size={24}
-                  color={isSelected ? activeColor : "#4B5563"}
+                  color={isSelected ? (cat.iconColor || activeColor) : "#4B5563"}
                 />
               </View>
               <AppText

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
 import {
   groupByDate,
   flattenSections,
@@ -9,12 +9,13 @@ import {
 import { FilterLabel } from "@/src/features/Transaction/types/transaction.types";
 
 export const useTransactions = () => {
+  const transactions = useTransactionStore((state) => state.transactions);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] =
     useState<FilterLabel>("All");
 
   const flatListData = useMemo(() => {
-    const filtered = TRANSACTIONS.filter(
+    const filtered = transactions.filter(
       (tx) =>
         // Keep transactions that match the selected filter
         matchesFilter(tx, activeFilter) &&
@@ -24,7 +25,7 @@ export const useTransactions = () => {
     const sections = groupByDate(filtered);
     // Flatten the sections into a list for LegendList
     return flattenSections(sections);
-  }, [searchQuery, activeFilter]);
+  }, [transactions, searchQuery, activeFilter]);
 
   return {
     searchQuery,

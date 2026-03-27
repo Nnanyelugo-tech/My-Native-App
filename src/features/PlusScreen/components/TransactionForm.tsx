@@ -1,60 +1,61 @@
-import { View, TextInput } from "react-native";
+import { View } from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { CategoryPicker } from "@/src/features/PlusScreen/components/CategoryPicker";
-import type { TransactionFormProps } from "@/src/features/PlusScreen/types/transactionTypes";
+import { FormInput } from "@/src/components/Forms/FormInput";
+import { Control, FieldErrors, FieldValues, Path, Controller } from "react-hook-form";
+import { Category } from "@/src/features/PlusScreen/constants/transactions";
 
-export function TransactionForm({
+export type TransactionFormProps<T extends FieldValues> = {
+  activeColor: string;
+  categories: readonly Category[];
+  control: Control<T>;
+  errors: FieldErrors<T>;
+  date: string;
+  time: string;
+};
+
+export function TransactionForm<T extends FieldValues>({
   activeColor,
   categories,
-  title,
-  onTitleChange,
-  selectedCategory,
-  onCategorySelect,
-  description,
-  onDescriptionChange,
+  control,
+  errors,
   date,
   time,
-  notes,
-  onNotesChange,
-}: TransactionFormProps) {
+}: TransactionFormProps<T>) {
   return (
     <>
       {/* Title */}
-      <View className="mb-6">
-        <AppText className="text-[11px] font-bold text-gray-700 tracking-widest mb-3 uppercase">
-          Title
-        </AppText>
-        <TextInput
-          value={title}
-          onChangeText={onTitleChange}
-          placeholder="e.g. Offering"
-          placeholderTextColor="#9CA3AF"
-          className="border border-gray-200 rounded-2xl px-4 py-3 text-[15px] text-gray-800"
-        />
-      </View>
+      <FormInput
+        control={control}
+        name={"title" as Path<T>}
+        label="Title"
+        placeholder="e.g. Offering"
+        error={errors.title?.message as string}
+      />
 
       {/* Category */}
-      <CategoryPicker
-        categories={categories}
-        selectedId={selectedCategory}
-        activeColor={activeColor}
-        onSelect={onCategorySelect}
+      <Controller
+        control={control}
+        name={"category" as Path<T>}
+        render={({ field: { onChange, value } }: { field: { onChange: (id: string) => void; value: string } }) => (
+          <CategoryPicker
+            categories={categories}
+            selectedId={value}
+            activeColor={activeColor}
+            onSelect={onChange}
+          />
+        )}
       />
 
       {/* Description */}
-      <View className="mb-6">
-        <AppText className="text-[11px] font-bold text-gray-700 tracking-widest mb-1 uppercase">
-          Description
-        </AppText>
-        <TextInput
-          value={description}
-          onChangeText={onDescriptionChange}
-          placeholder="What was this for?"
-          placeholderTextColor="#9CA3AF"
-          className="border-b border-gray-100 py-3 text-[15px] text-gray-800"
-        />
-      </View>
+      <FormInput
+        control={control}
+        name={"description" as Path<T>}
+        label="Description"
+        placeholder="What was this for?"
+        error={errors.description?.message as string}
+      />
 
       {/* Date & Time */}
       <View className="flex-row justify-between mb-6">
@@ -83,20 +84,16 @@ export function TransactionForm({
       </View>
 
       {/* Notes */}
-      <View className="mb-6">
-        <AppText className="text-[11px] font-bold text-gray-700 tracking-widest mb-3 uppercase">
-          Notes (Optional)
-        </AppText>
-        <TextInput
-          value={notes}
-          onChangeText={onNotesChange}
-          placeholder="Add additional details..."
-          placeholderTextColor="#9CA3AF"
-          multiline
-          className="bg-gray-50 rounded-2xl px-4 py-4 text-[15px] text-gray-800 min-h-[100px]"
-          style={{ textAlignVertical: "top" }}
-        />
-      </View>
+      <FormInput
+        control={control}
+        name={"notes" as Path<T>}
+        label="Notes (Optional)"
+        placeholder="Add additional details..."
+        multiline
+        error={errors.notes?.message as string}
+        className="bg-gray-50 rounded-2xl px-4 py-4 text-[15px] text-gray-800 min-h-[100px]"
+        style={{ textAlignVertical: "top" }}
+      />
     </>
   );
 }

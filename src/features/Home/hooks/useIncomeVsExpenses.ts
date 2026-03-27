@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { useWindowDimensions } from "react-native";
-
-import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
 import { getIncomeVsExpense } from "@/src/features/Transaction/utils/getIncomeVsExpense";
 import { isSameDay, getStartOfWeek } from "@/src/utils/date";
+
 import {
   chartHorizontalPadding,
   barWidth,
@@ -13,6 +13,7 @@ import {
 type TrendType = "Today" | "Week" | "Month";
 
 export const useIncomeVsExpenses = (activeTab: TrendType) => {
+  const transactions = useTransactionStore((state) => state.transactions);
   const { width } = useWindowDimensions();
 
   const filteredTransactions = useMemo(() => {
@@ -24,7 +25,7 @@ export const useIncomeVsExpenses = (activeTab: TrendType) => {
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 7);
 
-    return TRANSACTIONS.filter((t) => {
+    return transactions.filter((t) => {
       const tDate = new Date(t.date);
 
       if (activeTab === "Today") {
@@ -42,7 +43,7 @@ export const useIncomeVsExpenses = (activeTab: TrendType) => {
 
       return false;
     });
-  }, [activeTab]);
+  }, [transactions, activeTab]);
 
   const { income, expense } = useMemo(() => {
     return getIncomeVsExpense(filteredTransactions);

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { TRANSACTIONS } from "../../Transaction/data/transactionListData";
+import { useTransactionStore } from "../../Transaction/store/useTransactionStore";
 import { getCategoryColor } from "../../Transaction/utils/getCategoryColor";
 
 const MAX_CATEGORIES = 4;
@@ -12,11 +12,13 @@ export type ExpenseBreakdownItem = {
 };
 
 export function useExpenseBreakdown() {
+  const transactions = useTransactionStore((state) => state.transactions);
+
   return useMemo(() => {
     let totalExpenses = 0;
     const categories: Record<string, number> = {};
 
-    TRANSACTIONS.forEach((t) => {
+    transactions.forEach((t) => {
       if (t.type !== "expense") return;
       totalExpenses += t.amount;
       categories[t.category] = (categories[t.category] ?? 0) + t.amount;
@@ -35,5 +37,5 @@ export function useExpenseBreakdown() {
       }));
 
     return { totalExpenses, breakdown };
-  }, []);
+  }, [transactions]);
 }

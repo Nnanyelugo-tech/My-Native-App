@@ -8,16 +8,33 @@ import { IncomeVsExpensesChart } from "@/src/features/Budget/components/IncomeEx
 import { ProgressCard } from "@/src/features/Budget/components/ProgressCard";
 import { useCategoryBreakdown } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
 import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 
-const budgetLimit = 350000;
-
 export function ReportScreen() {
+  const router = useRouter();
+  const budgets = useTransactionStore((state) => state.budgets);
+  const currentMonth = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+  
+  const currentBudget = budgets.find((b) => b.month === currentMonth);
+  const budgetLimit = currentBudget ? currentBudget.amount : 0;
+
   const { expense: monthExpense } = useIncomeVsExpenses("Month");
   const { totalSpent, categoryBreakdown } = useCategoryBreakdown();
 
   const remaining = Math.max(budgetLimit - monthExpense, 0);
+
+  const handleEditBudget = () => {
+    router.push({
+      pathname: "/plus",
+      params: { mode: "edit", type: "Budget" }
+    });
+  };
 
   return (
     <ScreenContainer>
@@ -45,6 +62,7 @@ export function ReportScreen() {
             budgetLimit={budgetLimit}
             totalSpent={monthExpense}
             remaining={remaining}
+            onEdit={handleEditBudget}
           />
         </View>
 

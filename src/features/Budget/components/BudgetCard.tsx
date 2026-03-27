@@ -3,12 +3,13 @@ import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 type Props = {
   budgetLimit: number;
   totalSpent: number;
   remaining: number;
+  onEdit?: () => void;
 };
 
 type StatTileProps = {
@@ -17,7 +18,7 @@ type StatTileProps = {
   arrowDir: "up" | "down";
 };
 
-export function BudgetCard({ budgetLimit, totalSpent, remaining }: Props) {
+export function BudgetCard({ budgetLimit, totalSpent, remaining, onEdit }: Props) {
   return (
     <LinearGradient
       colors={["#1A237E", "#283593", "#0D1B5E"]}
@@ -37,13 +38,26 @@ export function BudgetCard({ budgetLimit, totalSpent, remaining }: Props) {
         <IconSymbol name="wallet-outline" size={90} color="#FFFFFF" />
       </View>
 
-      <AppText className="text-gray-200 text-sm uppercase">Budget Goal</AppText>
-      <AppText
-        className="text-white mt-1 text-[27px]"
-        style={{ fontWeight: "800" }}
-      >
-        {formatCurrency(budgetLimit)}
-      </AppText>
+      <View className="flex-row justify-between items-start">
+        <View>
+          <AppText className="text-gray-200 text-sm uppercase">Budget Goal</AppText>
+          <AppText
+            className="text-white mt-1 text-[27px]"
+            style={{ fontWeight: "800" }}
+          >
+            {formatCurrency(budgetLimit)}
+          </AppText>
+        </View>
+        
+        {onEdit && (
+          <TouchableOpacity 
+            onPress={onEdit}
+            className="bg-white/10 p-2 rounded-full"
+          >
+            <IconSymbol name="pencil" size={18} color="#FFFFFF" />
+          </TouchableOpacity>
+        )}
+      </View>
 
       <View className="flex-row mt-6">
         <StatTile label="Total Spent" value={totalSpent} arrowDir="down" />

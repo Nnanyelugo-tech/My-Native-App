@@ -2,7 +2,7 @@ import { View, Pressable } from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
 import { transactionColors, TransactionMode } from "@/src/features/PlusScreen/constants/transactions";
 
-const MODES: TransactionMode[] = ["Income", "Expense", "Budget"];
+const modes: TransactionMode[] = ["Income", "Expense", "Budget"];
 
 type Props = {
   activeTab: TransactionMode;
@@ -12,10 +12,11 @@ type Props = {
 export function ModeSelector({ activeTab, onSelect }: Props) {
   return (
     <View className="flex-row justify-between mt-4 bg-gray-100 mx-6 p-1.5 rounded-full mb-8">
-      {MODES.map((mode) => {
+      {modes.map((mode) => {
         const isActive = activeTab === mode;
         return (
           <Pressable
+          
             key={mode}
             onPress={() => onSelect(mode)}
             className={`flex-1 py-3 rounded-full items-center ${

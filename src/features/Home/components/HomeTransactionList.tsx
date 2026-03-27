@@ -1,14 +1,15 @@
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
-import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
 import { formatTime } from "@/src/utils/date";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { router } from "expo-router";
 import { TouchableOpacity, View } from "react-native";
 
 export const TransactionList = () => {
-  const transactions = [...TRANSACTIONS]
+  const transactionsData = useTransactionStore((state) => state.transactions);
+  const transactions = [...transactionsData]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 4);
   const { push } = router;

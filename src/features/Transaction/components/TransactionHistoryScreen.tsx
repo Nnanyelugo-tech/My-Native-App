@@ -5,7 +5,6 @@ import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
 import { useTransactions } from "@/src/features/Transaction/hooks/useTransactions";
 import { TransactionListItem } from "@/src/features/Transaction/types/transaction.types";
 import { LegendList } from "@legendapp/list";
-import { router } from "expo-router";
 import React, { useCallback } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { FilterChips } from "./FilterChips";
@@ -22,7 +21,6 @@ export default function TransactionHistoryScreen() {
     flatListData,
   } = useTransactions();
 
-  const { back } = router;
 
   const renderItem = useCallback(({ item }: { item: TransactionListItem }) => {
     if (item.rowType === "header") {
@@ -44,15 +42,7 @@ export default function TransactionHistoryScreen() {
 
   return (
     <ScreenContainer className="bg-surface-main">
-      <View className="flex-row items-center justify-between px-5 pt-3 pb-2">
-        <TouchableOpacity
-          onPress={() => back()}
-          activeOpacity={0.9}
-          accessibilityRole="button"
-          className="w-10 h-10 items-center justify-center -ml-2"
-        >
-          <IconSymbol name="arrow.left" size={22} color="#1A237E" />
-        </TouchableOpacity>
+      <View className="flex-row items-center justify-between px-6 pt-3 pb-2">
         <AppText className="text-xl text-text-primary font-extrabold">
           Transactions
         </AppText>

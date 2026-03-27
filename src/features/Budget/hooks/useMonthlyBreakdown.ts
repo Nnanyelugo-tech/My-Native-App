@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
 
 export type CategoryBreakdownItem = {
   name: string;
@@ -11,12 +11,14 @@ export type CategoryBreakdownItem = {
 };
 
 export function useCategoryBreakdown() {
+  const transactions = useTransactionStore((state) => state.transactions);
+
   return useMemo(() => {
     const now = new Date();
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
 
-    const expenses = TRANSACTIONS.filter((t) => {
+    const expenses = transactions.filter((t) => {
       const tDate = new Date(t.date);
       return (
         t.type === "expense" &&
@@ -48,5 +50,5 @@ export function useCategoryBreakdown() {
       .sort((a, b) => b.total - a.total);
 
     return { totalSpent, categoryBreakdown };
-  }, []);
+  }, [transactions]);
 }

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { TRANSACTIONS } from "@/src/features/Transaction/data/transactionListData";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
 
 export type BalanceSummary = {
   totalIncome: number;
@@ -8,11 +8,13 @@ export type BalanceSummary = {
 };
 
 export function useBalanceSummary(): BalanceSummary {
+  const transactions = useTransactionStore((state) => state.transactions);
+
   return useMemo(() => {
     let income = 0;
     let expense = 0;
 
-    TRANSACTIONS.forEach((t) => {
+    transactions.forEach((t) => {
       if (t.type === "income") income += t.amount;
       else if (t.type === "expense") expense += t.amount;
     });
@@ -22,5 +24,5 @@ export function useBalanceSummary(): BalanceSummary {
       totalExpenses: expense,
       totalBalance: income - expense,
     };
-  }, []);
+  }, [transactions]);
 }

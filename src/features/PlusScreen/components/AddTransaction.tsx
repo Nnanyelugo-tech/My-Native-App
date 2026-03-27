@@ -1,5 +1,5 @@
 import { Platform, View, TouchableOpacity, ScrollView, KeyboardAvoidingView } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
@@ -18,26 +18,23 @@ const submitLabel = {
 export default function AddTransactionScreen() {
   const { back } = useRouter();
   const { top, bottom } = useSafeAreaInsets();
+  const params = useLocalSearchParams<{ mode?: string; type?: string }>();
+  const isEditMode = params.mode === "edit";
 
   const {
     activeTab,
     activeColor,
     categories,
-    amount,
-    setAmount,
-    title,
-    setTitle,
-    selectedCategory,
-    setSelectedCategory,
-    description,
-    setDescription,
+    control,
+    errors,
     date,
     time,
-    notes,
-    setNotes,
     handleTabChange,
     handleSubmit,
   } = useAddTransaction();
+
+  const title = isEditMode && activeTab === "Budget" ? "Edit Budget" : "Add Transactions";
+  const buttonLabel = isEditMode && activeTab === "Budget" ? "Update Budget" : submitLabel[activeTab];
 
   return (
     <KeyboardAvoidingView
@@ -55,7 +52,7 @@ export default function AddTransactionScreen() {
           onPress={back}
         />
         <AppText className="ml-4 text-xl font-bold text-brand-main">
-          Add Transactions
+          {title}
         </AppText>
       </View>
 
@@ -70,8 +67,9 @@ export default function AddTransactionScreen() {
         <AmountInput
           activeTab={activeTab}
           activeColor={activeColor}
-          amount={amount}
-          onChangeAmount={setAmount}
+          control={control}
+          name="amount"
+          error={errors.amount?.message as string}
         />
 
         <View
@@ -81,16 +79,10 @@ export default function AddTransactionScreen() {
             <TransactionForm
               activeColor={activeColor}
               categories={categories}
-              title={title}
-              onTitleChange={setTitle}
-              selectedCategory={selectedCategory}
-              onCategorySelect={setSelectedCategory}
-              description={description}
-              onDescriptionChange={setDescription}
+              control={control}
+              errors={errors}
               date={date}
               time={time}
-              notes={notes}
-              onNotesChange={setNotes}
             />
           ) : (
             <BudgetForm />
@@ -110,7 +102,7 @@ export default function AddTransactionScreen() {
           onPress={handleSubmit}
         >
           <AppText className="text-white text-lg font-bold">
-            {submitLabel[activeTab]}
+            {buttonLabel}
           </AppText>
           <IconSymbol
             name="arrow.right"
