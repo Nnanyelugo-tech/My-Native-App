@@ -5,17 +5,22 @@ import { useTransactionStore } from "@/src/features/Transaction/store/useTransac
 import { formatTime } from "@/src/utils/date";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { router } from "expo-router";
+import { useCallback, useMemo } from "react";
 import { TouchableOpacity, View } from "react-native";
 
 export const TransactionList = () => {
   const transactionsData = useTransactionStore((state) => state.transactions);
-  const transactions = [...transactionsData]
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 4);
+  const transactions = useMemo(
+    () =>
+      [...transactionsData]
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        .slice(0, 4),
+    [transactionsData],
+  );
   const { push } = router;
-  const handleSeeMore = () => {
+  const handleSeeMore = useCallback(() => {
     push("/transaction");
-  };
+  }, [push]);
 
   return (
     <View className="mb-10">

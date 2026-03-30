@@ -1,4 +1,5 @@
 import { FormInput } from "@/src/components/Forms/FormInput";
+import { AppText } from "@/src/components/Global/AppText";
 import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import { ForgotPasswordValues } from "@/src/features/Auth/types/auth";
 import { forgotPasswordSchema } from "@/src/features/Auth/validation/authSchema";
@@ -7,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { BackHandler, Pressable, Text, View } from "react-native";
+import { BackHandler, Pressable, View } from "react-native";
 
 export function Forgot() {
   const { back, replace } = useRouter();
@@ -51,13 +52,13 @@ export function Forgot() {
       </View>
 
       <View className="mb-10">
-        <Text className="text-3xl font-black text-gray-900 mb-3">
+        <AppText className="text-3xl font-black text-gray-900 mb-3">
           Forgot Password?
-        </Text>
-        <Text className="text-gray-500 font-medium font-lato leading-6 text-[15px]">
+        </AppText>
+        <AppText className="text-gray-500 font-medium font-lato leading-6 text-[15px]">
           Enter your email address and we&apos;ll send you a reset link to
           regain access to your Fintrack account.
-        </Text>
+        </AppText>
       </View>
 
       <View className="gap-4">
@@ -76,18 +77,18 @@ export function Forgot() {
           onPress={handleSubmit(onSubmit)}
           className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 mt-2"
         >
-          <Text className="text-white text-center font-bold text-lg">
+          <AppText className="text-white text-center font-bold text-lg">
             Send Reset Link
-          </Text>
+          </AppText>
         </Pressable>
       </View>
 
       <View className="flex-row justify-center mt-10">
-        <Text className="text-gray-500 font-medium">
+        <AppText className="text-gray-500 font-medium">
           Remember your password?{" "}
-        </Text>
+        </AppText>
         <Pressable onPress={() => replace("/auth/login")}>
-          <Text className="text-brand-main font-bold">Log In</Text>
+          <AppText className="text-brand-main font-bold">Log In</AppText>
         </Pressable>
       </View>
     </ScreenWrapper>

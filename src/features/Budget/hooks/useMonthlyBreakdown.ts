@@ -1,14 +1,7 @@
 import { useMemo } from "react";
 import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { CategoryBreakdownItem } from "@/src/features/Budget/types/budgetProps";
 
-export type CategoryBreakdownItem = {
-  name: string;
-  total: number;
-  icon: string;
-  iconBg: string;
-  iconColor: string;
-  count: number;
-};
 
 export function useCategoryBreakdown() {
   const transactions = useTransactionStore((state) => state.transactions);

@@ -8,7 +8,11 @@ export const formatCurrency = (n: number) =>
 export const formatNumber = (n: number) =>
   new Intl.NumberFormat("en-NG").format(n);
 
-export const cleanAmount = (val: string) => val.replace(/[^0-9.]/g, "");
+export const cleanAmount = (val: string) => {
+  const stripped = val.replace(/[^0-9.]/g, "");
+  const [integer, ...decimals] = stripped.split(".");
+  return decimals.length > 0 ? `${integer}.${decimals.join("")}` : integer;
+};
 
 export const getCurrencySymbol = () => {
   return new Intl.NumberFormat("en-NG", {

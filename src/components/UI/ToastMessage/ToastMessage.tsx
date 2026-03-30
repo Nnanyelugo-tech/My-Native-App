@@ -11,7 +11,7 @@ interface ToastParams {
 }
 
 const toastConfig: ToastConfig = {
-  success: (params: any) => {
+  success: (params) => {
     const { text1, text2, props } = params as ToastParams;
     return (
       <CustomToastUi
@@ -23,7 +23,7 @@ const toastConfig: ToastConfig = {
       />
     );
   },
-  error: (params: any) => {
+  error: (params) => {
     const { text1, text2, props } = params as ToastParams;
     return (
       <CustomToastUi
@@ -35,7 +35,7 @@ const toastConfig: ToastConfig = {
       />
     );
   },
-  info: (params: any) => {
+  info: (params) => {
     const { text1, text2, props } = params as ToastParams;
     return (
       <CustomToastUi
@@ -49,6 +49,6 @@ const toastConfig: ToastConfig = {
   },
 };
 
-export const ToastMassage = () => {
+export const ToastMessage = () => {
   return <Toast config={toastConfig} />;
 };

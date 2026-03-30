@@ -1,9 +1,9 @@
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol, IconSymbolName } from "@/src/components/UI/IconSymbol";
-import type { CategoryBreakdownItem } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import React from "react";
 import { View } from "react-native";
+import { CategoryBreakdownItem } from "@/src/features/Budget/types/budgetProps";
 
 type Props = {
   items: CategoryBreakdownItem[];
@@ -41,14 +41,6 @@ export function BreakdownList({ items }: Props) {
           <View className="items-end">
             <AppText className="text-text-primary font-bold text-base">
               {formatCurrency(item.total)}
-            </AppText>
-            <AppText
-              className={`text-xs mt-0.5 font-bold ${
-                index % 2 === 0 ? "text-success-main" : "text-danger-main"
-              }`}
-            >
-              {index % 2 === 0 ? "+" : "-"}
-              {(Math.random() * 10).toFixed(1)}%
             </AppText>
           </View>
         </View>

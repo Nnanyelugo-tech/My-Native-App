@@ -1,10 +1,10 @@
 import { AppText } from "@/src/components/Global/AppText";
-import type { CategoryBreakdownItem } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
-import { getCategoryColor } from "@/src/features/Transaction/utils/getCategoryColor";
 import { formatCompactCurrency } from "@/src/utils/formatCurrency";
 import React from "react";
 import { View, useWindowDimensions } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
+import { CategoryBreakdownItem } from "@/src/features/Budget/types/budgetProps";
+import { getCategoryColor } from "@/src/features/Transaction/utils/getCategoryColor";
 
 type Props = {
   categoryBreakdown: CategoryBreakdownItem[];
@@ -17,7 +17,7 @@ export function SpendingChart({ categoryBreakdown, totalSpent }: Props) {
   const pieData = categoryBreakdown.map((item, index) => ({
     value: item.total,
     color: getCategoryColor(item.name, index),
-    text: `${((item.total / totalSpent) * 100).toFixed(0)}%`,
+    text: totalSpent > 0 ? `${((item.total / totalSpent) * 100).toFixed(0)}%` : "0%",
     label: item.name,
   }));
 

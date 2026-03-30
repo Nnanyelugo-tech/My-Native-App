@@ -1,13 +1,19 @@
-import { Platform, View, TouchableOpacity, ScrollView, KeyboardAvoidingView } from "react-native";
-import { useRouter, useLocalSearchParams } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
-import { ModeSelector } from "@/src/features/PlusScreen/components/ModeSelector";
 import { AmountInput } from "@/src/features/PlusScreen/components/AmountInput";
-import { TransactionForm } from "@/src/features/PlusScreen/components/TransactionForm";
 import { BudgetForm } from "@/src/features/PlusScreen/components/BudgetForm";
+import { ModeSelector } from "@/src/features/PlusScreen/components/ModeSelector";
+import { TransactionForm } from "@/src/features/PlusScreen/components/TransactionForm";
 import { useAddTransaction } from "@/src/features/PlusScreen/hooks/useAddTransaction";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const submitLabel = {
   Income: "Add Income",
@@ -29,12 +35,19 @@ export default function AddTransactionScreen() {
     errors,
     date,
     time,
+    hasBudget,
     handleTabChange,
     handleSubmit,
   } = useAddTransaction();
 
-  const title = isEditMode && activeTab === "Budget" ? "Edit Budget" : "Add Transactions";
-  const buttonLabel = isEditMode && activeTab === "Budget" ? "Update Budget" : submitLabel[activeTab];
+  const title =
+    isEditMode && activeTab === "Budget" ? "Edit Budget" : "Add Transactions";
+  const buttonLabel =
+    activeTab === "Budget"
+      ? hasBudget
+        ? "Update Budget"
+        : "Set Budget"
+      : submitLabel[activeTab];
 
   return (
     <KeyboardAvoidingView
@@ -43,7 +56,6 @@ export default function AddTransactionScreen() {
       keyboardVerticalOffset={Platform.OS === "ios" ? top + 10 : 0}
       className="bg-surface-main"
     >
-      
       <View className="flex-row items-center pb-4 px-6 py-4 bg-surface-main">
         <IconSymbol
           name="arrow.left"
@@ -72,9 +84,7 @@ export default function AddTransactionScreen() {
           error={errors.amount?.message as string}
         />
 
-        <View
-          className="bg-white mx-6 rounded-[32px] p-6 mb-6"
-        >
+        <View className="bg-white mx-6 rounded-[32px] p-6 mb-6">
           {activeTab !== "Budget" ? (
             <TransactionForm
               activeColor={activeColor}

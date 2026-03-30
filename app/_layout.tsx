@@ -7,7 +7,7 @@ import { MagicModalPortal } from "react-native-magic-modal";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Sheets } from "@/src/components/UI/actionSheet/Sheets";
-import { ToastMassage } from "@/src/components/UI/ToastMessage/ToastMessage";
+import { ToastMessage } from "@/src/components/UI/ToastMessage/ToastMessage";
 import "../global.css";
 
 export const unstable_settings = {
@@ -58,7 +58,7 @@ export default function RootLayout() {
             <Sheets />
           </SheetProvider>
           <MagicModalPortal />
-          <ToastMassage />
+          <ToastMessage />
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </QueryClientProvider>

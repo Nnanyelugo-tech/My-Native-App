@@ -1,16 +1,11 @@
 import { View, TouchableOpacity } from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
-import type { Category } from "@/src/features/PlusScreen/constants/transactions";
+import { CategoryPickerProps } from "@/src/features/PlusScreen/types/transactionForm";
 
-type Props = {
-  categories: readonly Category[];
-  selectedId: string;
-  activeColor: string;
-  onSelect: (id: string) => void;
-};
 
-export function CategoryPicker({ categories, selectedId, activeColor, onSelect }: Props) {
+
+export function CategoryPicker({ categories, selectedId, activeColor, onSelect }: CategoryPickerProps) {
   return (
     <View className="mb-6">
       <AppText className="text-[11px] font-bold text-gray-700 tracking-widest mb-4 uppercase">

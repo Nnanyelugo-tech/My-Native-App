@@ -34,7 +34,7 @@ export default function OnboardingHeader({
         activeOpacity={0.9}
         accessibilityRole="button"
         onPress={onBack}
-        hitSlop={{ top: 10, bottom: 1, left: 10, right: 10 }}
+        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
       >
         <Ionicons name="arrow-back" size={28} color="#0D143C" />
       </TouchableOpacity>

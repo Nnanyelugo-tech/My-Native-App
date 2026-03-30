@@ -68,6 +68,7 @@ export default function OnboardingCarousel() {
           data={slides}
           loop={false}
           snapEnabled
+          scrollAnimationDuration={600}
           onProgressChange={(_, absoluteProgress) => {
             // Sync dots animation and update active slide index as user swipes
             progress.value = absoluteProgress;

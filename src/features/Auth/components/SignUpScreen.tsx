@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BackHandler, Pressable, Text, View } from "react-native";
+import { BackHandler, Pressable, View } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
 
 export function Signup() {
@@ -126,11 +126,11 @@ export function Signup() {
           )}
         </Pressable>
 
-        <Text className="flex-1 text-gray-500 font-medium text-sm font-lato">
+        <AppText className="flex-1 text-gray-500 font-medium text-sm font-lato">
           By creating an account, i agree to Fintrack&apos;s{" "}
-          <Text className="text-brand-main font-bold">Terms of Service</Text>{" "}
-          and <Text className="text-brand-main font-bold">Privacy Policy</Text>
-        </Text>
+          <AppText className="text-brand-main font-bold">Terms of Service</AppText>{" "}
+          and <AppText className="text-brand-main font-bold">Privacy Policy</AppText>
+        </AppText>
       </View>
 
       <Pressable
@@ -140,34 +140,34 @@ export function Signup() {
         }`}
         disabled={!agreeToTerms}
       >
-        <Text className="text-white text-center font-bold text-lg">
+        <AppText className="text-white text-center font-bold text-lg">
           Sign Up
-        </Text>
+        </AppText>
       </Pressable>
 
       <View className="flex-row items-center my-8">
         <View className="flex-1 h-px bg-gray-200" />
-        <Text className="mx-4 text-gray-500 text-xs font-bold tracking-widest uppercase">
-          OR Sign up WITH
-        </Text>
+        <AppText className="mx-4 text-gray-500 text-xs font-bold tracking-widest uppercase">
+          OR SIGN UP WITH
+        </AppText>
         <View className="flex-1 h-px bg-gray-200" />
       </View>
 
       <SocialAuthButtons variant="signup" />
 
       <View className="flex-row justify-center mt-12">
-        <Text className="text-gray-500 font-medium">
+        <AppText className="text-gray-500 font-medium">
           Already have an account?{" "}
-        </Text>
+        </AppText>
         <Pressable onPress={() => replace("/auth/login")}>
-          <Text className="text-brand-main font-bold">Log In</Text>
+          <AppText className="text-brand-main font-bold">Log In</AppText>
         </Pressable>
       </View>
 
       <View className="mt-8 items-center">
-        <Text className="text-[12px] text-gray-400 text-center px-10">
+        <AppText className="text-[12px] text-gray-400 text-center px-10">
           By signing up, you agree to our Terms of Service and Privacy Policy.
-        </Text>
+        </AppText>
       </View>
     </ScreenWrapper>
   );

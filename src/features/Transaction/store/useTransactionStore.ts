@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { Transaction } from '../types/transactionType';
 import { Budget } from '../types/budgetType';
 import { TRANSACTIONS as INITIAL_TRANSACTIONS } from '../data/transactionListData';
+import { getYearMonthKey } from '@/src/utils/date';
 
 interface TransactionState {
   transactions: Transaction[];
@@ -15,7 +16,7 @@ interface TransactionState {
 export const useTransactionStore = create<TransactionState>((set) => ({
   transactions: INITIAL_TRANSACTIONS,
   budgets: [
-    { id: '1', amount: 0, month: new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" }) }
+    { id: '1', amount: 0, month: getYearMonthKey() }
   ],
   addTransaction: (transaction) =>
     set((state) => ({

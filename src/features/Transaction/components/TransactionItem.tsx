@@ -4,9 +4,10 @@ import { Transaction } from "@/src/features/Transaction/types/transactionType";
 import { formatTime } from "@/src/utils/date";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { router } from "expo-router";
+import React from "react";
 import { TouchableOpacity, View } from "react-native";
 
-export const TransactionItem = ({ item: t }: { item: Transaction }) => {
+export const TransactionItem = React.memo(({ item: t }: { item: Transaction }) => {
   const isIncome = t.type === "income";
   const { push } = router;
 
@@ -49,4 +50,6 @@ export const TransactionItem = ({ item: t }: { item: Transaction }) => {
       </AppText>
     </TouchableOpacity>
   );
-};
+});
+
+TransactionItem.displayName = "TransactionItem";

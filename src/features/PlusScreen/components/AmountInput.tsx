@@ -1,16 +1,9 @@
 import { View, TextInput } from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
-import { TransactionMode } from "@/src/features/PlusScreen/constants/transactions";
-import { Controller, Control, FieldValues, Path } from "react-hook-form";
+import { Controller, FieldValues } from "react-hook-form";
 import { cleanAmount, formatNumber, getCurrencySymbol } from "@/src/utils/formatCurrency";
+import { AmountInputProps } from "@/src/features/PlusScreen/types/transactionForm";
 
-type Props<T extends FieldValues> = {
-  activeTab: TransactionMode;
-  activeColor: string;
-  control: Control<T>;
-  name: Path<T>;
-  error?: string;
-};
 
 export function AmountInput<T extends FieldValues>({ 
   activeTab, 
@@ -18,7 +11,7 @@ export function AmountInput<T extends FieldValues>({
   control,
   name,
   error
-}: Props<T>) {
+}: AmountInputProps<T>) {
   return (
     <View className="items-center mb-6">
       <AppText className="text-[10px] font-bold text-gray-500 tracking-widest mb-1 uppercase">

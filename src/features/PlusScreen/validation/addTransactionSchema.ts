@@ -26,5 +26,5 @@ export const budgetSchema = Yup.object().shape({
     }),
 });
 
-export type TransactionFormData = Yup.InferType<typeof transactionSchema>;
-export type BudgetFormData = Yup.InferType<typeof budgetSchema>;
+export type TransactionFormValues = Yup.InferType<typeof transactionSchema>;
+export type BudgetFormValues = Yup.InferType<typeof budgetSchema>;

@@ -3,17 +3,10 @@ import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { CategoryPicker } from "@/src/features/PlusScreen/components/CategoryPicker";
 import { FormInput } from "@/src/components/Forms/FormInput";
-import { Control, FieldErrors, FieldValues, Path, Controller } from "react-hook-form";
-import { Category } from "@/src/features/PlusScreen/constants/transactions";
+import { FieldValues, Path, Controller } from "react-hook-form";
+import { TransactionFormProps } from "@/src/features/PlusScreen/types/transactionForm";
 
-export type TransactionFormProps<T extends FieldValues> = {
-  activeColor: string;
-  categories: readonly Category[];
-  control: Control<T>;
-  errors: FieldErrors<T>;
-  date: string;
-  time: string;
-};
+
 
 export function TransactionForm<T extends FieldValues>({
   activeColor,

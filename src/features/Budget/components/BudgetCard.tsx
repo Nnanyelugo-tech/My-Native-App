@@ -4,21 +4,14 @@ import { formatCurrency } from "@/src/utils/formatCurrency";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
+import { BudgetCardProps, StatTileProps } from "../types/budgetProps";
 
-type Props = {
-  budgetLimit: number;
-  totalSpent: number;
-  remaining: number;
-  onEdit?: () => void;
-};
-
-type StatTileProps = {
-  label: string;
-  value: number;
-  arrowDir: "up" | "down";
-};
-
-export function BudgetCard({ budgetLimit, totalSpent, remaining, onEdit }: Props) {
+export function BudgetCard({
+  budgetLimit,
+  totalSpent,
+  remaining,
+  onEdit,
+}: BudgetCardProps) {
   return (
     <LinearGradient
       colors={["#1A237E", "#283593", "#0D1B5E"]}
@@ -40,7 +33,9 @@ export function BudgetCard({ budgetLimit, totalSpent, remaining, onEdit }: Props
 
       <View className="flex-row justify-between items-start">
         <View>
-          <AppText className="text-gray-200 text-sm uppercase">Budget Goal</AppText>
+          <AppText className="text-gray-200 text-sm uppercase">
+            Budget Goal
+          </AppText>
           <AppText
             className="text-white mt-1 text-[27px]"
             style={{ fontWeight: "800" }}
@@ -48,9 +43,9 @@ export function BudgetCard({ budgetLimit, totalSpent, remaining, onEdit }: Props
             {formatCurrency(budgetLimit)}
           </AppText>
         </View>
-        
+
         {onEdit && (
-          <TouchableOpacity 
+          <TouchableOpacity
             onPress={onEdit}
             className="bg-white/10 p-2 rounded-full"
           >

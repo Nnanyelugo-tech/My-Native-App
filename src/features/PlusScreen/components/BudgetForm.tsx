@@ -1,12 +1,10 @@
 import { View } from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
+import { getDisplayMonth } from "@/src/utils/date";
 
-export function BudgetForm() {
-  const currentMonth = new Date().toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+ export function BudgetForm() {
+  const currentMonth = getDisplayMonth();
 
   return (
     <>

@@ -12,16 +12,15 @@ import { useTransactionStore } from "@/src/features/Transaction/store/useTransac
 import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
+import { getYearMonthKey, getDisplayMonth } from "@/src/utils/date";
 
 export function ReportScreen() {
   const router = useRouter();
   const budgets = useTransactionStore((state) => state.budgets);
-  const currentMonth = new Date().toLocaleDateString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+  const currentMonthKey = getYearMonthKey();
+  const currentMonthDisplay = getDisplayMonth();
   
-  const currentBudget = budgets.find((b) => b.month === currentMonth);
+  const currentBudget = budgets.find((b) => b.month === currentMonthKey);
   const budgetLimit = currentBudget ? currentBudget.amount : 0;
 
   const { expense: monthExpense } = useIncomeVsExpenses("Month");
@@ -32,7 +31,7 @@ export function ReportScreen() {
   const handleEditBudget = () => {
     router.push({
       pathname: "/plus",
-      params: { mode: "edit", type: "Budget" }
+      params: { mode: "edit", type: "Budget", amount: budgetLimit.toString() }
     });
   };
 
@@ -45,7 +44,7 @@ export function ReportScreen() {
         <TouchableOpacity className="flex-row items-center bg-white border-border-subtle rounded-xl px-3 py-2">
           <IconSymbol name="calendar" size={16} color="#555555" />
           <AppText className="text-text-muted text-sm ml-2 font-bold">
-            Mar 2026
+            {currentMonthDisplay}
           </AppText>
           <IconSymbol name="chevron.right" size={14} color="#555555" />
         </TouchableOpacity>

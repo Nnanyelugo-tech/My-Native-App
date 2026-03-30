@@ -4,12 +4,8 @@ import { useBalanceSummary } from "@/src/features/Home/hooks/useHomeBalanceSumma
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { LinearGradient } from "expo-linear-gradient";
 import { View } from "react-native";
+import { StatTileProps } from "@/src/features/Home/types/homeTypeProps";
 
-type StatTileProps = {
-  label: string;
-  amount: string;
-  direction: "income" | "expense";
-};
 
 function StatTile({ label, amount, direction }: StatTileProps) {
   const isIncome = direction === "income";

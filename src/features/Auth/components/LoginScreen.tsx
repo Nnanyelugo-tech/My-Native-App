@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { BackHandler, Pressable, Text, View } from "react-native";
+import { BackHandler, Pressable, View } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
 
 export function Login() {
@@ -88,23 +88,23 @@ export function Login() {
         onPress={() => push("/auth/forgot-password")}
         className="self-end mb-8"
       >
-        <Text className="text-brand-main font-bold text-sm">
+        <AppText className="text-brand-main font-bold text-sm">
           Forgot Password?
-        </Text>
+        </AppText>
       </Pressable>
 
       <Pressable
         onPress={handleSubmit(onSubmit)}
         className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100"
       >
-        <Text className="text-white text-center font-bold text-lg">Log In</Text>
+        <AppText className="text-white text-center font-bold text-lg">Log In</AppText>
       </Pressable>
 
       <View className="flex-row items-center my-8">
         <View className="flex-1 h-px bg-gray-200" />
-        <Text className="mx-4 text-gray-500 text-xs font-bold tracking-widest uppercase">
+        <AppText className="mx-4 text-gray-500 text-xs font-bold tracking-widest uppercase">
           OR CONTINUE WITH
-        </Text>
+        </AppText>
         <View className="flex-1 h-px bg-gray-200" />
       </View>
 
@@ -112,11 +112,11 @@ export function Login() {
       <SocialAuthButtons variant="continue" />
 
       <View className="flex-row justify-center mt-auto pt-10">
-        <Text className="text-gray-500 font-medium">
+        <AppText className="text-gray-500 font-medium">
           Don&apos;t have an account?{" "}
-        </Text>
+        </AppText>
         <Pressable onPress={() => replace("/auth/register")}>
-          <Text className="text-brand-main font-bold">Sign Up</Text>
+          <AppText className="text-brand-main font-bold">Sign Up</AppText>
         </Pressable>
       </View>
     </ScreenWrapper>

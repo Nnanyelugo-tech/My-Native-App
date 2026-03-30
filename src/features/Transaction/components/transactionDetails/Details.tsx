@@ -14,7 +14,7 @@ interface DetailsProps {
   transaction: Transaction;
 }
 
-const statusColors: Record<string, string> = {
+const statusColors: Record<Transaction["status"], string> = {
   completed: "#4CAF50",
   pending: "#FFC107",
   failed: "#F44336",

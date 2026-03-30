@@ -26,7 +26,6 @@ export function FormInput<T extends FieldValues>({
       <Controller
         control={control}
         name={name}
-        rules={{ required: true }}
         render={({ field: { onChange, onBlur, value } }) => (
           <View
             className={`flex-row items-center border rounded-2xl px-4 bg-red-50/50 ${

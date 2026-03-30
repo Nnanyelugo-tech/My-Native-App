@@ -14,9 +14,6 @@ export function SocialAuthButtons({
   onApplePress,
   variant = "continue",
 }: SocialAuthButtonsProps) {
-
-  const isSignup = variant === "signup";
-
   return (
     <View className="flex-row gap-4 w-full mt-4">
       <Pressable
@@ -25,7 +22,7 @@ export function SocialAuthButtons({
       >
         <Ionicons name="logo-google" size={20} color="#EA4335" />
         <Text className="ml-2 font-bold text-gray-700 text-[14px]">
-          {isSignup ? "Google" : "Google"}
+          Google
         </Text>
       </Pressable>
 
@@ -35,7 +32,7 @@ export function SocialAuthButtons({
       >
         <Ionicons name="logo-apple" size={20} color="#000000" />
         <Text className="ml-2 font-bold text-gray-700 text-[14px]">
-          {isSignup ? "Apple" : "Apple"}
+          Apple
         </Text>
       </Pressable>
     </View>

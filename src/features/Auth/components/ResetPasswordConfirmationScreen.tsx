@@ -1,8 +1,9 @@
+import { AppText } from "@/src/components/Global/AppText";
 import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 export function ResetConfirmation() {
   const { replace } = useRouter();
@@ -18,41 +19,41 @@ export function ResetConfirmation() {
           </View>
         </View>
 
-        <Text className="text-3xl font-black text-gray-900 mb-4 text-center">
+        <AppText className="text-3xl font-black text-gray-900 mb-4 text-center">
           Email Sent
-        </Text>
-        <Text className="text-gray-500 font-medium leading-6 text-[15px] text-center px-4 mb-10">
+        </AppText>
+        <AppText className="text-gray-500 font-medium leading-6 text-[15px] text-center px-4 mb-10">
           We&apos;ve sent password reset instructions to your email. Please
           check your inbox and follow the link to reset your password.
-        </Text>
+        </AppText>
 
         <Pressable
           onPress={() => replace("/auth/login")}
           className="bg-brand-main py-4 rounded-2xl w-full shadow-lg shadow-indigo-100 mb-8"
         >
-          <Text className="text-white text-center font-bold text-lg">
+          <AppText className="text-white text-center font-bold text-lg">
             Back to Login
-          </Text>
+          </AppText>
         </Pressable>
 
         <View className="items-center mb-10">
-          <Text className="text-gray-400 text-sm mb-2 font-medium">
+          <AppText className="text-gray-400 text-sm mb-2 font-medium">
             Didn&apos;t receive the email?
-          </Text>
+          </AppText>
           <Pressable className="flex-row items-center">
             <Ionicons name="refresh-outline" size={18} color="#1A237E" />
-            <Text className="text-brand-main font-bold ml-2">Resend Email</Text>
+            <AppText className="text-brand-main font-bold ml-2">Resend Email</AppText>
           </Pressable>
         </View>
       </View>
 
       <View className="mt-auto items-center">
-        <Text className="text-sm text-gray-400 font-medium">
+        <AppText className="text-sm text-gray-400 font-medium">
           Need help?{" "}
-          <Text className="text-brand-main underline font-bold">
+          <AppText className="text-brand-main underline font-bold">
             Contact Fintrack Support
-          </Text>
-        </Text>
+          </AppText>
+        </AppText>
       </View>
     </ScreenWrapper>
   );
