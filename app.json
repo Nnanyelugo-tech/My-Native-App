@@ -7,7 +7,6 @@
     "icon": "./assets/images/app-icon.png",
     "scheme": "fintrack",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.ugonnaya.fintrack"
@@ -16,7 +15,6 @@
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE"
       },
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.ugonnaya.fintrack"
     },
