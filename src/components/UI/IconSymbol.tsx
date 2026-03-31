@@ -58,6 +58,11 @@ const MAPPING = {
   folder: "folder",
   pencil: "edit",
   "questionmark": "help",
+  "camera.fill": "camera",
+  "shield.fill": "security",
+  "building.columns.fill": "account-balance",
+  "moon.fill": "dark-mode",
+  "arrow.right.square.fill": "logout",
 } satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**

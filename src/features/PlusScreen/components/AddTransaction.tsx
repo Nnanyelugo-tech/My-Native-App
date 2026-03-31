@@ -111,7 +111,7 @@ export default function AddTransactionScreen() {
           style={{ backgroundColor: activeColor }}
           onPress={handleSubmit}
         >
-          <AppText className="text-white text-lg font-bold">
+          <AppText className="text-white text-md font-bold">
             {buttonLabel}
           </AppText>
           <IconSymbol

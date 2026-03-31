@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Fintrack",
-    "slug": "Fintrack",
+    "slug": "fintrack-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon.png",
@@ -9,14 +9,14 @@
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.ugonnaya.fintrack"
+      "bundleIdentifier": "com.ugonnaya.fintrackapp"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.ugonnaya.fintrack"
+      "package": "com.ugonnaya.fintrackapp"
     },
     "web": {
       "output": "static",
@@ -56,7 +56,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": ""
+        "projectId": "bc878625-a051-4a57-866b-0ee39c5e4756"
       }
     },
     "owner": "ugonnaya"

@@ -58,7 +58,7 @@ export function TransactionForm<T extends FieldValues>({
           </AppText>
           <View className="flex-row items-center border-b border-gray-100 py-3">
             <IconSymbol name="calendar" size={18} color="#6B7280" />
-            <AppText className="text-[15px] text-gray-800 ml-2 font-medium">
+            <AppText className="text-[11px] text-gray-800 ml-2 font-medium">
               {date}
             </AppText>
           </View>
@@ -69,7 +69,7 @@ export function TransactionForm<T extends FieldValues>({
           </AppText>
           <View className="flex-row items-center border-b border-gray-100 py-3">
             <IconSymbol name="clock" size={18} color="#6B7280" />
-            <AppText className="text-[15px] text-gray-800 ml-2 font-medium">
+            <AppText className="text-[11px] text-gray-800 ml-2 font-medium">
               {time}
             </AppText>
           </View>

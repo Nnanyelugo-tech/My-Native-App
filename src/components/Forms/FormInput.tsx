@@ -40,7 +40,7 @@ export function FormInput<T extends FieldValues>({
               onBlur={onBlur}
               placeholderTextColor="#9CA3AF"
               secureTextEntry={isPassword && !showPassword}
-              className="flex-1 py-3.5 text-gray-600 text-[15px]"
+              className="flex-1 py-3.5 font-lato-regular text-gray-600 text-[13px]"
               {...inputProps}
             />
 

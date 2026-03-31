@@ -34,7 +34,7 @@
         "react-native-gesture-handler": "~2.28.0",
         "react-native-gifted-charts": "^1.4.76",
         "react-native-magic-modal": "^6.1.0",
-        "react-native-mmkv": "^4.1.2",
+        "react-native-mmkv": "^4.3.0",
         "react-native-nitro-modules": "^0.35.2",
         "react-native-reanimated": "~4.1.1",
         "react-native-reanimated-carousel": "^4.0.3",
@@ -1472,7 +1472,7 @@
 
     "react-native-magic-modal": ["react-native-magic-modal@6.1.0", "https://registry.npmmirror.com/react-native-magic-modal/-/react-native-magic-modal-6.1.0.tgz", { "peerDependencies": { "react": "*", "react-native": "*", "react-native-gesture-handler": "*", "react-native-reanimated": "*" } }, "sha512-PeRhqhpKoAs/dF4TCG/4BxlkAt43TNVzSQZhWf2tWgIaDkmK9Voa3qTlyOUQ2F9R2kAM+bHah+YgCNjwAZ1cQA=="],
 
-    "react-native-mmkv": ["react-native-mmkv@4.1.2", "https://registry.npmmirror.com/react-native-mmkv/-/react-native-mmkv-4.1.2.tgz", { "peerDependencies": { "react": "*", "react-native": "*", "react-native-nitro-modules": "*" } }, "sha512-6LHb2DQBXuo96Aues13EugmlWw/HAYuh3KoJoQNrC4JsBwn3J3KiRYAg2mCm5Je0VYq2YsmbgZG7XJwX/WFYZA=="],
+    "react-native-mmkv": ["react-native-mmkv@4.3.0", "https://registry.npmmirror.com/react-native-mmkv/-/react-native-mmkv-4.3.0.tgz", { "peerDependencies": { "react": "*", "react-native": "*", "react-native-nitro-modules": "*" } }, "sha512-D1wB2ViMrm+0rs7FcbLoct/BV+qugASi+XAZT8MzXy5yl0CI0qxToh2LPnw9UENHrNefpfDZgE5FpMhIB37I5Q=="],
 
     "react-native-nitro-modules": ["react-native-nitro-modules@0.35.2", "https://registry.npmmirror.com/react-native-nitro-modules/-/react-native-nitro-modules-0.35.2.tgz", { "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-97cZcCh3ZAuWAfutel2Q3qLfc45XXh7F9Ei5tEjahP0kV3q8hQelwLIulKXmjN+f0JI5Zf/wCsfwwdVWYU2tKA=="],
 

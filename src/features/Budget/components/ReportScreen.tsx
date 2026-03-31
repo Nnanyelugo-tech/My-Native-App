@@ -38,7 +38,7 @@ export function ReportScreen() {
   return (
     <ScreenContainer>
       <View className="flex-row justify-between items-center px-5 pb-4 bg-surface-main">
-        <AppText className="text-2xl font-semibold text-text-primary">
+        <AppText className="text-xl font-semibold text-text-primary">
           Monthly Report
         </AppText>
         <TouchableOpacity className="flex-row items-center bg-white border-border-subtle rounded-xl px-3 py-2">
