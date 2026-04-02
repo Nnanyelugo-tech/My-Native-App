@@ -2,8 +2,12 @@ import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { greet } from "@/src/utils/greet";
 import { TouchableOpacity, View } from "react-native";
+import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
 
 export const HomeHeader = () => {
+  const { profile } = useAuthContext();
+  const firstName = profile?.full_name?.split(" ")[0] || "User";
+
   return (
     <View className="px-5 flex-row items-center pb-3 justify-between">
       <View className="flex-row items-center">
@@ -19,7 +23,7 @@ export const HomeHeader = () => {
             className="text-text-primary text-lg"
             style={{ fontWeight: "800" }}
           >
-            {greet()}, Nego
+            {greet()}, {firstName}
           </AppText>
         </View>
       </View>

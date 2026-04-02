@@ -47,6 +47,22 @@
             "./assets/fonts/RobotoCondensed-VariableFont_wght.ttf"
           ]
         }
+      ],
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you update your profile picture.",
+          "cameraPermission": "The app accesses your camera to let you take a new profile picture.",
+          "colors": {
+            "cropToolbarColor": "#000000"
+          },
+          "dark": {
+            "colors": {
+              "cropToolbarColor": "#000000"
+            }
+          }
+        }
       ]
     ],
     "experiments": {

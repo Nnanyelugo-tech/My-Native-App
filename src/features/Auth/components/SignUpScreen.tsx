@@ -1,35 +1,29 @@
 import { FormInput } from "@/src/components/Forms/FormInput";
 import { AppText } from "@/src/components/Global/AppText";
 import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
-import { useAuthStore } from "@/src/features/Auth/hooks/useAuthStore";
-import { RegisterFormValues } from "@/src/features/Auth/types/auth";
-import { registerSchema } from "@/src/features/Auth/validation/authSchema";
 import { Ionicons } from "@expo/vector-icons";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useFocusEffect, useRouter } from "expo-router";
-import React, { useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFocusEffect } from "expo-router";
+import React, { useCallback } from "react";
 import { BackHandler, Pressable, View } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
+import { useSignUp } from "@/src/features/Auth/hook/useSignUp";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 
 export function Signup() {
-  const { replace, back } = useRouter();
-  const login = useAuthStore((s) => s.login);
-  const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const {
+    form,
+    isLoading,
+    agreeToTerms,
+    setAgreeToTerms,
+    onSubmit,
+    back,
+    replace,
+  } = useSignUp();
 
   const {
     control,
-    handleSubmit,
     formState: { errors },
-  } = useForm<RegisterFormValues>({
-    resolver: yupResolver(registerSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-  });
+  } = form;
 
   useFocusEffect(
     useCallback(() => {
@@ -40,15 +34,6 @@ export function Signup() {
       return () => sub.remove();
     }, [back]),
   );
-
-  const onSubmit = (data: RegisterFormValues) => {
-    if (!agreeToTerms) {
-      return;
-    }
-    console.log(data);
-    login("mock-token");
-    replace("/(tabs)/home");
-  };
 
   return (
     <ScreenWrapper className="px-6 pb-10 bg-surface-main">
@@ -134,15 +119,19 @@ export function Signup() {
       </View>
 
       <Pressable
-        onPress={handleSubmit(onSubmit)}
-        className={`py-4 rounded-2xl shadow-lg shadow-indigo-100 ${
+        onPress={onSubmit}
+        disabled={!agreeToTerms || isLoading}
+        className={`py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[56px] ${
           agreeToTerms ? "bg-brand-main" : "bg-gray-300"
         }`}
-        disabled={!agreeToTerms}
       >
-        <AppText className="text-white text-center font-bold text-lg">
-          Sign Up
-        </AppText>
+        {isLoading ? (
+          <AnimatedSpinner color="#FFFFFF" size={24} />
+        ) : (
+          <AppText className="text-white text-center font-bold text-lg">
+            Sign Up
+          </AppText>
+        )}
       </Pressable>
 
       <View className="flex-row items-center my-8">

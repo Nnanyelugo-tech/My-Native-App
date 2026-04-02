@@ -1,20 +1,21 @@
 import { FormInput } from "@/src/components/Forms/FormInput";
 import { AppText } from "@/src/components/Global/AppText";
 import ScreenWrapper from "@/src/components/Global/ScreenWrapper";
-import { useAuthStore } from "@/src/features/Auth/hooks/useAuthStore";
+import { supabase } from "@/src/lib/supabase";
 import { LoginFormValues } from "@/src/features/Auth/types/auth";
 import { loginSchema } from "@/src/features/Auth/validation/authSchema";
 import { Ionicons } from "@expo/vector-icons";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFocusEffect, useRouter } from "expo-router";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BackHandler, Pressable, View } from "react-native";
+import { BackHandler, Pressable, View, Alert } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 
 export function Login() {
   const { replace, back, push } = useRouter();
-  const login = useAuthStore((s) => s.login);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -38,10 +39,19 @@ export function Login() {
     }, [back]),
   );
 
-  const onSubmit = (data: LoginFormValues) => {
-    console.log(data);
-    login("mock-token");
-    replace("/(tabs)/home");
+  const onSubmit = async (data: LoginFormValues) => {
+    setIsLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    });
+    setIsLoading(false);
+
+    if (error) {
+      Alert.alert("Login Failed", error.message);
+    } else {
+      replace("/(tabs)/home");
+    }
   };
 
   return (
@@ -95,9 +105,14 @@ export function Login() {
 
       <Pressable
         onPress={handleSubmit(onSubmit)}
-        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100"
+        disabled={isLoading}
+        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[56px]"
       >
-        <AppText className="text-white text-center font-bold text-lg">Log In</AppText>
+        {isLoading ? (
+          <AnimatedSpinner color="#ffffff" size={24} />
+        ) : (
+          <AppText className="text-white text-center font-bold text-lg">Log In</AppText>
+        )}
       </Pressable>
 
       <View className="flex-row items-center my-8">

@@ -53,7 +53,7 @@ export default function AddTransactionScreen() {
     <KeyboardAvoidingView
       style={{ flex: 1, paddingTop: top }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? top + 10 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? top + 5 : 0}
       className="bg-surface-main"
     >
       <View className="flex-row items-center pb-4 px-6 py-4 bg-surface-main">
