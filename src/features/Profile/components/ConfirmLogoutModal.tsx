@@ -21,8 +21,8 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
   };
 
   return (
-    <View className="w-full px-2">
-      <View className="bg-black rounded-2xl p-6 items-center">
+    <View className="w-full px-5">
+      <View className="bg-surface-card rounded-3xl p-6 items-center">
         <View className="w-14 h-14 bg-[rgba(255,23,68,0.1)] rounded-full items-center justify-center mb-4">
           <IconSymbol
             name="arrow.right.square.fill"
@@ -31,11 +31,11 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
           />
         </View>
 
-        <AppText className="text-lg font-bold text-white text-center">
+        <AppText className="text-[16px] font-bold text-text-primary text-center">
           Log Out
         </AppText>
 
-        <AppText className="text-center text-white mt-2 mb-6">
+        <AppText className="text-center text-[12px] text-text-muted mt-2 mb-6">
           Are you sure you want to log out of your account?
         </AppText>
 
@@ -43,9 +43,9 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
           <Pressable
             onPress={() => hide()}
             disabled={isLoading}
-            className="flex-1 py-2 rounded-2xl border border-border bg-surface-main items-center"
+            className="flex-1 py-2 rounded-2xl  border border-border bg-surface-main items-center"
           >
-            <AppText className="font-bold text-text-primary">Cancel</AppText>
+            <AppText className="font-bold text-[12px] text-text-primary">Cancel</AppText>
           </Pressable>
 
           <Pressable
@@ -55,8 +55,8 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
           >
             {isLoading ? (
               <AnimatedSpinner color="#FFFFFF" size={24} />
-            ) : (
-              <AppText className="font-sm text-white">Yes, Log Out</AppText>
+            ) : ( 
+              <AppText className="font-bold text-[12px] text-white">Yes, Log Out</AppText>
             )}
           </Pressable>
         </View>

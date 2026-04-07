@@ -16,20 +16,36 @@ export default function AuthProvider({
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const fetchProfile = async (userId: string) => {
-    const { data } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
-    if (data) {
-      setProfile(data);
-    }
-  };
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
+
+    const fetchProfile = async (userId: string, retries = 3) => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
+        
+      if (data) {
+        if (isMounted) setProfile(data);
+      } else if (retries > 0) {
+        setTimeout(() => fetchProfile(userId, retries - 1), 1000);
+      } else {
+        console.error("Failed to fetch profile after retries", error);
+      }
+    };
+
+    const fetchAvatar = async (userId: string) => {
+      const { data } = await supabase.storage
+        .from("profile-pics")
+        .createSignedUrl(`avatars/${userId}.png`, 60 * 60 * 24 * 7);
+      
+      if (data?.signedUrl && isMounted) {
+        setAvatarUrl(`${data.signedUrl}&t=${new Date().getTime()}`);
+      }
+    };
 
     supabase.auth.getSession().then(async ({ data }) => {
       if (!isMounted) return;
@@ -37,6 +53,7 @@ export default function AuthProvider({
       setUser(data.session?.user ?? null);
       if (data.session?.user) {
         await fetchProfile(data.session.user.id);
+        fetchAvatar(data.session.user.id);
       }
       setIsLoading(false);
     });
@@ -48,8 +65,10 @@ export default function AuthProvider({
         setUser(session?.user ?? null);
         if (session?.user) {
           await fetchProfile(session.user.id);
+          fetchAvatar(session.user.id);
         } else {
           setProfile(null);
+          setAvatarUrl(null);
         }
         setIsLoading(false);
       },
@@ -69,6 +88,8 @@ export default function AuthProvider({
         profile,
         isLoading,
         isLoggedIn: !!session,
+        avatarUrl,
+        setAvatarUrl,
       }}
     >
       {children}

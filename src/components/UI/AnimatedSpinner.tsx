@@ -29,7 +29,7 @@ export const AnimatedSpinner = ({
         easing: Easing.linear,
         reduceMotion: ReduceMotion.Never,
       }),
-      -1, // Infinite looping
+      0, // Infinite looping
     );
   }, [rotation]);
 
@@ -39,6 +39,11 @@ export const AnimatedSpinner = ({
     };
   });
 
+  const normalizedColor =
+    color.length === 4 && color.startsWith("#")
+      ? `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`
+      : color;
+
   return (
     <Animated.View
       style={[
@@ -47,7 +52,7 @@ export const AnimatedSpinner = ({
           height: size,
           borderRadius: size / 2,
           borderWidth: thickness,
-          borderColor: `${color}40`,
+          borderColor: `${normalizedColor}40`,
           borderTopColor: color,
           borderRightColor: color,
         },

@@ -2,7 +2,6 @@ import { useMemo } from "react";
 import { useTransactionStore } from "../../Transaction/store/useTransactionStore";
 import { getCategoryColor } from "../../Transaction/utils/getCategoryColor";
 
-const MAX_CATEGORIES = 4;
 
 export type ExpenseBreakdownItem = {
   label: string;
@@ -27,7 +26,6 @@ export function useExpenseBreakdown() {
     const breakdown: ExpenseBreakdownItem[] = Object.entries(categories)
       .map(([label, value]) => ({ label, value }))
       .sort((a, b) => b.value - a.value)
-      .slice(0, MAX_CATEGORIES)
       .map((item, index) => ({
         ...item,
         color: getCategoryColor(item.label, index),

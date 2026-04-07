@@ -14,6 +14,8 @@ export type AuthData = {
   profile: Profile | null;
   isLoading: boolean;
   isLoggedIn: boolean;
+  avatarUrl: string | null;
+  setAvatarUrl: (url: string | null) => void;
 };
 
 export const AuthContext = createContext<AuthData>({
@@ -22,4 +24,6 @@ export const AuthContext = createContext<AuthData>({
   profile: null,
   isLoading: true,
   isLoggedIn: false,
+  avatarUrl: null,
+  setAvatarUrl: () => {},
 });

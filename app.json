@@ -52,8 +52,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "The app accesses your photos to let you update your profile picture.",
-          "cameraPermission": "The app accesses your camera to let you take a new profile picture.",
+          "photosPermission": "Allow Fintrack app to access your photos to let you update your profile picture.",
+          "cameraPermission": "Allow Fintrack app to access your camera to let you take a new profile picture.",
           "colors": {
             "cropToolbarColor": "#000000"
           },

@@ -4,7 +4,7 @@ import { AppText } from "@/src/components/Global/AppText";
 
 export default function ProfileHeader() {
   return (
-    <View className="flex-row items-center justify-between py-2 px-4 mb-4 bg-surface-main">
+    <View className="flex-row items-center justify-between py-2 px-4 bg-surface-main">
       <AppText className="text-[20px]" style={{ fontWeight: "700" }}>
         Settings
       </AppText>

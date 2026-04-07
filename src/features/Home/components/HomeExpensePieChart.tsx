@@ -1,7 +1,7 @@
 import { AppText } from "@/src/components/Global/AppText";
 import { formatCompactCurrency } from "@/src/utils/formatCurrency";
-import { useRouter } from "expo-router";
-import { TouchableOpacity, useWindowDimensions, View } from "react-native";
+// import { useRouter } from "expo-router";
+import { useWindowDimensions, View } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 import {
   ExpenseBreakdownItem,
@@ -40,7 +40,7 @@ function LegendRow({ item }: LegendRowProps) {
 
 export function ExpensePieChart() {
   const { width: screenWidth } = useWindowDimensions();
-  const router = useRouter();
+  // const router = useRouter();
   const { totalExpenses, breakdown } = useExpenseBreakdown();
 
   const pieData = breakdown.map((item) => ({
@@ -60,7 +60,7 @@ export function ExpensePieChart() {
         >
           Expense Breakdown
         </AppText>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           activeOpacity={0.8}
           accessibilityRole="button"
           onPress={() => router.push("/budget")}
@@ -71,7 +71,7 @@ export function ExpensePieChart() {
           >
             View All
           </AppText>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       {/* Card */}

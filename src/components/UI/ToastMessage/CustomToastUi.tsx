@@ -47,7 +47,7 @@ export const CustomToastUi = ({
       style={{
         marginHorizontal: 20,
         borderRadius: 24,
-        padding: 20,
+        padding: 10,
         flexDirection: "row",
         alignItems: "center",
         borderWidth: 0.25,

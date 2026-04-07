@@ -13,20 +13,8 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { budgetSchema, transactionSchema } from "../validation/addTransactionSchema";
-
-/**
- * Shared form values type — the superset of all fields used across
- * both transaction and budget forms. Budget mode only uses `amount`,
- * while transaction mode uses all fields.
- */
-type AddTransactionFormValues = {
-    amount: string;
-    title: string;
-    category: string;
-    description: string;
-    notes: string;
-};
-
+import Toast from "react-native-toast-message";
+import { AddTransactionFormValues } from "../types/AddTransaction";
 
 export function useAddTransaction() {
     const router = useRouter();
@@ -41,8 +29,6 @@ export function useAddTransaction() {
     const setBudget = useTransactionStore((state) => state.setBudget);
 
     // Track if we've already pre-filled values to prevent loops after reset.
-    // We store the param fingerprint so we can detect when the screen is
-    // re-used with NEW params (Expo Router keeps the component mounted).
     const prefillKey = useRef<string | null>(null);
     const paramFingerprint = `${params.mode}-${params.type}-${params.amount}-${params.id}`;
 
@@ -51,7 +37,7 @@ export function useAddTransaction() {
         (isEditMode && params.type === "Budget") ? "Budget" : "Expense"
     );
 
-    // When params change (e.g. navigating back then editing again),
+
     // sync the active tab and allow pre-fill to run again.
     useEffect(() => {
         if (isEditMode && params.type === "Budget") {
@@ -66,8 +52,7 @@ export function useAddTransaction() {
     const currentMonthKey = getYearMonthKey();
     const existingBudget = budgets.find(b => b.month === currentMonthKey);
 
-    //  React Hook Form Initialization — always start empty,
-    //  pre-filling is handled via the useEffect below.
+
     const {
         control,
         handleSubmit,
@@ -108,12 +93,8 @@ export function useAddTransaction() {
         };
     }, []);
 
-    // Pre-fill form values based on context.
-    // Budget tab: always show the current budget (persistent input pattern).
-    // Transaction edit: fill once when params change.
     useEffect(() => {
         if (activeTab === "Budget") {
-            // Always reflect the current stored budget on the Budget tab
             if (existingBudget && existingBudget.amount > 0) {
                 setValue("amount", existingBudget.amount.toString());
             }
@@ -177,6 +158,11 @@ export function useAddTransaction() {
             // Navigate back without clearing.
             prefillKey.current = null;
             router.back();
+            Toast.show({
+                type: "success",
+                text1: "Success",
+                text2: "Budget saved successfully",
+            });
             return;
         }
 
@@ -202,8 +188,18 @@ export function useAddTransaction() {
 
         if (isEditMode && params.id) {
             updateTransaction(transactionData);
+            Toast.show({
+                type: "success",
+                text1: "Success",
+                text2: "Transaction updated successfully!",
+            });
         } else {
             addTransaction(transactionData);
+            Toast.show({
+                type: "success",
+                text1: "Success",
+                text2: "Transaction added successfully!",
+            });
         }
 
         // Transaction: clear form and reset to default state

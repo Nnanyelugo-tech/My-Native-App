@@ -106,12 +106,12 @@ export function Login() {
       <Pressable
         onPress={handleSubmit(onSubmit)}
         disabled={isLoading}
-        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[56px]"
+        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[50px]"
       >
         {isLoading ? (
           <AnimatedSpinner color="#ffffff" size={24} />
         ) : (
-          <AppText className="text-white text-center font-bold text-lg">Log In</AppText>
+          <AppText className="text-white text-center font-bold text-sm">Log In</AppText>
         )}
       </Pressable>
 
@@ -127,7 +127,7 @@ export function Login() {
       <SocialAuthButtons variant="continue" />
 
       <View className="flex-row justify-center mt-auto pt-10">
-        <AppText className="text-gray-500 font-medium">
+        <AppText className="text-gray-500">
           Don&apos;t have an account?{" "}
         </AppText>
         <Pressable onPress={() => replace("/auth/register")}>

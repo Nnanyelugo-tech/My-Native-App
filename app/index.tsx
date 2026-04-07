@@ -1,7 +1,8 @@
 import { MMKV_KEYS, storage } from "@/src/constants/mmkvStore";
 import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 import { Redirect } from "expo-router";
-import { ActivityIndicator, View } from "react-native";
+import { View } from "react-native";
 
 export default function Index() {
   const isNewUser = storage.getString(MMKV_KEYS.IS_NEW_USER);
@@ -10,7 +11,9 @@ export default function Index() {
   if (isLoading) {
     return (
       <View className="flex-1 justify-center items-center bg-surface-main">
-        <ActivityIndicator size="large" color="#2F2E7E" />
+        <AnimatedSpinner size={48} color="#2F2E7E" 
+        thickness={8}
+        />
       </View>
     );
   }

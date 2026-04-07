@@ -52,10 +52,10 @@ export function Forgot() {
       </View>
 
       <View className="mb-10">
-        <AppText className="text-3xl font-black text-gray-900 mb-3">
+        <AppText className="text-2xl font-black text-gray-900 mb-3">
           Forgot Password?
         </AppText>
-        <AppText className="text-gray-500 font-medium font-lato leading-6 text-[15px]">
+        <AppText className="text-gray-500 font-medium font-lato leading-6 text-[14px]">
           Enter your email address and we&apos;ll send you a reset link to
           regain access to your Fintrack account.
         </AppText>
@@ -77,7 +77,7 @@ export function Forgot() {
           onPress={handleSubmit(onSubmit)}
           className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 mt-2"
         >
-          <AppText className="text-white text-center font-bold text-lg">
+          <AppText className="text-white text-center font-bold text-sm">
             Send Reset Link
           </AppText>
         </Pressable>

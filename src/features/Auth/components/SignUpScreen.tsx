@@ -121,14 +121,14 @@ export function Signup() {
       <Pressable
         onPress={onSubmit}
         disabled={!agreeToTerms || isLoading}
-        className={`py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[56px] ${
+        className={`py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[50px] ${
           agreeToTerms ? "bg-brand-main" : "bg-gray-300"
         }`}
       >
         {isLoading ? (
           <AnimatedSpinner color="#FFFFFF" size={24} />
         ) : (
-          <AppText className="text-white text-center font-bold text-lg">
+          <AppText className="text-white text-center font-bold text-sm">
             Sign Up
           </AppText>
         )}
@@ -145,7 +145,7 @@ export function Signup() {
       <SocialAuthButtons variant="signup" />
 
       <View className="flex-row justify-center mt-12">
-        <AppText className="text-gray-500 font-medium">
+        <AppText className="text-gray-500">
           Already have an account?{" "}
         </AppText>
         <Pressable onPress={() => replace("/auth/login")}>
