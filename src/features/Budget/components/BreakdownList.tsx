@@ -4,12 +4,19 @@ import { formatCurrency } from "@/src/utils/formatCurrency";
 import React from "react";
 import { View } from "react-native";
 import { CategoryBreakdownItem } from "@/src/features/Budget/types/budgetProps";
+import { EmptyState } from "../../Transaction/components/EmptyState";
 
 type Props = {
   items: CategoryBreakdownItem[];
 };
 
 export function BreakdownList({ items }: Props) {
+  if (!items || items.length === 0) {
+    return (
+      <EmptyState/>
+    );
+  }
+
   return (
     <View className="mb-10">
       {items.map((item, index) => (

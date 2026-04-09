@@ -6,7 +6,7 @@ import {
     transactionColors,
 } from "@/src/features/PlusScreen/constants/transactions";
 import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
-import { Transaction } from "@/src/features/Transaction/types/transactionType";
+import { Transaction, NewTransaction } from "@/src/features/Transaction/types/transactionType";
 import { getYearMonthKey, getTodayDate, getCurrentTime } from "@/src/utils/date";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -27,6 +27,7 @@ export function useAddTransaction() {
     const addTransaction = useTransactionStore((state) => state.addTransaction);
     const updateTransaction = useTransactionStore((state) => state.updateTransaction);
     const setBudget = useTransactionStore((state) => state.setBudget);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Track if we've already pre-filled values to prevent loops after reset.
     const prefillKey = useRef<string | null>(null);
@@ -147,72 +148,84 @@ export function useAddTransaction() {
     const hasBudget = !!(existingBudget && existingBudget.amount > 0);
 
     // Form Submission Logic
-    const onSubmit = (data: AddTransactionFormValues) => {
-        if (activeTab === "Budget") {
-            setBudget({
-                id: existingBudget?.id || Date.now().toString(),
+    const onSubmit = async (data: AddTransactionFormValues) => {
+        setIsSubmitting(true);
+        try {
+            if (activeTab === "Budget") {
+                await setBudget({
+                    id: existingBudget?.id || Date.now().toString(),
+                    amount: parseFloat(data.amount),
+                    month: currentMonthKey,
+                });
+                
+                prefillKey.current = null;
+                router.back();
+                Toast.show({
+                    type: "success",
+                    text1: "Success",
+                    text2: "Budget saved successfully",
+                });
+                return;
+            }
+
+            // Transaction submission
+            const categoryObj = categories.find(c => c.id === data.category);
+
+            const transactionData: NewTransaction = {
+                // For edits keep existing ID; for new ones omit so Supabase generates UUID
+                ...(isEditMode && params.id ? { id: params.id } : {}),
+                title: data.title,
                 amount: parseFloat(data.amount),
-                month: currentMonthKey,
+                category: categoryObj?.name || "Others",
+                date: (isEditMode && params.id)
+                    ? transactions.find(t => t.id === params.id)?.date || new Date().toISOString()
+                    : new Date().toISOString(),
+                type: activeTab === "Income" ? "income" : "expense",
+                status: "completed",
+                icon: (categoryObj?.icon as IconSymbolName) || "pencil",
+                iconBg: categoryObj?.iconBg || "#F5F5F5",
+                iconColor: categoryObj?.iconColor || activeColor,
+                description: data.description,
+                note: data.notes,
+            };
+
+            if (isEditMode && params.id) {
+                await updateTransaction(transactionData as Transaction);
+                Toast.show({
+                    type: "success",
+                    text1: "Success",
+                    text2: "Transaction updated successfully!",
+                });
+            } else {
+                await addTransaction(transactionData);
+                Toast.show({
+                    type: "success",
+                    text1: "Success",
+                    text2: "Transaction added successfully!",
+                });
+            }
+
+            // Transaction: clear form and reset to default state
+            reset({
+                amount: "",
+                title: "",
+                category: activeTab === "Income" ? incomeSources[0].id : expenseCategories[0].id,
+                description: "",
+                notes: "",
             });
-            // Budget: keep the value in the input (persistent pattern).
-            // Navigate back without clearing.
             prefillKey.current = null;
+            setActiveTab("Expense");
             router.back();
+        } catch (err) {
+            console.error("Submission error:", err);
             Toast.show({
-                type: "success",
-                text1: "Success",
-                text2: "Budget saved successfully",
+                type: "error",
+                text1: "Error",
+                text2: "Something went wrong. Please try again.",
             });
-            return;
+        } finally {
+            setIsSubmitting(false);
         }
-
-        // Transaction submission
-        const categoryObj = categories.find(c => c.id === data.category);
-
-        const transactionData: Transaction = {
-            id: (isEditMode && params.id) ? params.id : Date.now().toString(),
-            title: data.title,
-            amount: parseFloat(data.amount),
-            category: categoryObj?.name || "Others",
-            date: (isEditMode && params.id)
-                ? transactions.find(t => t.id === params.id)?.date || new Date().toISOString()
-                : new Date().toISOString(),
-            type: activeTab === "Income" ? "income" : "expense",
-            status: "completed",
-            icon: (categoryObj?.icon as IconSymbolName) || "pencil",
-            iconBg: categoryObj?.iconBg || "#F5F5F5",
-            iconColor: categoryObj?.iconColor || activeColor,
-            description: data.description,
-            note: data.notes,
-        };
-
-        if (isEditMode && params.id) {
-            updateTransaction(transactionData);
-            Toast.show({
-                type: "success",
-                text1: "Success",
-                text2: "Transaction updated successfully!",
-            });
-        } else {
-            addTransaction(transactionData);
-            Toast.show({
-                type: "success",
-                text1: "Success",
-                text2: "Transaction added successfully!",
-            });
-        }
-
-        // Transaction: clear form and reset to default state
-        reset({
-            amount: "",
-            title: "",
-            category: activeTab === "Income" ? incomeSources[0].id : expenseCategories[0].id,
-            description: "",
-            notes: "",
-        });
-        prefillKey.current = null;
-        setActiveTab("Expense");
-        router.back();
     };
     // Return Values
     return {
@@ -226,6 +239,7 @@ export function useAddTransaction() {
         hasBudget,
         handleTabChange,
         handleSubmit: handleSubmit(onSubmit),
+        isSubmitting,
         setValue,
         watch,
     };

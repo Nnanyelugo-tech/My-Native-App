@@ -36,9 +36,9 @@ export default function OnboardingHeader({
         onPress={onBack}
         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
       >
-        <Ionicons name="arrow-back" size={28} color="#0D143C" />
+        <Ionicons name="arrow-back" size={28} color="#9BA1A6" />
       </TouchableOpacity>
-      <AppText className="text-xl font-bold text-[#0D143C]">Fintrack</AppText>
+      <AppText className="text-xl font-bold text-text-primary">Fintrack</AppText>
       <View style={{ width: 28 }} />
     </View>
   );

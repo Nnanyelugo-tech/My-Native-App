@@ -10,6 +10,7 @@ import { FilterLabel } from "@/src/features/Transaction/types/transaction.types"
 
 export const useTransactions = () => {
   const transactions = useTransactionStore((state) => state.transactions);
+  const isLoading = useTransactionStore((state) => state.isLoading);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] =
     useState<FilterLabel>("All");
@@ -33,5 +34,6 @@ export const useTransactions = () => {
     activeFilter,
     setActiveFilter,
     flatListData,
+    isLoading,
   };
 };

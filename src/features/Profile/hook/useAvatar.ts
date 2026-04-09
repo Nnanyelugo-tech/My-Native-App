@@ -44,9 +44,7 @@ export const useAvatar = () => {
         throw new Error("Could not extract image data. Please try again.");
       }
 
-      console.log("Base64 length:", base64.length);
       const fileData = decode(base64);
-      console.log("Decoded ArrayBuffer byteLength:", fileData.byteLength);
 
       const filePath = `avatars/${user.id}.png`;
       const contentType = asset.mimeType || "image/png";

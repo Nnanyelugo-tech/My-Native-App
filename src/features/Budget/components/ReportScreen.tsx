@@ -41,12 +41,12 @@ export function ReportScreen() {
         <AppText className="text-xl font-semibold text-text-primary">
           Monthly Report
         </AppText>
-        <TouchableOpacity className="flex-row items-center bg-white border-border-subtle rounded-xl px-3 py-2">
-          <IconSymbol name="calendar" size={16} color="#555555" />
-          <AppText className="text-text-muted text-sm ml-2 font-bold">
+        <TouchableOpacity className="flex-row items-center bg-surface-card border border-border-subtle rounded-xl px-3 py-2">
+          <IconSymbol name="calendar" size={16} color="#9BA1A6" />
+          <AppText className="text-text-secondary text-sm ml-2 font-bold">
             {currentMonthDisplay}
           </AppText>
-          <IconSymbol name="chevron.right" size={14} color="#555555" />
+          <IconSymbol name="chevron.right" size={14} color="#9BA1A6" />
         </TouchableOpacity>
       </View>
 

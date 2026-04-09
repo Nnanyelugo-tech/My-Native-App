@@ -8,7 +8,7 @@ export const chartColors = [
   // Gray
   "#E0E0E0",
   // Pink
-  "#EC407A",
+  "#FF1744",
   // Teal
   "#26A69A",
 ];

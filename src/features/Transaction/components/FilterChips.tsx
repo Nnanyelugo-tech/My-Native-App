@@ -30,10 +30,9 @@ export const FilterChips = ({
           }`}
         >
           <AppText
-            className="text-sm"
+            className={`text-sm ${isActive ? "text-white" : "text-text-primary"}`}
             style={{
               fontWeight: "700",
-              color: isActive ? "#FFFFFF" : "#1A1A2E",
             }}
           >
             {label}

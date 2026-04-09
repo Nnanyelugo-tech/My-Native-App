@@ -1,4 +1,5 @@
 import { AppText } from "@/src/components/Global/AppText";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { AmountInput } from "@/src/features/PlusScreen/components/AmountInput";
 import { BudgetForm } from "@/src/features/PlusScreen/components/BudgetForm";
@@ -38,6 +39,7 @@ export default function AddTransactionScreen() {
     hasBudget,
     handleTabChange,
     handleSubmit,
+    isSubmitting,
   } = useAddTransaction();
 
   const title =
@@ -84,7 +86,7 @@ export default function AddTransactionScreen() {
           error={errors.amount?.message as string}
         />
 
-        <View className="bg-white mx-6 rounded-[32px] p-6 mb-6">
+        <View className="bg-surface-card mx-6 rounded-[32px] p-6 mb-6">
           {activeTab !== "Budget" ? (
             <TransactionForm
               activeColor={activeColor}
@@ -108,18 +110,25 @@ export default function AddTransactionScreen() {
           activeOpacity={0.9}
           accessibilityRole="button"
           className="flex-row justify-center items-center py-4 rounded-full"
-          style={{ backgroundColor: activeColor }}
+          style={{ backgroundColor: activeColor, opacity: isSubmitting ? 0.9 : 1 }}
           onPress={handleSubmit}
+          disabled={isSubmitting}
         >
-          <AppText className="text-white text-md font-bold">
-            {buttonLabel}
-          </AppText>
-          <IconSymbol
-            name="arrow.right"
-            size={20}
-            color="white"
-            style={{ marginLeft: 8 }}
-          />
+          {isSubmitting ? (
+            <AnimatedSpinner size={20} color="#fff" thickness={3} />
+          ) : (
+            <>
+              <AppText className="text-white text-md font-bold">
+                {buttonLabel}
+              </AppText>
+              <IconSymbol
+                name="arrow.right"
+                size={20}
+                color="white"
+                style={{ marginLeft: 8 }}
+              />
+            </>
+          )}
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>

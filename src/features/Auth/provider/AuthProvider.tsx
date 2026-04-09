@@ -52,8 +52,10 @@ export default function AuthProvider({
       setSession(data.session);
       setUser(data.session?.user ?? null);
       if (data.session?.user) {
-        await fetchProfile(data.session.user.id);
-        fetchAvatar(data.session.user.id);
+        await Promise.all([
+          fetchProfile(data.session.user.id),
+          fetchAvatar(data.session.user.id),
+        ]);
       }
       setIsLoading(false);
     });
@@ -64,8 +66,10 @@ export default function AuthProvider({
         setSession(session);
         setUser(session?.user ?? null);
         if (session?.user) {
-          await fetchProfile(session.user.id);
-          fetchAvatar(session.user.id);
+          await Promise.all([
+            fetchProfile(session.user.id),
+            fetchAvatar(session.user.id),
+          ]);
         } else {
           setProfile(null);
           setAvatarUrl(null);

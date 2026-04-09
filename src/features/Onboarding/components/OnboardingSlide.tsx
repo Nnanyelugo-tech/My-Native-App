@@ -23,10 +23,10 @@ export default function OnboardingSlide({ item, index }: Props) {
       </View>
 
       <View className="items-center w-full pb-6">
-        <AppText className="text-3xl font-bold text-[#0D143C] text-center mb-3 tracking-tight">
+        <AppText className="text-3xl font-bold text-text-primary text-center mb-3 tracking-tight">
           {item.title}
         </AppText>
-        <AppText className="text-lg text-[#64748B] text-center px-4 leading-relaxed">
+        <AppText className="text-lg text-text-secondary text-center px-4 leading-relaxed">
           {item.description}
         </AppText>
       </View>

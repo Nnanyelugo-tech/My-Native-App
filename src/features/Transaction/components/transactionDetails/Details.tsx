@@ -94,7 +94,7 @@ const Details = ({ transaction }: DetailsProps) => {
         </View>
 
         {/* Info */}
-        <View className="bg-white rounded-[32px] p-6 mb-8">
+        <View className="bg-surface-card rounded-[32px] p-6 mb-8">
           <DetailRow label="Category" value={transaction.category} />
           <DetailRow label="Type" value={formattedType} />
           <DetailRow label="Date" value={formatDateGroup(transaction.date)} />
@@ -106,7 +106,7 @@ const Details = ({ transaction }: DetailsProps) => {
           <AppText className="text-text-muted font-bold mb-3 ml-1">
             Description
           </AppText>
-          <View className="bg-white rounded-2xl p-5">
+          <View className="bg-surface-card rounded-2xl p-5">
             <AppText className="text-text-primary leading-5">
               {transaction.description || "No description available"}
             </AppText>
@@ -119,7 +119,7 @@ const Details = ({ transaction }: DetailsProps) => {
             Notes
           </AppText>
 
-          <View className="bg-white rounded-2xl p-5 min-h-[80px]">
+          <View className="bg-surface-card rounded-2xl p-5 min-h-[80px]">
             <AppText className="text-text-primary leading-5">
               {transaction.note || "No notes available for this transaction."}
             </AppText>
@@ -135,7 +135,7 @@ type DetailRowProps = {
   value: React.ReactNode;
 };
 const DetailRow = ({ label, value }: DetailRowProps) => (
-  <View className="flex-row justify-between items-center py-3 border-b border-gray-50 last:border-b-0">
+  <View className="flex-row justify-between items-center py-3 border-b border-border-subtle last:border-b-0">
     <AppText className="text-text-secondary font-lato-regular text-[15px]">
       {label}
     </AppText>

@@ -1,7 +1,8 @@
-
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
+import { useThemeColor } from "@/src/hooks/useThemeColor";
+import { AppText } from "@/src/components/Global/AppText";
 
 type SocialAuthButtonsProps = {
   onGooglePress?: () => void;
@@ -14,26 +15,28 @@ export function SocialAuthButtons({
   onApplePress,
   variant = "continue",
 }: SocialAuthButtonsProps) {
+  const textColor = useThemeColor({}, "text");
+
   return (
     <View className="flex-row gap-4 w-full mt-4">
       <Pressable
         onPress={onGooglePress}
-        className="flex-1 flex-row items-center justify-center border border-gray-100 py-3.5 rounded-2xl bg-white shadow-sm shadow-gray-100 active:bg-gray-50"
+        className="flex-1 flex-row items-center justify-center border border-border-subtle py-3.5 rounded-2xl bg-surface-card shadow-sm"
       >
         <Ionicons name="logo-google" size={20} color="#EA4335" />
-        <Text className="ml-2 font-bold text-gray-700 text-[14px]">
+        <AppText className="ml-2 font-bold text-text-primary text-[14px]">
           Google
-        </Text>
+        </AppText>
       </Pressable>
 
       <Pressable
         onPress={onApplePress}
-        className="flex-1 flex-row items-center justify-center border border-gray-100 py-3.5 rounded-2xl bg-white shadow-sm shadow-gray-100 active:bg-gray-50"
+        className="flex-1 flex-row items-center justify-center border border-border-subtle py-3.5 rounded-2xl bg-surface-card shadow-sm"
       >
-        <Ionicons name="logo-apple" size={20} color="#000000" />
-        <Text className="ml-2 font-bold text-gray-700 text-[14px]">
+        <Ionicons name="logo-apple" size={20} color={textColor} />
+        <AppText className="ml-2 font-bold text-text-primary text-[14px]">
           Apple
-        </Text>
+        </AppText>
       </Pressable>
     </View>
   );

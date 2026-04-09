@@ -38,7 +38,7 @@ export function IncomeVsExpensesChart() {
           xAxisThickness={0}
           yAxisThickness={0}
           yAxisLabelWidth={45}
-          yAxisTextStyle={{ color: "#9E9E9E", fontSize: 10 }}
+          yAxisTextStyle={{ color: "#9BA1A6", fontSize: 10 }}
           formatYLabel={(label) => formatCompactCurrency(Number(label))}
           hideRules
           isAnimated

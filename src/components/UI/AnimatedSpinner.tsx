@@ -25,11 +25,11 @@ export const AnimatedSpinner = ({
     rotation.value = 0;
     rotation.value = withRepeat(
       withTiming(360, {
-        duration: 800,
+        duration: 1000,
         easing: Easing.linear,
         reduceMotion: ReduceMotion.Never,
       }),
-      0, // Infinite looping
+      -1, // Infinite looping
     );
   }, [rotation]);
 

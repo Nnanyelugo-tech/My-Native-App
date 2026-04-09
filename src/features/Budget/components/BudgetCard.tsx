@@ -47,7 +47,7 @@ export function BudgetCard({
         {onEdit && (
           <TouchableOpacity
             onPress={onEdit}
-            className="bg-white/10 p-2 rounded-full"
+            className="bg-overlay-white-heavy p-2 rounded-full"
           >
             <IconSymbol name="pencil" size={18} color="#FFFFFF" />
           </TouchableOpacity>
@@ -69,13 +69,12 @@ function StatTile({ label, value, arrowDir }: StatTileProps) {
 
   return (
     <View
-      className="flex-1 px-4 py-3.5 rounded-2xl"
-      style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+      className="flex-1 px-4 py-3.5 rounded-2xl bg-overlay-white-medium"
     >
       <View className="flex-row items-center mb-1">
         <IconSymbol name={icon} size={14} color={color} />
         <AppText
-          className="text-[12px] font-lato-regular text-gray-300 ml-1"
+          className="text-[12px] font-lato-regular ml-1"
           style={{ color }}
         >
           {label}

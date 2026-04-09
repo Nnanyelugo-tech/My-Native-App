@@ -1,4 +1,5 @@
 import { AppText } from "@/src/components/Global/AppText";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
@@ -19,6 +20,7 @@ export default function TransactionHistoryScreen() {
     activeFilter,
     setActiveFilter,
     flatListData,
+    isLoading,
   } = useTransactions();
 
 
@@ -39,6 +41,14 @@ export default function TransactionHistoryScreen() {
     (item: TransactionListItem) => item.rowType,
     [],
   );
+
+  if (isLoading) {
+    return (
+      <ScreenContainer className="bg-surface-main items-center justify-center">
+        <AnimatedSpinner size={48} color="#2F2E7E" thickness={6} />
+      </ScreenContainer>
+    );
+  }
 
   return (
     <ScreenContainer className="bg-surface-main">

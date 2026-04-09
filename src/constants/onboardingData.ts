@@ -14,7 +14,7 @@ export const onboardingData = [
     description:
       "Get clear insights into your spending habits with intuitive charts and reports.",
     image: require("../../assets/images/onboarding_2.png"),
-    backgroundColor: "bg-[#E0F2F1]",
+    backgroundColor: "bg-surface-main",
     imageSize: "aspect-square",
   },
   {
@@ -23,7 +23,7 @@ export const onboardingData = [
     description:
       "Set budgets and reach your financial goals with personalized insights and tips tailored just for you.",
     image: require("../../assets/images/onboarding_3.png"),
-    backgroundColor: "bg-white",
+    backgroundColor: "bg-surface-main",
     imageSize: "aspect-4/3",
   },
 ];

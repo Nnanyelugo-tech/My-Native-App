@@ -10,7 +10,7 @@ interface SearchBarProps {
 export const SearchBar = ({ value, onChange }: SearchBarProps) => (
   <View className="mx-5 mt-2 mb-3">
     <View
-      className="flex-row items-center bg-white rounded-2xl px-4 py-3"
+      className="flex-row items-center bg-surface-card rounded-2xl px-4 py-3"
       style={{
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 1 },

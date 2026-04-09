@@ -55,7 +55,6 @@ export const formatDateGroup = (date: string) => {
 };
 
 // Month key & display
-
 export function getYearMonthKey(date: Date = new Date()): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -70,7 +69,6 @@ export function getDisplayMonth(date: Date = new Date()): string {
 }
 
 // Live clock helpers
-
 export function getTodayDate(): string {
   return new Date().toLocaleDateString("en-US", {
     month: "short",

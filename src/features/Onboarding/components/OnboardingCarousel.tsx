@@ -47,9 +47,8 @@ export default function OnboardingCarousel() {
 
   return (
     <View
+      className="flex-1 bg-surface-main"
       style={{
-        flex: 1,
-        backgroundColor: "#F5F5F5",
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
       }}

@@ -63,6 +63,8 @@ const MAPPING = {
   "building.columns.fill": "account-balance",
   "moon.fill": "dark-mode",
   "arrow.right.square.fill": "logout",
+  "iphone": "phone-iphone",
+  "apple": "apps", // MaterialIcons doesn't have a good Apple logo, using apps as placeholder or I'll switch to Ionicons
 } satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**

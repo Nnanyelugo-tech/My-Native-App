@@ -6,8 +6,6 @@ import { FormInput } from "@/src/components/Forms/FormInput";
 import { FieldValues, Path, Controller } from "react-hook-form";
 import { TransactionFormProps } from "@/src/features/PlusScreen/types/transactionForm";
 
-
-
 export function TransactionForm<T extends FieldValues>({
   activeColor,
   categories,
@@ -31,7 +29,11 @@ export function TransactionForm<T extends FieldValues>({
       <Controller
         control={control}
         name={"category" as Path<T>}
-        render={({ field: { onChange, value } }: { field: { onChange: (id: string) => void; value: string } }) => (
+        render={({
+          field: { onChange, value },
+        }: {
+          field: { onChange: (id: string) => void; value: string };
+        }) => (
           <CategoryPicker
             categories={categories}
             selectedId={value}

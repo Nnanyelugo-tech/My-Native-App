@@ -59,7 +59,7 @@ export const TransactionList = () => {
                   params: { id: t.id },
                 })
               }
-              className="bg-white rounded-3xl px-4 py-4 mb-3 flex-row items-center"
+              className="bg-surface-card rounded-3xl px-4 py-4 mb-3 flex-row items-center"
             >
               <View
                 className="w-14 h-14 rounded-2xl items-center justify-center mr-4"

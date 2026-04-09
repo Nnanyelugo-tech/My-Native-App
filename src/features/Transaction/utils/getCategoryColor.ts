@@ -7,9 +7,9 @@ const CATEGORY_COLOR_MAP: Record<string, string> = {
   Shopping: chartColors[3],
   Entertainment: chartColors[4],
   Health: chartColors[5],
-  "Data & Airtime": chartColors[0],
-  Others: chartColors[1],
-  Income: chartColors[2],
+  "Data & Airtime": chartColors[6],
+  Others: chartColors[7],
+  Income: chartColors[8],
 };
 
 export function getCategoryColor(category: string, fallbackIndex: number): string {
