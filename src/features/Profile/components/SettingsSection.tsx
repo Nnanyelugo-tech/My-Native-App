@@ -3,7 +3,7 @@ import { AppText } from "@/src/components/Global/AppText";
 import SettingsRow from "./SettingsRow";
 import Divider from "./Divider";
 import { Switch, View } from "react-native";
-
+import { useTheme } from "@/src/components/Global/ThemeContext";
 import { SettingsSectionType, SettingsSectionData } from "../types/profile";
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export default function SettingsSection({ type }: Props) {
+  const { theme, toggleTheme } = useTheme();
   const sections: Record<SettingsSectionType, SettingsSectionData> = {
     account: {
       title: "Account Settings",
@@ -49,7 +50,8 @@ export default function SettingsSection({ type }: Props) {
           subtitle: "Light / Dark",
           rightElement: (
             <Switch
-              value={false}
+              value={theme === "dark"}
+              onValueChange={toggleTheme}
               trackColor={{ false: "#E0E0E0", true: "#283593" }}
             />
           ),

@@ -1,6 +1,7 @@
 import { useFocusEffect } from "expo-router";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { BackHandler, ScrollView, View } from "react-native";
+import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
 
 import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { BalanceCard } from "@/src/features/Home/components/HomeBalanceCard";
@@ -10,6 +11,11 @@ import { IncomeVsExpensesChart } from "@/src/features/Home/components/HomeIncome
 import { TransactionList } from "@/src/features/Home/components/HomeTransactionList";
 
 export default function Index() {
+  useEffect(() => {
+    useTransactionStore.getState().loadTransactions();
+    useTransactionStore.getState().loadBudgets();
+  }, []);
+
   useFocusEffect(
     useCallback(() => {
       const s = BackHandler.addEventListener("hardwareBackPress", () => true);

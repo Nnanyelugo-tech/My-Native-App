@@ -14,7 +14,7 @@ export default function ProfileCard() {
   const { avatarUrl, isUploading, uploadAvatar } = useAvatar();
   const [imageError, setImageError] = useState(false);
 
-  // Reset error state when avatarUrl changes (e.g. after a new upload)
+  // Reset error state when avatarUrl changes
   useEffect(() => {
     setImageError(false);
   }, [avatarUrl]);

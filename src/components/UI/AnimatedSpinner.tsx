@@ -1,63 +1,22 @@
-import React, { useEffect } from "react";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withRepeat,
-  Easing,
-  ReduceMotion,
-} from "react-native-reanimated";
+import React from "react";
+import { ActivityIndicator, Platform } from "react-native";
 
 interface Props {
-  size?: number;
+  size?: number | "small" | "large";
   color?: string;
   thickness?: number;
 }
 
 export const AnimatedSpinner = ({
-  size = 24,
+  size = "small",
   color = "#FFFFFF",
-  thickness = 3,
 }: Props) => {
-  const rotation = useSharedValue(0);
+  const indicatorSize =
+    Platform.OS === "ios" && typeof size === "number"
+      ? size > 30
+        ? "large"
+        : "small"
+      : size;
 
-  useEffect(() => {
-    rotation.value = 0;
-    rotation.value = withRepeat(
-      withTiming(360, {
-        duration: 1000,
-        easing: Easing.linear,
-        reduceMotion: ReduceMotion.Never,
-      }),
-      -1, // Infinite looping
-    );
-  }, [rotation]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ rotate: `${rotation.value}deg` }],
-    };
-  });
-
-  const normalizedColor =
-    color.length === 4 && color.startsWith("#")
-      ? `#${color[1]}${color[1]}${color[2]}${color[2]}${color[3]}${color[3]}`
-      : color;
-
-  return (
-    <Animated.View
-      style={[
-        {
-          width: size,
-          height: size,
-          borderRadius: size / 2,
-          borderWidth: thickness,
-          borderColor: `${normalizedColor}40`,
-          borderTopColor: color,
-          borderRightColor: color,
-        },
-        animatedStyle,
-      ]}
-    />
-  );
+  return <ActivityIndicator size={indicatorSize} color={color} />;
 };
