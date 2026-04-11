@@ -2,12 +2,12 @@ import { supabase } from "@/src/lib/supabase";
 import { Budget } from "../types/budgetType";
 
 //  Maps a Supabase row snakecase to frontend Budget camelCase.
-const toBudget = (row: Record<string, unknown>): Budget => ({
+export const toBudget = (row: Record<string, unknown>): Budget => ({
   id: row.id as string,
   amount: Number(row.amount),
   month: row.month as string,
   category: row.category as string | undefined,
-});
+});// Upsert a budget Create or Update.
 
 
 export const fetchBudgets = async (userId: string): Promise<Budget[]> => {
@@ -21,14 +21,13 @@ export const fetchBudgets = async (userId: string): Promise<Budget[]> => {
   return (data ?? []).map(toBudget);
 };
 
-// Upsert a budget Create or Update.
 // If the budget has an ID, it updates.
 export const upsertBudget = async (
   budget: Budget,
   userId: string
 ): Promise<Budget> => {
   const isTempId = !isNaN(Number(budget.id));
-  
+
   const row = {
     ...(isTempId ? {} : { id: budget.id }),
     user_id: userId,
@@ -39,7 +38,7 @@ export const upsertBudget = async (
 
   const { data, error } = await supabase
     .from("budgets")
-    .upsert(row, { onConflict: "id" }) 
+    .upsert(row, { onConflict: "id" })
     .select()
     .single();
 

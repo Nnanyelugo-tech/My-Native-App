@@ -1,4 +1,4 @@
-import { Session, supabase, User  } from "@/src/lib/supabase";
+import { Session, supabase, User } from "@/src/lib/supabase";
 import React, {
   PropsWithChildren,
   useContext,

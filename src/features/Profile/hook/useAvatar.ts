@@ -67,7 +67,6 @@ export const useAvatar = () => {
 
       if (data?.signedUrl) {
         const finalUrl = `${data.signedUrl}&t=${new Date().getTime()}`;
-        console.log("Generated Signed URL:", finalUrl);
         setAvatarUrl(finalUrl);
       } else {
         throw new Error("Failed to generate signed URL");

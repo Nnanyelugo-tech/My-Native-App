@@ -2,7 +2,7 @@ import { supabase } from "@/src/lib/supabase";
 import { Transaction, NewTransaction } from "../types/transactionType";
 
 //  Maps a Supabase row snake_case to frontend Transaction camelCase.
-const toTransaction = (row: Record<string, unknown>): Transaction => ({
+export const toTransaction = (row: Record<string, unknown>): Transaction => ({
   id: row.id as string,
   title: row.title as string,
   category: row.category as string,
@@ -71,13 +71,17 @@ export const createTransaction = async (
 export const updateTransactionById = async (
   transaction: Transaction,
   userId: string
-): Promise<void> => {
-  const { error } = await supabase
+): Promise<Transaction> => {
+  const { data, error } = await supabase
     .from("transactions")
     .update(toRow(transaction, userId))
-    .eq("id", transaction.id);
+    .eq("id", transaction.id)
+    .select()
+    .single();
 
   if (error) throw error;
+  
+  return toTransaction(data);
 };
 
 // Delete a transaction by ID.

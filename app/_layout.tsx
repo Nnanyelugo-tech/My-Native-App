@@ -15,6 +15,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { View } from "react-native";
 import "react-native-reanimated";
 import "../global.css";
+import { RealtimeSync } from "@/src/components/Global/RealtimeSync";
 
 export const unstable_settings = {
   anchor: "(tabs)",
@@ -69,6 +70,7 @@ function RootContent() {
     <View className={`flex-1 ${theme === "dark" ? "dark" : ""} bg-bgColor`}>
       <SafeAreaProvider>
         <AuthProvider>
+          <RealtimeSync />
           <SheetProvider>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

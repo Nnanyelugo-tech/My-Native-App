@@ -9,6 +9,7 @@ import {
 } from "../services/transactionService";
 import { Budget } from "../types/budgetType";
 import { NewTransaction, Transaction } from "../types/transactionType";
+import { sortTransactions } from "../utils/cacheHelpers";
 import { queryKeys } from "./queryKeys";
 
 export const useAddTransactionMutation = () => {
@@ -25,20 +26,19 @@ export const useAddTransactionMutation = () => {
       await queryClient.cancelQueries({ queryKey: queryKeys.transactions(user.id) });
       const previous = queryClient.getQueryData<Transaction[]>(queryKeys.transactions(user.id));
 
-      queryClient.setQueryData<Transaction[]>(queryKeys.transactions(user.id), (old = []) => [
-        { ...newTx, id: `temp-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`, _optimistic: true } as Transaction,
-        ...old,
-      ]);
-      return { previous };
+      const tempId = `temp-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+
+      queryClient.setQueryData<Transaction[]>(queryKeys.transactions(user.id), (old = []) =>
+        sortTransactions([
+          { ...newTx, id: tempId, _optimistic: true } as Transaction,
+          ...old,
+        ]),
+      );
+      return { previous, tempId };
     },
-    onError: (err, newTx, context) => {
+    onError: (_err, _newTx, context) => {
       if (user?.id) {
         queryClient.setQueryData(queryKeys.transactions(user.id), context?.previous);
-      }
-    },
-    onSuccess: () => {
-      if (user?.id) {
-        queryClient.invalidateQueries({ queryKey: queryKeys.transactions(user.id) });
       }
     },
   });
@@ -59,18 +59,13 @@ export const useDeleteTransactionMutation = () => {
       const previous = queryClient.getQueryData<Transaction[]>(queryKeys.transactions(user.id));
 
       queryClient.setQueryData<Transaction[]>(queryKeys.transactions(user.id), (old = []) =>
-        old.filter((t) => t.id !== id)
+        old.filter((t) => t.id !== id),
       );
       return { previous };
     },
-    onError: (err, id, context) => {
+    onError: (_err, _id, context) => {
       if (user?.id) {
         queryClient.setQueryData(queryKeys.transactions(user.id), context?.previous);
-      }
-    },
-    onSuccess: () => {
-      if (user?.id) {
-        queryClient.invalidateQueries({ queryKey: queryKeys.transactions(user.id) });
       }
     },
   });
@@ -91,18 +86,13 @@ export const useUpdateTransactionMutation = () => {
       const previous = queryClient.getQueryData<Transaction[]>(queryKeys.transactions(user.id));
 
       queryClient.setQueryData<Transaction[]>(queryKeys.transactions(user.id), (old = []) =>
-        old.map((t) => (t.id === updatedTx.id ? updatedTx : t))
+        sortTransactions(old.map((t) => (t.id === updatedTx.id ? updatedTx : t))),
       );
       return { previous };
     },
-    onError: (err, updatedTx, context) => {
+    onError: (_err, _updatedTx, context) => {
       if (user?.id) {
         queryClient.setQueryData(queryKeys.transactions(user.id), context?.previous);
-      }
-    },
-    onSuccess: () => {
-      if (user?.id) {
-        queryClient.invalidateQueries({ queryKey: queryKeys.transactions(user.id) });
       }
     },
   });
@@ -123,8 +113,9 @@ export const useUpsertBudgetMutation = () => {
       const previous = queryClient.getQueryData<Budget[]>(queryKeys.budgets(user.id));
 
       queryClient.setQueryData<Budget[]>(queryKeys.budgets(user.id), (old = []) => {
-        // Safe check using month and category
-        const existingIndex = old.findIndex((b) => b.month === newBudget.month && b.category === newBudget.category);
+        const existingIndex = old.findIndex(
+          (b) => b.month === newBudget.month && b.category === newBudget.category,
+        );
         if (existingIndex !== -1) {
           const newBudgets = [...old];
           newBudgets[existingIndex] = newBudget;
@@ -134,14 +125,9 @@ export const useUpsertBudgetMutation = () => {
       });
       return { previous };
     },
-    onError: (err, newBudget, context) => {
+    onError: (_err, _newBudget, context) => {
       if (user?.id) {
         queryClient.setQueryData(queryKeys.budgets(user.id), context?.previous);
-      }
-    },
-    onSuccess: () => {
-      if (user?.id) {
-        queryClient.invalidateQueries({ queryKey: queryKeys.budgets(user.id) });
       }
     },
   });

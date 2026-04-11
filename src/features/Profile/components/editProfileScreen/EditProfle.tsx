@@ -26,6 +26,16 @@ export default function EditProfile() {
     setImageError(false);
   }, [avatarUrl]);
 
+  // Sync state when profile data arrives
+  useEffect(() => {
+    if (profile?.full_name && !fullName) {
+      setFullName(profile.full_name);
+    }
+    if ((profile?.email || user?.email) && !email) {
+      setEmail(profile?.email || user?.email || "");
+    }
+  }, [profile, user, fullName, email]);
+
   const handleSave = async () => {
     setIsSaving(true);
     // TODO: Connect this to Supabase profile updates using profile hook
@@ -68,7 +78,6 @@ export default function EditProfile() {
                   style={{ width: "100%", height: "100%" }}
                   contentFit="cover"
                   transition={200}
-                  cachePolicy="none"
                   onError={() => setImageError(true)}
                 />
               ) : (
