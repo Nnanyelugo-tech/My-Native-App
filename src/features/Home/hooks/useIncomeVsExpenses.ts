@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useWindowDimensions } from "react-native";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import { getIncomeVsExpense } from "@/src/features/Transaction/utils/getIncomeVsExpense";
 import { isSameDay, getStartOfWeek } from "@/src/utils/date";
 
@@ -13,7 +13,7 @@ import {
 type TrendType = "Today" | "Week" | "Month";
 
 export const useIncomeVsExpenses = (activeTab: TrendType) => {
-  const transactions = useTransactionStore((state) => state.transactions);
+  const { data: transactions = [] } = useTransactionsQuery();
   const { width } = useWindowDimensions();
 
   const filteredTransactions = useMemo(() => {

@@ -7,10 +7,6 @@
     "icon": "./assets/images/app-icon.png",
     "scheme": "fintrack",
     "userInterfaceStyle": "automatic",
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.ugonnaya.fintrackapp"
-    },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE"

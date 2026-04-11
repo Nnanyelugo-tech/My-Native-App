@@ -9,7 +9,6 @@ import { useAddTransaction } from "@/src/features/PlusScreen/hooks/useAddTransac
 import { useLocalSearchParams, useRouter } from "expo-router";
 import {
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
   TouchableOpacity,
   View,
@@ -54,8 +53,8 @@ export default function AddTransactionScreen() {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, paddingTop: top }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? top + 5 : 0}
+      behavior="height"
+      keyboardVerticalOffset={0}
       className="bg-surface-main"
     >
       <View className="flex-row items-center pb-4 px-6 py-4 bg-surface-main">
@@ -115,7 +114,7 @@ export default function AddTransactionScreen() {
           disabled={isSubmitting}
         >
           {isSubmitting ? (
-            <AnimatedSpinner size={20} color="#fff" thickness={3} />
+            <AnimatedSpinner size="small" color="#fff" />
           ) : (
             <>
               <AppText className="text-white text-md font-bold">
@@ -134,3 +133,4 @@ export default function AddTransactionScreen() {
     </KeyboardAvoidingView>
   );
 }
+

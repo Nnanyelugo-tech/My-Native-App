@@ -8,7 +8,7 @@ import { IncomeVsExpensesChart } from "@/src/features/Budget/components/IncomeEx
 import { ProgressCard } from "@/src/features/Budget/components/ProgressCard";
 import { useCategoryBreakdown } from "@/src/features/Budget/hooks/useMonthlyBreakdown";
 import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useBudgetsQuery } from "@/src/features/Transaction/api/useBudgetsQuery";
 import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
@@ -16,7 +16,7 @@ import { getYearMonthKey, getDisplayMonth } from "@/src/utils/date";
 
 export function ReportScreen() {
   const router = useRouter();
-  const budgets = useTransactionStore((state) => state.budgets);
+  const { data: budgets = [] } = useBudgetsQuery();
   const currentMonthKey = getYearMonthKey();
   const currentMonthDisplay = getDisplayMonth();
   

@@ -126,7 +126,7 @@ export function Signup() {
         }`}
       >
         {isLoading ? (
-          <AnimatedSpinner color="#FFFFFF" size={24} />
+          <AnimatedSpinner size="small" color="#FFFFFF" />
         ) : (
           <AppText className="text-white text-center font-bold text-sm">
             Sign Up

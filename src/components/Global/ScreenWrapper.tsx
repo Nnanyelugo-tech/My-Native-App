@@ -3,7 +3,6 @@ import {
   View,
   ScrollView,
   KeyboardAvoidingView,
-  Platform,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
@@ -23,8 +22,8 @@ export default function ScreenWrapper({
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? top + 10 : 0}
+      behavior="height"
+      keyboardVerticalOffset={0}
     >
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}

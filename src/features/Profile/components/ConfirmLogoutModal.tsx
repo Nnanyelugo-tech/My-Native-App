@@ -54,7 +54,7 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
             className="flex-1 py-2 rounded-2xl bg-danger-main items-center justify-center flex-row"
           >
             {isLoading ? (
-              <AnimatedSpinner color="#FFFFFF" size={24} />
+              <AnimatedSpinner size="small" color="#FFFFFF" />
             ) : ( 
               <AppText className="font-bold text-[12px] text-white">Yes, Log Out</AppText>
             )}

@@ -11,9 +11,7 @@ export default function Index() {
   if (isLoading) {
     return (
       <View className="flex-1 justify-center items-center bg-surface-main">
-        <AnimatedSpinner size={48} color="#2F2E7E" 
-        thickness={8}
-        />
+        <AnimatedSpinner size="large" color="#2F2E7E" />
       </View>
     );
   }

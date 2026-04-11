@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import {
   groupByDate,
   flattenSections,
@@ -9,8 +9,7 @@ import {
 import { FilterLabel } from "@/src/features/Transaction/types/transaction.types";
 
 export const useTransactions = () => {
-  const transactions = useTransactionStore((state) => state.transactions);
-  const isLoading = useTransactionStore((state) => state.isLoading);
+  const { data: transactions = [], isLoading } = useTransactionsQuery();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] =
     useState<FilterLabel>("All");

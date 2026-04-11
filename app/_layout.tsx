@@ -1,7 +1,10 @@
 import { Sheets } from "@/src/components/UI/actionSheet/Sheets";
 import { ToastMessage } from "@/src/components/UI/ToastMessage/ToastMessage";
 import AuthProvider from "@/src/features/Auth/provider/AuthProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, QueryCache, MutationCache } from "@tanstack/react-query";
+import { persistQueryClient } from "@tanstack/react-query-persist-client";
+import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
+import { createMMKV } from "react-native-mmkv";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { ThemeProvider, useTheme } from "@/src/components/Global/ThemeContext";
@@ -17,7 +20,47 @@ export const unstable_settings = {
   anchor: "(tabs)",
 };
 
-const queryClient = new QueryClient();
+const storage = createMMKV();
+
+const clientStorage = {
+  setItem: (key: string, value: string) => {
+    storage.set(key, value);
+  },
+  getItem: (key: string) => {
+    const value = storage.getString(key);
+    return value === undefined ? null : value;
+  },
+  removeItem: (key: string) => {
+    storage.remove(key);
+  },
+};
+
+const persister = createAsyncStoragePersister({
+  storage: clientStorage,
+});
+
+const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error) => console.error("Global Query Error:", error),
+  }),
+  mutationCache: new MutationCache({
+    onError: (error) => console.error("Global Mutation Error:", error),
+  }),
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      gcTime: 1000 * 60 * 30,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: false,
+      retry: 2,
+    },
+  },
+});
+
+persistQueryClient({
+  queryClient,
+  persister,
+});
 
 function RootContent() {
   const { theme } = useTheme();
@@ -34,7 +77,10 @@ function RootContent() {
                 name="onboarding/onboardingScreen"
                 options={{ headerShown: false }}
               />
-              <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="auth/login"
+                options={{ headerShown: false }}
+              />
               <Stack.Screen
                 name="auth/register"
                 options={{ headerShown: false }}

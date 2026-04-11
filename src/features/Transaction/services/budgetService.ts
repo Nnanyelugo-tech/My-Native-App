@@ -27,7 +27,6 @@ export const upsertBudget = async (
   budget: Budget,
   userId: string
 ): Promise<Budget> => {
-  // If id is a temporary numeric one, remove it so Supabase creates a UUID
   const isTempId = !isNaN(Number(budget.id));
   
   const row = {

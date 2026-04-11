@@ -5,7 +5,13 @@ import {
     incomeSources,
     transactionColors,
 } from "@/src/features/PlusScreen/constants/transactions";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
+import { useBudgetsQuery } from "@/src/features/Transaction/api/useBudgetsQuery";
+import { 
+  useAddTransactionMutation,
+  useUpdateTransactionMutation,
+  useUpsertBudgetMutation
+} from "@/src/features/Transaction/api/useTransactionMutations";
 import { Transaction, NewTransaction } from "@/src/features/Transaction/types/transactionType";
 import { getYearMonthKey, getTodayDate, getCurrentTime } from "@/src/utils/date";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -22,11 +28,11 @@ export function useAddTransaction() {
     const isEditMode = params.mode === "edit";
 
     // Store Access
-    const transactions = useTransactionStore((state) => state.transactions);
-    const budgets = useTransactionStore((state) => state.budgets);
-    const addTransaction = useTransactionStore((state) => state.addTransaction);
-    const updateTransaction = useTransactionStore((state) => state.updateTransaction);
-    const setBudget = useTransactionStore((state) => state.setBudget);
+    const { data: transactions = [] } = useTransactionsQuery();
+    const { data: budgets = [] } = useBudgetsQuery();
+    const { mutateAsync: addTransaction } = useAddTransactionMutation();
+    const { mutateAsync: updateTransaction } = useUpdateTransactionMutation();
+    const { mutateAsync: setBudget } = useUpsertBudgetMutation();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Track if we've already pre-filled values to prevent loops after reset.

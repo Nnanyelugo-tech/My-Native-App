@@ -109,7 +109,7 @@ export function Login() {
         className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[50px]"
       >
         {isLoading ? (
-          <AnimatedSpinner color="#ffffff" size={24} />
+          <AnimatedSpinner size="small" color="#ffffff" />
         ) : (
           <AppText className="text-white text-center font-bold text-sm">Log In</AppText>
         )}

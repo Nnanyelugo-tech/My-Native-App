@@ -1,9 +1,9 @@
-import { supabase, Session, User } from "@/src/lib/supabase";
+import { Session, supabase, User  } from "@/src/lib/supabase";
 import React, {
   PropsWithChildren,
+  useContext,
   useEffect,
   useState,
-  useContext,
 } from "react";
 import { AuthContext, Profile } from "./useAuthContext";
 
@@ -27,7 +27,7 @@ export default function AuthProvider({
         .select("*")
         .eq("id", userId)
         .single();
-        
+
       if (data) {
         if (isMounted) setProfile(data);
       } else if (retries > 0) {
@@ -41,7 +41,7 @@ export default function AuthProvider({
       const { data } = await supabase.storage
         .from("profile-pics")
         .createSignedUrl(`avatars/${userId}.png`, 60 * 60 * 24 * 7);
-      
+
       if (data?.signedUrl && isMounted) {
         setAvatarUrl(`${data.signedUrl}&t=${new Date().getTime()}`);
       }

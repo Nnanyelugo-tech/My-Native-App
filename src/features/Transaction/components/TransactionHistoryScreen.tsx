@@ -45,7 +45,7 @@ export default function TransactionHistoryScreen() {
   if (isLoading) {
     return (
       <ScreenContainer className="bg-surface-main items-center justify-center">
-        <AnimatedSpinner size={48} color="#2F2E7E" thickness={6} />
+        <AnimatedSpinner size={48} color="#2F2E7E" />
       </ScreenContainer>
     );
   }

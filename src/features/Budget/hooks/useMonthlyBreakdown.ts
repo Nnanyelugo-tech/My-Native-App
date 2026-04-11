@@ -1,10 +1,10 @@
 import { useMemo } from "react";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import { CategoryBreakdownItem } from "@/src/features/Budget/types/budgetProps";
 
 
 export function useCategoryBreakdown() {
-  const transactions = useTransactionStore((state) => state.transactions);
+  const { data: transactions = [] } = useTransactionsQuery();
 
   return useMemo(() => {
     const now = new Date();

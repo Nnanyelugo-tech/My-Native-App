@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useTransactionStore } from "../../Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "../../Transaction/api/useTransactionsQuery";
 import { getCategoryColor } from "../../Transaction/utils/getCategoryColor";
 
 
@@ -11,7 +11,7 @@ export type ExpenseBreakdownItem = {
 };
 
 export function useExpenseBreakdown() {
-  const transactions = useTransactionStore((state) => state.transactions);
+  const { data: transactions = [] } = useTransactionsQuery();
 
   return useMemo(() => {
     let totalExpenses = 0;

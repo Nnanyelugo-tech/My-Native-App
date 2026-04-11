@@ -1,13 +1,11 @@
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import { SymbolWeight } from "expo-symbols";
 import { OpaqueColorValue, type StyleProp, type TextStyle, TouchableOpacity } from "react-native";
 
 export type IconSymbolName = keyof typeof MAPPING;
 
 /**
- * Add your SF Symbols to Material Icons mappings here.
- * - see Material Icons in the [Icons Directory](https://icons.expo.fyi).
- * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
+ * An icon component that uses Material Icons for Android.
+ * Icon `name`s are based on a mapping to Material Icons.
  */
 const MAPPING = {
   "house.fill": "home",
@@ -64,13 +62,11 @@ const MAPPING = {
   "moon.fill": "dark-mode",
   "arrow.right.square.fill": "logout",
   "iphone": "phone-iphone",
-  "apple": "apps", // MaterialIcons doesn't have a good Apple logo, using apps as placeholder or I'll switch to Ionicons
+  "apple": "apps", 
 } satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**
- * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
- * This ensures a consistent look across platforms, and optimal resource usage.
- * Icon `name`s are based on SF Symbols and require manual mapping to Material Icons.
+ * An icon component that uses Material Icons.
  */
 export function IconSymbol({
   name,
@@ -83,7 +79,6 @@ export function IconSymbol({
   size?: number;
   color: string | OpaqueColorValue;
   style?: StyleProp<TextStyle>;
-  weight?: SymbolWeight;
   onPress?: () => void;
 }) {
   const icon = (
@@ -105,4 +100,5 @@ export function IconSymbol({
 
   return icon;
 }
+
 

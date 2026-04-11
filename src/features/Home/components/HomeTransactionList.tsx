@@ -1,22 +1,21 @@
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import { formatTime } from "@/src/utils/date";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { router } from "expo-router";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { TouchableOpacity, View } from "react-native";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 
 export const TransactionList = () => {
-  const transactionsData = useTransactionStore((state) => state.transactions);
-  const transactions = useMemo(
-    () =>
-      [...transactionsData]
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 4),
-    [transactionsData],
-  );
+  const {
+    data: transactionsData = [],
+    isLoading,
+    isError,
+  } = useTransactionsQuery();
+  const transactions = transactionsData.slice(0, 4);
   const { push } = router;
   const handleSeeMore = useCallback(() => {
     push("/transaction");
@@ -42,7 +41,17 @@ export const TransactionList = () => {
       </View>
 
       {/* Content */}
-      {transactions.length === 0 ? (
+      {isLoading ? (
+        <View className="py-4 items-center">
+          <AnimatedSpinner size="large" color="#2F2E7E" />
+        </View>
+      ) : isError ? (
+        <View className="py-4 items-center">
+          <AppText className="text-danger-muted">
+            Error loading transactions
+          </AppText>
+        </View>
+      ) : transactions.length === 0 ? (
         <EmptyState />
       ) : (
         transactions.map((t) => {

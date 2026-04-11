@@ -1,8 +1,6 @@
 import { useFocusEffect } from "expo-router";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { BackHandler, ScrollView, View } from "react-native";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
-
 import ScreenContainer from "@/src/components/Global/ScreenContainer";
 import { BalanceCard } from "@/src/features/Home/components/HomeBalanceCard";
 import { ExpensePieChart } from "@/src/features/Home/components/HomeExpensePieChart";
@@ -11,10 +9,6 @@ import { IncomeVsExpensesChart } from "@/src/features/Home/components/HomeIncome
 import { TransactionList } from "@/src/features/Home/components/HomeTransactionList";
 
 export default function Index() {
-  useEffect(() => {
-    useTransactionStore.getState().loadTransactions();
-    useTransactionStore.getState().loadBudgets();
-  }, []);
 
   useFocusEffect(
     useCallback(() => {

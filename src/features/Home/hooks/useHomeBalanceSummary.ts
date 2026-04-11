@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useTransactionStore } from "@/src/features/Transaction/store/useTransactionStore";
+import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 
 export type BalanceSummary = {
   totalIncome: number;
@@ -8,7 +8,7 @@ export type BalanceSummary = {
 };
 
 export function useBalanceSummary(): BalanceSummary {
-  const transactions = useTransactionStore((state) => state.transactions);
+  const { data: transactions = [] } = useTransactionsQuery();
 
   return useMemo(() => {
     let income = 0;
