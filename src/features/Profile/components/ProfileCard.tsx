@@ -8,11 +8,15 @@ import { Image } from "expo-image";
 import { useAvatar } from "../hook/useAvatar";
 import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 import { useState, useEffect } from "react";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export default function ProfileCard() {
   const { profile, user } = useAuthContext();
   const { avatarUrl, isUploading, uploadAvatar } = useAvatar();
   const [imageError, setImageError] = useState(false);
+  const { theme } = useTheme();
+  const colors = Colors[theme];
 
   // Reset error state when avatarUrl changes
   useEffect(() => {
@@ -20,7 +24,7 @@ export default function ProfileCard() {
   }, [avatarUrl]);
 
   return (
-    <View className="bg-surface-card rounded-3xl p-6 mb-8 items-center">
+    <View className="bg-surface-card rounded-3xl p-6 mb-8 items-center shadow-sm border border-border-subtle">
       <View className="relative mb-4">
         <View className="w-20 h-20 rounded-full bg-brand-bg-medium items-center justify-center overflow-hidden">
           {avatarUrl && !imageError ? (
@@ -32,7 +36,7 @@ export default function ProfileCard() {
               onError={() => setImageError(true)}
             />
           ) : (
-            <IconSymbol name="person.fill" size={32} color="#283593" />
+            <IconSymbol name="person.fill" size={32} color={colors.brandMain} />
           )}
 
           {isUploading && (
@@ -52,7 +56,9 @@ export default function ProfileCard() {
         </TouchableOpacity>
       </View>
 
-      <AppText className="text-lg mb-1">{profile?.full_name || user?.user_metadata?.full_name || "User"}</AppText>
+      <AppText className="text-lg text-text-primary mb-1 font-bold">
+        {profile?.full_name || user?.user_metadata?.full_name || "User"}
+      </AppText>
       <AppText className="text-text-secondary text-sm mb-6">
         {profile?.email || user?.email || ""}
       </AppText>

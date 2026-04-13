@@ -10,10 +10,11 @@
   --font-lato-italic: 'Lato-BlackItalic';
   --font-lato-regular: 'Lato-Regular';
   --font-roboto-condensed: 'RobotoCondensed-VariableFont_wght';
+}
 
-  /* custom colors */
-  --color-bgColor: #ffffff;
+@variant light {
   /* App main background */
+  --color-bgColor: #F9F9FB;
   --color-surface-main: #F9F9FB;
   /* White cards */      
   --color-surface-card: #FFFFFF; 
@@ -66,14 +67,18 @@
   --color-brand-bg-light: #F8F6FF;
   --color-brand-bg-medium: #E8EAF6;
   --color-brand-bg-dark: #EDE7F6;
-
 }
 
-.dark {
+@variant dark {
   --color-bgColor: #151718;
   --color-surface-main: #0B0B0B;
   --color-surface-card: #1C1C1E;
   --color-border-subtle: #2C2C2E;
+
+  /* Icon Background Overlays */
+  --color-overlay-white-light: rgba(255,255,255,0.05);
+  --color-overlay-white-medium: rgba(255,255,255,0.06);
+  --color-overlay-white-heavy: rgba(255,255,255,0.12);
 
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #9BA1A6;
@@ -81,11 +86,29 @@
   --color-text-inverse: #1A1A2E;
 
   --color-success-main: #30D158;
+  --color-success-muted: #34C759;
+  --color-success-bg: #1B2E1E;
+
   --color-danger-main: #FF453A;
+  --color-danger-muted: #FF3B30;
+
   --color-warning-main: #FF9F0A;
+  --color-warning-bg: #2E251B;
+
   --color-info-main: #0A84FF;
+  --color-info-muted: #409CFF;
+
+  /* Charts & Categories */
+  --color-chart-shopping: #FF4081;
+  --color-chart-bills: #00BFA5;
+  --color-chart-data: #455A64;        
+  --color-chart-purple: #D1C4E9;
 
   --color-brand-main: #5E5CE6;
+  --color-brand-indigo: #4B4ACF;
+  --color-brand-navy: #2C1A5E;
+  --color-brand-purple: #311B92;
+  --color-brand-dark: #000000;
 
   --color-brand-bg-light: #1A1A2E;
   --color-brand-bg-medium: #2C2C2E;

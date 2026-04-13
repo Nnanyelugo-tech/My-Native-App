@@ -10,9 +10,14 @@ import {
   barSpacing,
 } from "@/src/constants/chart";
 
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
+
 type TrendType = "Today" | "Week" | "Month";
 
 export const useIncomeVsExpenses = (activeTab: TrendType) => {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const { data: transactions = [] } = useTransactionsQuery();
   const { width } = useWindowDimensions();
 
@@ -57,15 +62,15 @@ export const useIncomeVsExpenses = (activeTab: TrendType) => {
     return [
       {
         value: Number(income),
-        frontColor: "#00E676",
+        frontColor: colors.success,
         spacing: barSpacing,
       },
       {
         value: Number(expense),
-        frontColor: "#FF1744",
+        frontColor: colors.danger,
       },
     ];
-  }, [income, expense]);
+  }, [income, expense, colors]);
 
   // safe max (prevents zero crash + gives spacing)
   const maxValue = Math.max(income, expense, 1) * 1.2;

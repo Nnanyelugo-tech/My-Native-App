@@ -1,3 +1,5 @@
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
@@ -13,6 +15,8 @@ import {
 type TrendType = "Today" | "Week";
 
 export const IncomeVsExpensesChart = () => {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const [activeTab, setActiveTab] = useState<TrendType>("Today");
 
   const {
@@ -31,7 +35,7 @@ export const IncomeVsExpensesChart = () => {
         Income vs Expenses Trends
       </AppText>
 
-      <View className="bg-white  rounded-3xl p-4">
+      <View className="bg-surface-card rounded-3xl p-4 shadow-sm border border-border-subtle">
         <View className="flex-row mb-4">
           <View className="flex-row bg-brand-bg-medium rounded-full p-1">
             {(["Today", "Week"] as TrendType[]).map((tab) => (
@@ -68,7 +72,7 @@ export const IncomeVsExpensesChart = () => {
             xAxisThickness={0}
             yAxisThickness={0}
             yAxisLabelWidth={45}
-            yAxisTextStyle={{ color: "#9E9E9E", fontSize: 10 }}
+            yAxisTextStyle={{ color: colors.textSecondary, fontSize: 10 }}
             formatYLabel={(label) => formatCompactCurrency(Number(label))}
             hideRules
             isAnimated

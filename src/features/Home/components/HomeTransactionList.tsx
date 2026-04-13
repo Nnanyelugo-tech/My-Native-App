@@ -8,8 +8,12 @@ import { router } from "expo-router";
 import { useCallback } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export const TransactionList = () => {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const {
     data: transactionsData = [],
     isLoading,
@@ -43,7 +47,7 @@ export const TransactionList = () => {
       {/* Content */}
       {isLoading ? (
         <View className="py-4 items-center">
-          <AnimatedSpinner size="large" color="#2F2E7E" />
+          <AnimatedSpinner size="large" color={colors.brandMain} />
         </View>
       ) : isError ? (
         <View className="py-4 items-center">

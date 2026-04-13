@@ -1,3 +1,5 @@
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { AppText } from "@/src/components/Global/AppText";
 import { formatCompactCurrency } from "@/src/utils/formatCurrency";
 // import { useRouter } from "expo-router";
@@ -29,7 +31,7 @@ function LegendRow({ item }: LegendRowProps) {
         </AppText>
       </View>
       <AppText
-        className="text-sm font-lato-regular ml-4"
+        className="text-sm font-lato-regular ml-4 text-text-primary"
         style={{ fontWeight: "600" }}
       >
         {item.percentage}%
@@ -38,7 +40,10 @@ function LegendRow({ item }: LegendRowProps) {
   );
 }
 
+
 export function ExpensePieChart() {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const { width: screenWidth } = useWindowDimensions();
   // const router = useRouter();
   const { totalExpenses, breakdown } = useExpenseBreakdown();
@@ -83,7 +88,7 @@ export function ExpensePieChart() {
             donut
             radius={screenWidth * 0.17}
             innerRadius={screenWidth * 0.1}
-            innerCircleColor="#E8EAF6"
+            innerCircleColor={colors.brandBgMedium}
             centerLabelComponent={() => (
               <View className="items-center justify-center">
                 <AppText className="text-[10px] font-lato-regular text-text-muted">

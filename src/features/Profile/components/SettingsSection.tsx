@@ -4,6 +4,7 @@ import SettingsRow from "./SettingsRow";
 import Divider from "./Divider";
 import { Switch, View } from "react-native";
 import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { SettingsSectionType, SettingsSectionData } from "../types/profile";
 
 interface Props {
@@ -12,18 +13,21 @@ interface Props {
 
 export default function SettingsSection({ type }: Props) {
   const { theme, setTheme } = useTheme();
+  const colors = Colors[theme];
+  const isDark = theme === "dark";
+
   const sections: Record<SettingsSectionType, SettingsSectionData> = {
     account: {
       title: "Account Settings",
       items: [
         {
-          icon: <IconSymbol name="shield.fill" size={18} color="#283593" />,
-          iconBg: "bg-brand-bg-light",
+          icon: <IconSymbol name="shield.fill" size={18} color={colors.brandMain} />,
+          iconBg: isDark ? "bg-brand-bg-medium" : "bg-bgColor",
           title: "Security & Password",
         },
         {
-          icon: <IconSymbol name="bell.fill" size={18} color="#FF9800" />,
-          iconBg: "bg-[rgba(255,152,0,0.1)]",
+          icon: <IconSymbol name="bell.fill" size={18} color={colors.warning} />,
+          iconBg: isDark ? "bg-warning-bg" : "bg-warning-bg/50",
           title: "Notification Settings",
         },
         {
@@ -31,10 +35,10 @@ export default function SettingsSection({ type }: Props) {
             <IconSymbol
               name="building.columns.fill"
               size={18}
-              color="#00E676"
+              color={colors.success}
             />
           ),
-          iconBg: "bg-[rgba(0,230,118,0.1)]",
+          iconBg: isDark ? "bg-success-bg" : "bg-success-bg/50",
           title: "Linked Bank Accounts",
         },
       ],
@@ -44,15 +48,16 @@ export default function SettingsSection({ type }: Props) {
       title: "Preferences",
       items: [
         {
-          icon: <IconSymbol name="moon.fill" size={18} color="#AB47BC" />,
-          iconBg: "bg-[rgba(171,71,188,0.1)]",
+          icon: <IconSymbol name="moon.fill" size={18} color={colors.chartPurple} />,
+          iconBg: isDark ? "bg-chart-purple/20" : "bg-chart-purple/10",
           title: "Theme Mode",
           subtitle: "Light / Dark",
           rightElement: (
             <Switch
-              value={theme === "dark"}
+              value={isDark}
               onValueChange={(value) => setTheme(value ? "dark" : "light")}
-              trackColor={{ false: "#E0E0E0", true: "#283593" }}
+              trackColor={{ false: colors.border, true: colors.brandMain }}
+              thumbColor={isDark ? colors.brandMain : "#f4f3f4"}
             />
           ),
         },
@@ -61,10 +66,10 @@ export default function SettingsSection({ type }: Props) {
             <IconSymbol
               name="dollarsign.circle.fill"
               size={18}
-              color="#FF9800"
+              color={colors.warning}
             />
           ),
-          iconBg: "bg-[rgba(255,152,0,0.1)]",
+          iconBg: isDark ? "bg-warning-bg" : "bg-warning-bg/50",
           title: "Currency",
           subtitle: "USD ($)",
         },
@@ -75,12 +80,12 @@ export default function SettingsSection({ type }: Props) {
       title: "Support",
       items: [
         {
-          icon: <IconSymbol name="questionmark" size={18} color="#555" />,
+          icon: <IconSymbol name="questionmark" size={18} color={colors.textSecondary} />,
           iconBg: "bg-surface-main",
           title: "Help Center",
         },
         {
-          icon: <IconSymbol name="shield.fill" size={18} color="#555" />,
+          icon: <IconSymbol name="shield.fill" size={18} color={colors.textSecondary} />,
           iconBg: "bg-surface-main",
           title: "Privacy Policy",
         },
@@ -96,7 +101,7 @@ export default function SettingsSection({ type }: Props) {
         {section.title}
       </AppText>
 
-      <View className="bg-surface-card rounded-3xl py-2 mb-8">
+      <View className="bg-surface-card rounded-3xl py-2 mb-8 shadow-sm border border-border-subtle">
         {section.items.map((item, index) => (
           <View key={index}>
             <SettingsRow {...item} />

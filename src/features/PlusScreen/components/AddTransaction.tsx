@@ -14,6 +14,8 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 const submitLabel = {
   Income: "Add Income",
@@ -21,7 +23,11 @@ const submitLabel = {
   Budget: "Set Budget",
 } as const;
 
+
+
 export default function AddTransactionScreen() {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const { back } = useRouter();
   const { top, bottom } = useSafeAreaInsets();
   const params = useLocalSearchParams<{ mode?: string; type?: string }>();
@@ -61,7 +67,7 @@ export default function AddTransactionScreen() {
         <IconSymbol
           name="arrow.left"
           size={24}
-          color="#1A237E"
+          color={colors.brandMain}
           onPress={back}
         />
         <AppText className="ml-4 text-xl font-bold text-brand-main">
@@ -85,7 +91,7 @@ export default function AddTransactionScreen() {
           error={errors.amount?.message as string}
         />
 
-        <View className="bg-surface-card mx-6 rounded-[32px] p-6 mb-6">
+        <View className="bg-surface-card mx-6 rounded-[32px] p-6 mb-6 shadow-sm border border-border-subtle">
           {activeTab !== "Budget" ? (
             <TransactionForm
               activeColor={activeColor}

@@ -1,4 +1,3 @@
-
 import { HapticTab } from "@/src/components/Global/HapticTab";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";

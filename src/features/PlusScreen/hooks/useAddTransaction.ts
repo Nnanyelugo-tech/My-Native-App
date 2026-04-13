@@ -3,7 +3,6 @@ import {
     TransactionMode,
     expenseCategories,
     incomeSources,
-    transactionColors,
 } from "@/src/features/PlusScreen/constants/transactions";
 import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import { useBudgetsQuery } from "@/src/features/Transaction/api/useBudgetsQuery";
@@ -14,6 +13,8 @@ import {
 } from "@/src/features/Transaction/api/useTransactionMutations";
 import { Transaction, NewTransaction } from "@/src/features/Transaction/types/transactionType";
 import { getYearMonthKey, getTodayDate, getCurrentTime } from "@/src/utils/date";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -120,8 +121,11 @@ export function useAddTransaction() {
         }
     }, [activeTab, isEditMode, paramFingerprint, params.id, existingBudget, transactions, setValue]);
 
+    const { theme } = useTheme();
+    const colors = Colors[theme];
+
     // Dynamic Colors & Categories/Derived Values & Tab Switcher
-    const activeColor = transactionColors[activeTab];
+    const activeColor = activeTab === "Expense" ? colors.danger : colors.brandMain;
     const categories = activeTab === "Income" ? incomeSources : expenseCategories;
 
     const handleTabChange = (tab: TransactionMode) => {

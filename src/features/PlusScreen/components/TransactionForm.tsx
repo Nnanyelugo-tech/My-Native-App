@@ -5,6 +5,8 @@ import { CategoryPicker } from "@/src/features/PlusScreen/components/CategoryPic
 import { FormInput } from "@/src/components/Forms/FormInput";
 import { FieldValues, Path, Controller } from "react-hook-form";
 import { TransactionFormProps } from "@/src/features/PlusScreen/types/transactionForm";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export function TransactionForm<T extends FieldValues>({
   activeColor,
@@ -14,6 +16,9 @@ export function TransactionForm<T extends FieldValues>({
   date,
   time,
 }: TransactionFormProps<T>) {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
+
   return (
     <>
       {/* Title */}
@@ -55,23 +60,23 @@ export function TransactionForm<T extends FieldValues>({
       {/* Date & Time */}
       <View className="flex-row justify-between mb-6">
         <View className="flex-1 mr-4">
-          <AppText className="text-[11px] font-bold text-gray-700 tracking-widest mb-1 uppercase">
+          <AppText className="text-[11px] font-bold text-text-secondary tracking-widest mb-1 uppercase">
             Date
           </AppText>
-          <View className="flex-row items-center border-b border-gray-100 py-3">
-            <IconSymbol name="calendar" size={18} color="#6B7280" />
-            <AppText className="text-[11px] text-gray-800 ml-2 font-medium">
+          <View className="flex-row items-center border-b border-border-subtle py-3">
+            <IconSymbol name="calendar" size={18} color={colors.textSecondary} />
+            <AppText className="text-[11px] text-text-primary ml-2 font-medium">
               {date}
             </AppText>
           </View>
         </View>
         <View className="flex-1 ml-2">
-          <AppText className="text-[11px] font-bold text-gray-700 tracking-widest mb-1 uppercase">
+          <AppText className="text-[11px] font-bold text-text-secondary tracking-widest mb-1 uppercase">
             Time
           </AppText>
-          <View className="flex-row items-center border-b border-gray-100 py-3">
-            <IconSymbol name="clock" size={18} color="#6B7280" />
-            <AppText className="text-[11px] text-gray-800 ml-2 font-medium">
+          <View className="flex-row items-center border-b border-border-subtle py-3">
+            <IconSymbol name="clock" size={18} color={colors.textSecondary} />
+            <AppText className="text-[11px] text-text-primary ml-2 font-medium">
               {time}
             </AppText>
           </View>
@@ -86,7 +91,6 @@ export function TransactionForm<T extends FieldValues>({
         placeholder="Add additional details..."
         multiline
         error={errors.notes?.message as string}
-        className="bg-gray-50 rounded-2xl px-4 py-4 text-[15px] text-gray-800 min-h-[100px]"
         style={{ textAlignVertical: "top" }}
       />
     </>

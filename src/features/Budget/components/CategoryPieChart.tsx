@@ -1,3 +1,5 @@
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { AppText } from "@/src/components/Global/AppText";
 import { formatCompactCurrency } from "@/src/utils/formatCurrency";
 import React from "react";
@@ -11,7 +13,10 @@ type Props = {
   totalSpent: number;
 };
 
+
 export function SpendingChart({ categoryBreakdown, totalSpent }: Props) {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const { width: screenWidth } = useWindowDimensions();
 
   const pieData = categoryBreakdown.map((item, index) => ({
@@ -33,7 +38,7 @@ export function SpendingChart({ categoryBreakdown, totalSpent }: Props) {
           donut
           radius={screenWidth * 0.17}
           innerRadius={screenWidth * 0.1}
-          innerCircleColor="#E8EAF6"
+          innerCircleColor={colors.brandBgMedium}
           backgroundColor="transparent"
           centerLabelComponent={() => (
             <View className="items-center justify-center">

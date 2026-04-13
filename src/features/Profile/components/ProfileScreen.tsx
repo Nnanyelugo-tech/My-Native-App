@@ -12,8 +12,14 @@ import ProfileHeader from "./ProfileHeader";
 import ProfileCard from "./ProfileCard";
 import SettingsSection from "./SettingsSection";
 
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
+
 export function ProfileScreen() {
   const router = useRouter();
+  const { theme } = useTheme();
+  const colors = Colors[theme];
+  const isDark = theme === "dark";
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -51,14 +57,19 @@ export function ProfileScreen() {
           <SettingsSection type="preferences" />
           <SettingsSection type="support" />
 
-          {/* LOGOUT BUTTON */}
           <TouchableOpacity
             activeOpacity={0.9}
             accessibilityRole="button"
             onPress={showLogoutModal}
-            className="flex-row items-center justify-center border-2 border-[rgba(255,23,68,0.1)] bg-[rgba(255,23,68,0.02)] py-4 rounded-full mx-2 mb-8"
+            className={`flex-row items-center justify-center border-2 ${
+              isDark ? "border-danger/20 bg-danger/5" : "border-border-subtle bg-bgColor shadow-sm"
+            } py-4 rounded-full mx-2 mb-8`}
           >
-            <IconSymbol name="arrow.right.square.fill" size={18} color="#FF1744" />
+            <IconSymbol 
+              name="arrow.right.square.fill" 
+              size={18} 
+              color={colors.danger} 
+            />
             <AppText className="text-danger-main font-bold ml-2">
               Logout
             </AppText>

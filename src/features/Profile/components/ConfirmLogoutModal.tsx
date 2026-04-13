@@ -4,6 +4,8 @@ import { useMagicModal } from "react-native-magic-modal";
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 interface Props {
   onConfirm: () => Promise<void>;
@@ -12,6 +14,9 @@ interface Props {
 export function ConfirmLogoutModal({ onConfirm }: Props) {
   const { hide } = useMagicModal();
   const [isLoading, setIsLoading] = useState(false);
+  const { theme } = useTheme();
+  const colors = Colors[theme];
+  const isDark = theme === "dark";
 
   const handleConfirm = async () => {
     setIsLoading(true);
@@ -22,12 +27,12 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
 
   return (
     <View className="w-full px-5">
-      <View className="bg-surface-card rounded-3xl p-6 items-center">
-        <View className="w-14 h-14 bg-[rgba(255,23,68,0.1)] rounded-full items-center justify-center mb-4">
+      <View className="bg-surface-card rounded-3xl p-6 items-center shadow-lg border border-border-subtle">
+        <View className={`w-14 h-14 ${isDark ? "bg-danger/20" : "bg-bgColor"} rounded-full items-center justify-center mb-4 border border-border-subtle`}>
           <IconSymbol
             name="arrow.right.square.fill"
             size={24}
-            color="#FF1744"
+            color={colors.danger}
           />
         </View>
 
@@ -43,7 +48,7 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
           <Pressable
             onPress={() => hide()}
             disabled={isLoading}
-            className="flex-1 py-2 rounded-2xl  border border-border bg-surface-main items-center"
+            className="flex-1 py-3 rounded-2xl border border-border-subtle bg-surface-main items-center"
           >
             <AppText className="font-bold text-[12px] text-text-primary">Cancel</AppText>
           </Pressable>
@@ -51,12 +56,12 @@ export function ConfirmLogoutModal({ onConfirm }: Props) {
           <Pressable
             onPress={handleConfirm}
             disabled={isLoading}
-            className="flex-1 py-2 rounded-2xl bg-danger-main items-center justify-center flex-row"
+            className="flex-1 py-3 rounded-2xl bg-danger-main items-center justify-center flex-row"
           >
             {isLoading ? (
-              <AnimatedSpinner size="small" color="#FFFFFF" />
+              <AnimatedSpinner size="small" color={colors.textInverse} />
             ) : ( 
-              <AppText className="font-bold text-[12px] text-white">Yes, Log Out</AppText>
+              <AppText className="font-bold text-[12px] text-text-inverse">Yes, Log Out</AppText>
             )}
           </Pressable>
         </View>

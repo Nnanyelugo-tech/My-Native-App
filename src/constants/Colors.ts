@@ -1,23 +1,3 @@
-// export const Colors = {
-//   light: {
-//     text: "#1A1A2E",
-//     background: "#F9F9FB",
-//     textSecondary: "#9E9E9E",
-//     surface: "#FFFFFF",
-//     border: "#F0EEF6",
-//     brand: "#1A237E",
-//   },
-
-//   dark: {
-//     text: "#FFFFFF",
-//     background: "#151718",
-//     textSecondary: "#9BA1A6",
-//     surface: "#1C1C1E",
-//     border: "#2C2C2E",
-//     brand: "#5E5CE6",
-//   },
-// };
-
 export type ThemeColors = {
   text: string;
   textSecondary: string;
@@ -25,6 +5,18 @@ export type ThemeColors = {
   surface: string;
   border: string;
   brand: string;
+  brandMain: string;
+  brandIndigo: string;
+  brandBgMedium: string;
+  success: string;
+  successMuted: string;
+  danger: string;
+  dangerMuted: string;
+  warning: string;
+  chartData: string;
+  chartPurple: string;
+  textInverse: string;
+  inverse: string;
 };
 
 export const Colors: Record<"light" | "dark", ThemeColors> = {
@@ -35,6 +27,18 @@ export const Colors: Record<"light" | "dark", ThemeColors> = {
     surface: "#FFFFFF",
     border: "#F0EEF6",
     brand: "#1A237E",
+    brandMain: "#1A237E",
+    brandIndigo: "#283593",
+    brandBgMedium: "#E8EAF6",
+    success: "#00E676",
+    successMuted: "#4CAF50",
+    danger: "#FF1744",
+    dangerMuted: "#EF5350",
+    warning: "#FF9800",
+    chartData: "#CFD8DC",
+    chartPurple: "#AB47BC",
+    textInverse: "#FFFFFF",
+    inverse: "#FFFFFF",
   },
 
   dark: {
@@ -44,5 +48,17 @@ export const Colors: Record<"light" | "dark", ThemeColors> = {
     surface: "#1C1C1E",
     border: "#2C2C2E",
     brand: "#5E5CE6",
+    brandMain: "#5E5CE6",
+    brandIndigo: "#4B4ACF",
+    brandBgMedium: "#2C2C2E",
+    success: "#30D158",
+    successMuted: "#34C759",
+    danger: "#FF453A",
+    dangerMuted: "#FF3B30",
+    warning: "#FF9F0A",
+    chartData: "#455A64",
+    chartPurple: "#D1C4E9",
+    textInverse: "#1A1A2E",
+    inverse: "#1A1A2E",
   },
 };

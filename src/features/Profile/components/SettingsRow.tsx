@@ -2,6 +2,8 @@ import { View, TouchableOpacity } from "react-native";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { AppText } from "@/src/components/Global/AppText";
 import { SettingsItem } from "../types/profile";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export default function SettingsRow({
   icon,
@@ -10,6 +12,9 @@ export default function SettingsRow({
   subtitle,
   rightElement,
 }: SettingsItem) {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
+
   return (
     <TouchableOpacity
      activeOpacity={0.9}
@@ -21,7 +26,7 @@ export default function SettingsRow({
         </View>
 
         <View>
-          <AppText className="text-sm font-bold">{title}</AppText>
+          <AppText className="text-sm font-bold text-text-primary">{title}</AppText>
           {subtitle && (
             <AppText className="text-xs text-text-secondary mt-0.5">
               {subtitle}
@@ -31,7 +36,7 @@ export default function SettingsRow({
       </View>
 
       {rightElement || (
-        <IconSymbol name="chevron.right" size={20} color="#9E9E9E" />
+        <IconSymbol name="chevron.right" size={20} color={colors.textSecondary} />
       )}
     </TouchableOpacity>
   );

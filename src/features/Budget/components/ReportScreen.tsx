@@ -12,9 +12,13 @@ import { useBudgetsQuery } from "@/src/features/Transaction/api/useBudgetsQuery"
 import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { getYearMonthKey, getDisplayMonth } from "@/src/utils/date";
 
 export function ReportScreen() {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const router = useRouter();
   const { data: budgets = [] } = useBudgetsQuery();
   const currentMonthKey = getYearMonthKey();
@@ -42,11 +46,11 @@ export function ReportScreen() {
           Monthly Report
         </AppText>
         <TouchableOpacity className="flex-row items-center bg-surface-card border border-border-subtle rounded-xl px-3 py-2">
-          <IconSymbol name="calendar" size={16} color="#9BA1A6" />
+          <IconSymbol name="calendar" size={16} color={colors.textSecondary} />
           <AppText className="text-text-secondary text-sm ml-2 font-bold">
             {currentMonthDisplay}
           </AppText>
-          <IconSymbol name="chevron.right" size={14} color="#9BA1A6" />
+          <IconSymbol name="chevron.right" size={14} color={colors.textSecondary} />
         </TouchableOpacity>
       </View>
 

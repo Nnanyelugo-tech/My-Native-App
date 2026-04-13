@@ -67,7 +67,7 @@ function RootContent() {
   const { theme } = useTheme();
 
   return (
-    <View className={`flex-1 ${theme === "dark" ? "dark" : ""} bg-bgColor`}>
+    <View className={`flex-1 ${theme} bg-bgColor`}>
       <SafeAreaProvider>
         <AuthProvider>
           <RealtimeSync />

@@ -1,3 +1,5 @@
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { AppText } from "@/src/components/Global/AppText";
 import { chartHeight } from "@/src/constants/chart";
 import { useIncomeVsExpenses } from "@/src/features/Home/hooks/useIncomeVsExpenses";
@@ -10,6 +12,8 @@ import { View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
 export function IncomeVsExpensesChart() {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const {
     chartData,
     income,
@@ -21,7 +25,7 @@ export function IncomeVsExpensesChart() {
   } = useIncomeVsExpenses("Month");
 
   return (
-    <View className="bg-surface-card rounded-3xl p-4">
+    <View className="bg-surface-card rounded-3xl p-4 shadow-sm border border-border-subtle">
       <AppText className="text-text-primary text-base mb-3">
         Income vs Expenses
       </AppText>
@@ -38,7 +42,7 @@ export function IncomeVsExpensesChart() {
           xAxisThickness={0}
           yAxisThickness={0}
           yAxisLabelWidth={45}
-          yAxisTextStyle={{ color: "#9BA1A6", fontSize: 10 }}
+          yAxisTextStyle={{ color: colors.textSecondary, fontSize: 10 }}
           formatYLabel={(label) => formatCompactCurrency(Number(label))}
           hideRules
           isAnimated

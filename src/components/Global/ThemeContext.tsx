@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
-import {
-  Appearance,
-  useColorScheme as useRNColorScheme,
-} from "react-native";
+import { useColorScheme as useRNColorScheme } from "react-native";
+import { Uniwind } from "uniwind";
 
 type Theme = "light" | "dark";
 
@@ -26,12 +24,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setTheme = (value: Theme | "system") => {
     setOverride(value);
-
-    if (value === "system") {
-      Appearance.setColorScheme(null);
-    } else {
-      Appearance.setColorScheme(value);
-    }
+    Uniwind.setTheme(value);
   };
 
   const value = useMemo(
@@ -40,13 +33,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       isDark: theme === "dark",
       setTheme,
     }),
-    [theme]
+    [theme],
   );
 
   return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 

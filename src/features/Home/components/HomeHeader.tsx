@@ -4,11 +4,15 @@ import { greet } from "@/src/utils/greet";
 import { Pressable, TouchableOpacity, View } from "react-native";
 import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
 import { Image } from "expo-image";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 import { useState, useEffect } from "react";
 import { router } from "expo-router";
 
 
 export const HomeHeader = () => {
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const {push} = router;
   const { profile, user, avatarUrl } = useAuthContext();
   const [imageError, setImageError] = useState(false);
@@ -35,7 +39,7 @@ export const HomeHeader = () => {
               onError={() => setImageError(true)}
             />
           ) : (
-            <IconSymbol name="person.fill" size={20} color="#283593" />
+            <IconSymbol name="person.fill" size={20} color={colors.brandIndigo} />
           )}
         </View>
         </Pressable>
@@ -43,10 +47,7 @@ export const HomeHeader = () => {
           <AppText className="text-text-muted text-xs font-roboto">
             Welcome back,
           </AppText>
-          <AppText
-            className="text-text-primary text-sm"
-            style={{ fontWeight: "800" }}
-          >
+          <AppText className="text-text-primary text-sm font-extrabold">
             {greet()}, {firstName}
           </AppText>
         </View>
@@ -55,16 +56,9 @@ export const HomeHeader = () => {
       <TouchableOpacity
         activeOpacity={0.9}
         accessibilityRole="button"
-        className="w-11 h-11 rounded-full bg-brand-bg-light items-center justify-center"
-        style={{
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.05,
-          shadowRadius: 8,
-          elevation: 2,
-        }}
+        className="w-11 h-11 rounded-full bg-brand-bg-light items-center justify-center shadow-sm"
       >
-        <IconSymbol name="bell.fill" size={20} color="#1A237E" />
+        <IconSymbol name="bell.fill" size={20} color={colors.brandMain} />
       </TouchableOpacity>
     </View>
   );

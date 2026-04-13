@@ -3,8 +3,6 @@ import { AppText } from "@/src/components/Global/AppText";
 import { Controller, FieldValues } from "react-hook-form";
 import { cleanAmount, formatNumber, getCurrencySymbol } from "@/src/utils/formatCurrency";
 import { AmountInputProps } from "@/src/features/PlusScreen/types/transactionForm";
-
-
 export function AmountInput<T extends FieldValues>({ 
   activeTab, 
   activeColor, 
@@ -12,9 +10,10 @@ export function AmountInput<T extends FieldValues>({
   name,
   error
 }: AmountInputProps<T>) {
+
   return (
     <View className="items-center mb-6">
-      <AppText className="text-[10px] font-bold text-gray-500 tracking-widest mb-1 uppercase">
+      <AppText className="text-[10px] font-bold text-text-secondary tracking-widest mb-1 uppercase">
         {activeTab === "Budget" ? "Monthly Budget" : "Transaction Amount"}
       </AppText>
 
@@ -44,6 +43,8 @@ export function AmountInput<T extends FieldValues>({
                 keyboardType="numeric"
                 className="text-3xl font-extrabold text-center py-0"
                 style={{ color: activeColor, height: 80 }}
+                selectionColor={activeColor}
+                cursorColor={activeColor}
               />
             </View>
           );
@@ -51,7 +52,7 @@ export function AmountInput<T extends FieldValues>({
       />
 
       {error && (
-        <AppText className="text-red-500 text-[12px] mt-1 font-medium">
+        <AppText className="text-danger text-[12px] mt-1 font-medium">
           {error}
         </AppText>
       )}
