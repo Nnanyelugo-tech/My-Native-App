@@ -1,21 +1,50 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useMemo, useState } from "react";
+import {
+  Appearance,
+  useColorScheme as useRNColorScheme,
+} from "react-native";
 
 type Theme = "light" | "dark";
 
-const ThemeContext = createContext({
-  theme: "light" as Theme,
-  toggleTheme: () => {},
+type ThemeContextType = {
+  theme: Theme;
+  isDark: boolean;
+  setTheme: (theme: Theme | "system") => void;
+};
+
+const ThemeContext = createContext<ThemeContextType>({
+  theme: "light",
+  isDark: false,
+  setTheme: () => {},
 });
 
-export const ThemeProvider = ({ children }: any) => {
-  const [theme, setTheme] = useState<Theme>("light");
+export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const systemTheme = useRNColorScheme() as Theme;
+  const [override, setOverride] = useState<Theme | "system">("system");
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  const theme = override === "system" ? systemTheme : override;
+
+  const setTheme = (value: Theme | "system") => {
+    setOverride(value);
+
+    if (value === "system") {
+      Appearance.setColorScheme(null);
+    } else {
+      Appearance.setColorScheme(value);
+    }
   };
 
+  const value = useMemo(
+    () => ({
+      theme,
+      isDark: theme === "dark",
+      setTheme,
+    }),
+    [theme]
+  );
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );

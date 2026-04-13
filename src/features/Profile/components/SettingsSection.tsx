@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function SettingsSection({ type }: Props) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const sections: Record<SettingsSectionType, SettingsSectionData> = {
     account: {
       title: "Account Settings",
@@ -51,7 +51,7 @@ export default function SettingsSection({ type }: Props) {
           rightElement: (
             <Switch
               value={theme === "dark"}
-              onValueChange={toggleTheme}
+              onValueChange={(value) => setTheme(value ? "dark" : "light")}
               trackColor={{ false: "#E0E0E0", true: "#283593" }}
             />
           ),

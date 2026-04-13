@@ -19,18 +19,17 @@
 //     return Colors[theme][colorName];
 //   }
 // }
-import { useTheme } from "@/src/components/Global/ThemeContext";
-import { Colors } from "@/src/constants/Colors";
+// import { useTheme } from "@/src/components/Global/ThemeContext";
+// import { Colors } from "@/src/constants/Colors";
 
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light
-) {
-  const { theme } = useTheme();
+// export function useThemeColor(
+//   props: { light?: string; dark?: string },
+//   colorName: keyof typeof Colors.light
+// ) {
+//   const { theme } = useTheme();
 
-  const colorFromProps = props[theme];
+//   const colorFromProps = props[theme];
+//   if (colorFromProps) return colorFromProps;
 
-  if (colorFromProps) return colorFromProps;
-
-  return Colors[theme][colorName];
-}
+//   return Colors[theme][colorName];
+// }

@@ -12,7 +12,7 @@
   --font-roboto-condensed: 'RobotoCondensed-VariableFont_wght';
 
   /* custom colors */
-  --color-bgColor: #fff;
+  --color-bgColor: #ffffff;
   /* App main background */
   --color-surface-main: #F9F9FB;
   /* White cards */      
@@ -67,4 +67,27 @@
   --color-brand-bg-medium: #E8EAF6;
   --color-brand-bg-dark: #EDE7F6;
 
+}
+
+.dark {
+  --color-bgColor: #151718;
+  --color-surface-main: #0B0B0B;
+  --color-surface-card: #1C1C1E;
+  --color-border-subtle: #2C2C2E;
+
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #9BA1A6;
+  --color-text-muted: #8E8E93;
+  --color-text-inverse: #1A1A2E;
+
+  --color-success-main: #30D158;
+  --color-danger-main: #FF453A;
+  --color-warning-main: #FF9F0A;
+  --color-info-main: #0A84FF;
+
+  --color-brand-main: #5E5CE6;
+
+  --color-brand-bg-light: #1A1A2E;
+  --color-brand-bg-medium: #2C2C2E;
+  --color-brand-bg-dark: #3A3A3C;
 }
