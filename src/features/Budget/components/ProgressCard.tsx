@@ -12,7 +12,7 @@ export function ProgressCard({ spent, limit }: Props) {
   const percentage = limit > 0 ? Math.min((spent / limit) * 100, 100) : 0;
 
   return (
-    <View className="bg-surface-card rounded-3xl p-6 shadow-sm border border-border-subtle">
+    <View className="bg-surface-card rounded-3xl p-6">
       <View className="flex-row justify-between items-end mb-3">
         <AppText className="text-text-muted font-bold text-base">
           Total Progress

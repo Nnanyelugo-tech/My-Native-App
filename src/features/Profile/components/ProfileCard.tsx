@@ -24,7 +24,7 @@ export default function ProfileCard() {
   }, [avatarUrl]);
 
   return (
-    <View className="bg-surface-card rounded-3xl p-6 mb-8 items-center shadow-sm border border-border-subtle">
+    <View className="bg-surface-card rounded-3xl p-6 mb-8 items-center">
       <View className="relative mb-4">
         <View className="w-20 h-20 rounded-full bg-brand-bg-medium items-center justify-center overflow-hidden">
           {avatarUrl && !imageError ? (

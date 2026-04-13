@@ -1,7 +1,7 @@
 import { AppText } from "@/src/components/Global/AppText";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { EmptyState } from "@/src/features/Transaction/components/EmptyState";
-import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
+import { useDashboardQuery } from "../api/useDashboardQuery";
 import { formatTime } from "@/src/utils/date";
 import { formatCurrency } from "@/src/utils/formatCurrency";
 import { router } from "expo-router";
@@ -15,11 +15,11 @@ export const TransactionList = () => {
   const { theme } = useTheme();
   const colors = Colors[theme];
   const {
-    data: transactionsData = [],
+    data: dashboardData,
     isLoading,
     isError,
-  } = useTransactionsQuery();
-  const transactions = transactionsData.slice(0, 4);
+  } = useDashboardQuery();
+  const transactions = dashboardData?.recentTransactions ?? [];
   const { push } = router;
   const handleSeeMore = useCallback(() => {
     push("/transaction");

@@ -35,7 +35,7 @@ export const IncomeVsExpensesChart = () => {
         Income vs Expenses Trends
       </AppText>
 
-      <View className="bg-surface-card rounded-3xl p-4 shadow-sm border border-border-subtle">
+      <View className="bg-surface-card rounded-3xl p-4">
         <View className="flex-row mb-4">
           <View className="flex-row bg-brand-bg-medium rounded-full p-1">
             {(["Today", "Week"] as TrendType[]).map((tab) => (

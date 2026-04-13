@@ -62,7 +62,7 @@ export function ProfileScreen() {
             accessibilityRole="button"
             onPress={showLogoutModal}
             className={`flex-row items-center justify-center border-2 ${
-              isDark ? "border-danger/20 bg-danger/5" : "border-border-subtle bg-bgColor shadow-sm"
+              isDark ? "border-danger/20 bg-danger/5" : "border-border-subtle bg-bgColor"
             } py-4 rounded-full mx-2 mb-8`}
           >
             <IconSymbol 

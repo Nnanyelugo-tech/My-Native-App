@@ -25,7 +25,7 @@ export function IncomeVsExpensesChart() {
   } = useIncomeVsExpenses("Month");
 
   return (
-    <View className="bg-surface-card rounded-3xl p-4 shadow-sm border border-border-subtle">
+    <View className="bg-surface-card rounded-3xl p-4">
       <AppText className="text-text-primary text-base mb-3">
         Income vs Expenses
       </AppText>

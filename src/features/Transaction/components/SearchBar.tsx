@@ -17,7 +17,7 @@ export const SearchBar = ({ value, onChange }: SearchBarProps) => {
   return (
     <View className="mx-5 mt-2 mb-3">
       <View
-        className="flex-row items-center bg-surface-card rounded-2xl px-4 py-3 shadow-sm border border-border-subtle"
+        className="flex-row items-center bg-surface-card rounded-2xl px-4 py-3"
         style={isDark ? { borderWidth: 1 } : undefined}
       >
         <IconSymbol name="magnifyingglass" size={18} color={colors.textSecondary} />

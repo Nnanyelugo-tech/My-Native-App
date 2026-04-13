@@ -6,7 +6,7 @@ import { formatCompactCurrency } from "@/src/utils/formatCurrency";
 import { useWindowDimensions, View } from "react-native";
 import { PieChart } from "react-native-gifted-charts";
 import {
-  ExpenseBreakdownItem,
+  type ExpenseBreakdownItem,
   useExpenseBreakdown,
 } from "../hooks/useHomeExpenseBreakdown";
 
@@ -34,7 +34,7 @@ function LegendRow({ item }: LegendRowProps) {
         className="text-sm font-lato-regular ml-4 text-text-primary"
         style={{ fontWeight: "600" }}
       >
-        {item.percentage}%
+        {item.percentage.toFixed(0)}%
       </AppText>
     </View>
   );
@@ -51,7 +51,7 @@ export function ExpensePieChart() {
   const pieData = breakdown.map((item) => ({
     value: item.percentage,
     color: item.color,
-    text: `${item.percentage}%`,
+    text: `${item.percentage.toFixed(0)}%`,
     shiftTextX: -6,
     shiftTextY: -2,
   }));

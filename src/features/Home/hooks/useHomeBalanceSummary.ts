@@ -1,5 +1,4 @@
-import { useMemo } from "react";
-import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
+import { useDashboardQuery } from "../api/useDashboardQuery";
 
 export type BalanceSummary = {
   totalIncome: number;
@@ -8,21 +7,11 @@ export type BalanceSummary = {
 };
 
 export function useBalanceSummary(): BalanceSummary {
-  const { data: transactions = [] } = useTransactionsQuery();
+  const { data: dashboardData } = useDashboardQuery();
 
-  return useMemo(() => {
-    let income = 0;
-    let expense = 0;
-
-    transactions.forEach((t) => {
-      if (t.type === "income") income += t.amount;
-      else if (t.type === "expense") expense += t.amount;
-    });
-
-    return {
-      totalIncome: income,
-      totalExpenses: expense,
-      totalBalance: income - expense,
-    };
-  }, [transactions]);
+  return {
+    totalIncome: dashboardData?.summary.totalIncome ?? 0,
+    totalExpenses: dashboardData?.summary.totalExpenses ?? 0,
+    totalBalance: dashboardData?.summary.totalBalance ?? 0,
+  };
 }

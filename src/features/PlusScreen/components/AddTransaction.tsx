@@ -91,7 +91,7 @@ export default function AddTransactionScreen() {
           error={errors.amount?.message as string}
         />
 
-        <View className="bg-surface-card mx-6 rounded-[32px] p-6 mb-6 shadow-sm border border-border-subtle">
+        <View className="bg-surface-card mx-6 rounded-[32px] p-6 mb-6">
           {activeTab !== "Budget" ? (
             <TransactionForm
               activeColor={activeColor}

@@ -1,9 +1,6 @@
 import { useMemo } from "react";
 import { useWindowDimensions } from "react-native";
-import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
-import { getIncomeVsExpense } from "@/src/features/Transaction/utils/getIncomeVsExpense";
-import { isSameDay, getStartOfWeek } from "@/src/utils/date";
-
+import { useDashboardQuery } from "../api/useDashboardQuery";
 import {
   chartHorizontalPadding,
   barWidth,
@@ -15,44 +12,26 @@ import { Colors } from "@/src/constants/Colors";
 
 type TrendType = "Today" | "Week" | "Month";
 
-export const useIncomeVsExpenses = (activeTab: TrendType) => {
+export const useIncomeVsExpenses = (activeTab: TrendType = "Today") => {
   const { theme } = useTheme();
   const colors = Colors[theme];
-  const { data: transactions = [] } = useTransactionsQuery();
+  const { data: dashboardData } = useDashboardQuery();
   const { width } = useWindowDimensions();
 
-  const filteredTransactions = useMemo(() => {
-    const now = new Date();
-    //compute once
-    const startOfWeek = getStartOfWeek(now);
-
-    // define proper end of week
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 7);
-
-    return transactions.filter((t) => {
-      const tDate = new Date(t.date);
-
-      if (activeTab === "Today") {
-        return isSameDay(tDate, now);
-      }
-
-      if (activeTab === "Week") {
-        // consistent week range: [start, end)
-        return tDate >= startOfWeek && tDate < endOfWeek;
-      }
-
-      if (activeTab === "Month") {
-        return tDate.getMonth() === now.getMonth() && tDate.getFullYear() === now.getFullYear();
-      }
-
-      return false;
-    });
-  }, [transactions, activeTab]);
-
   const { income, expense } = useMemo(() => {
-    return getIncomeVsExpense(filteredTransactions);
-  }, [filteredTransactions]);
+    if (!dashboardData) return { income: 0, expense: 0 };
+    
+    switch (activeTab) {
+      case "Today":
+        return dashboardData.trends.today;
+      case "Week":
+        return dashboardData.trends.week;
+      case "Month":
+        return dashboardData.trends.month;
+      default:
+        return { income: 0, expense: 0 };
+    }
+  }, [dashboardData, activeTab]);
 
   const chartWidth = width - chartHorizontalPadding;
   const totalBarWidth = barWidth * 2 + barSpacing;

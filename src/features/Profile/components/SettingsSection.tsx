@@ -101,7 +101,7 @@ export default function SettingsSection({ type }: Props) {
         {section.title}
       </AppText>
 
-      <View className="bg-surface-card rounded-3xl py-2 mb-8 shadow-sm border border-border-subtle">
+      <View className="bg-surface-card rounded-3xl py-2 mb-8">
         {section.items.map((item, index) => (
           <View key={index}>
             <SettingsRow {...item} />

@@ -22,7 +22,7 @@ export function BreakdownList({ items }: Props) {
       {items.map((item, index) => (
         <View
           key={item.name}
-          className="flex-row items-center justify-between p-4 bg-surface-card rounded-3xl mb-3 shadow-sm border border-border-subtle"
+          className="flex-row items-center justify-between p-4 bg-surface-card rounded-3xl mb-3"
         >
           <View className="flex-row items-center flex-1">
             <View
