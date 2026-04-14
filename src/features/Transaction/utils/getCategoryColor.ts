@@ -1,15 +1,24 @@
 import { chartColors } from "@/src/constants/chartColors";
 
 const CATEGORY_COLOR_MAP: Record<string, string> = {
-  Food: chartColors[0],
-  Transport: chartColors[1],
-  "Rent & Bills": chartColors[2],
-  Shopping: chartColors[3],
-  Entertainment: chartColors[4],
-  Health: chartColors[5],
-  "Data & Airtime": chartColors[6],
-  Others: chartColors[7],
-  Income: chartColors[8],
+  // Indigo
+  Food: chartColors[0],          
+  // Blue
+  Transport: chartColors[1],     
+  // Amber
+  "Rent & Bills": chartColors[2], 
+  // Orange
+  Shopping: chartColors[3],      
+  // Pink
+  Entertainment: chartColors[4],  
+  // Teal
+  Health: chartColors[5],         
+  // Purple
+  "Data & Airtime": chartColors[6], 
+  // Green
+  Others: chartColors[7],         
+  // Coral
+  Income: chartColors[8],         
 };
 
 export function getCategoryColor(category: string, fallbackIndex: number): string {

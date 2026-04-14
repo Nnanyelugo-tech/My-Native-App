@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { AppState } from "react-native";
 import { AuthContext, Profile } from "./useAuthContext";
 
 export const useAuthContext = () => useContext(AuthContext);
@@ -20,6 +21,8 @@ export default function AuthProvider({
 
   useEffect(() => {
     let isMounted = true;
+    let hasInitialized = false;
+    console.log("[Auth] Provider Mounted");
 
     const fetchProfile = async (userId: string, retries = 3) => {
       const { data, error } = await supabase
@@ -30,7 +33,7 @@ export default function AuthProvider({
 
       if (data) {
         if (isMounted) setProfile(data);
-      } else if (retries > 0) {
+      } else if (retries > 0 && isMounted) {
         setTimeout(() => fetchProfile(userId, retries - 1), 1000);
       } else {
         console.error("Failed to fetch profile after retries", error);
@@ -47,8 +50,23 @@ export default function AuthProvider({
       }
     };
 
+    const timeout = setTimeout(() => {
+      if (isMounted) {
+        setIsLoading((prev) => {
+          if (prev) {
+            console.warn("[Auth] Fallback timeout triggered");
+            return false;
+          }
+          return prev;
+        });
+      }
+    }, 7000);
+
     supabase.auth.getSession().then(async ({ data }) => {
-      if (!isMounted) return;
+      if (!isMounted || hasInitialized) return;
+      hasInitialized = true;
+      clearTimeout(timeout);
+      console.log("[Auth] Initial Session Fetched:", !!data.session);
       setSession(data.session);
       setUser(data.session?.user ?? null);
       if (data.session?.user) {
@@ -58,11 +76,14 @@ export default function AuthProvider({
         ]);
       }
       setIsLoading(false);
+      console.log("[Auth] Loading State: false");
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      async (event, session) => {
         if (!isMounted) return;
+        hasInitialized = true;
+        console.log("[Auth] AuthState Changed Event:", event);
         setSession(session);
         setUser(session?.user ?? null);
         if (session?.user) {
@@ -78,9 +99,17 @@ export default function AuthProvider({
       },
     );
 
+    const appStateListener = AppState.addEventListener("change", (nextAppState) => {
+      if (nextAppState === "active") {
+        console.log("[Auth] App returned to foreground, refreshing session...");
+        supabase.auth.refreshSession();
+      }
+    });
+
     return () => {
       isMounted = false;
       listener.subscription.unsubscribe();
+      appStateListener.remove();
     };
   }, []);
 
