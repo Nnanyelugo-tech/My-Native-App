@@ -9,9 +9,13 @@ import { useFocusEffect, useRouter } from "expo-router";
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { BackHandler, Pressable, View } from "react-native";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export function Forgot() {
   const { back, replace } = useRouter();
+  const { theme } = useTheme();
+  const colors = Colors[theme];
 
   const {
     control,
@@ -42,20 +46,20 @@ export function Forgot() {
   return (
     <ScreenWrapper className="px-6 pb-10 bg-surface-main">
       <Pressable onPress={() => back()} className="mt-4 mb-8">
-        <Ionicons name="arrow-back" size={24} color="#1F2937" />
+        <Ionicons name="arrow-back" size={24} color={colors.text} />
       </Pressable>
 
       <View className="mb-8">
-        <View className="w-16 h-16 bg-[#F3E5F5] rounded-2xl items-center justify-center">
-          <Ionicons name="refresh-circle-outline" size={36} color="#4A148C" />
+        <View className="w-16 h-16 bg-brand-bg-dark rounded-2xl items-center justify-center">
+          <Ionicons name="refresh-circle-outline" size={36} color={colors.brandMain} />
         </View>
       </View>
 
       <View className="mb-10">
-        <AppText className="text-2xl font-black text-gray-900 mb-3">
+        <AppText className="text-2xl font-black text-text-primary mb-3">
           Forgot Password?
         </AppText>
-        <AppText className="text-gray-500 font-medium font-lato leading-6 text-[14px]">
+        <AppText className="text-text-secondary font-medium font-lato leading-6 text-[14px]">
           Enter your email address and we&apos;ll send you a reset link to
           regain access to your Fintrack account.
         </AppText>
@@ -69,13 +73,13 @@ export function Forgot() {
           placeholder="name@example.com"
           keyboardType="email-address"
           autoCapitalize="none"
-          leftIcon={<Ionicons name="mail-outline" size={20} color="#9CA3AF" />}
+          leftIcon={<Ionicons name="mail-outline" size={20} color={colors.placeholder} />}
           error={errors.email?.message}
         />
 
         <Pressable
           onPress={handleSubmit(onSubmit)}
-          className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 mt-2"
+          className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-brand-main/20 mt-2"
         >
           <AppText className="text-white text-center font-bold text-sm">
             Send Reset Link
@@ -84,7 +88,7 @@ export function Forgot() {
       </View>
 
       <View className="flex-row justify-center mt-10">
-        <AppText className="text-gray-500 font-medium">
+        <AppText className="text-text-secondary font-medium">
           Remember your password?{" "}
         </AppText>
         <Pressable onPress={() => replace("/auth/login")}>

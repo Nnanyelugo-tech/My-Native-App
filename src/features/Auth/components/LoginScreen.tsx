@@ -12,10 +12,14 @@ import { useForm } from "react-hook-form";
 import { BackHandler, Pressable, View, Alert } from "react-native";
 import { SocialAuthButtons } from "./SocialAuthButtons";
 import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export function Login() {
   const { replace, back, push } = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const { theme } = useTheme();
+  const colors = Colors[theme];
 
   const {
     control,
@@ -57,13 +61,13 @@ export function Login() {
   return (
     <ScreenWrapper className="px-6 pb-10 bg-surface-main">
       <View className="items-center mt-7 mb-10">
-        <View className="w-16 h-16 bg-brand-main rounded-2xl items-center justify-center mb-4 shadow-sm shadow-indigo-200">
+        <View className="w-16 h-16 bg-brand-main rounded-2xl items-center justify-center mb-4 shadow-sm shadow-brand-main/20">
           <Ionicons name="wallet-outline" size={32} color="white" />
         </View>
-        <AppText className="text-2xl text-gray-900 text-center mb-2">
+        <AppText className="text-2xl text-text-primary text-center mb-2 font-lato-bold">
           Welcome back
         </AppText>
-        <AppText className="text-gray-500 text-center font-lato leading-5 px-4 font-medium">
+        <AppText className="text-text-secondary text-center font-lato leading-5 px-4 font-medium">
           Good to see you again! Please sign in to{"\n"}your account
         </AppText>
       </View>
@@ -77,7 +81,13 @@ export function Login() {
           placeholder="name@example.com"
           keyboardType="email-address"
           autoCapitalize="none"
-          leftIcon={<Ionicons name="mail-outline" size={20} color="#9CA3AF" />}
+          leftIcon={
+            <Ionicons
+              name="mail-outline"
+              size={20}
+              color={colors.placeholder}
+            />
+          }
           error={errors.email?.message}
         />
 
@@ -88,7 +98,11 @@ export function Login() {
           placeholder="Enter your password"
           isPassword
           leftIcon={
-            <Ionicons name="lock-closed-outline" size={20} color="#9CA3AF" />
+            <Ionicons
+              name="lock-closed-outline"
+              size={20}
+              color={colors.placeholder}
+            />
           }
           error={errors.password?.message}
         />
@@ -106,28 +120,30 @@ export function Login() {
       <Pressable
         onPress={handleSubmit(onSubmit)}
         disabled={isLoading}
-        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-indigo-100 items-center justify-center min-h-[50px]"
+        className="bg-brand-main py-4 rounded-2xl shadow-lg shadow-brand-main/20 items-center justify-center min-h-[50px]"
       >
         {isLoading ? (
           <AnimatedSpinner size="small" color="#ffffff" />
         ) : (
-          <AppText className="text-white text-center font-bold text-sm">Log In</AppText>
+          <AppText className="text-white text-center font-bold text-sm">
+            Log In
+          </AppText>
         )}
       </Pressable>
 
       <View className="flex-row items-center my-8">
-        <View className="flex-1 h-px bg-gray-200" />
-        <AppText className="mx-4 text-gray-500 text-xs font-bold tracking-widest uppercase">
+        <View className="flex-1 h-px bg-divider" />
+        <AppText className="mx-4 text-text-muted text-xs font-bold tracking-widest uppercase">
           OR CONTINUE WITH
         </AppText>
-        <View className="flex-1 h-px bg-gray-200" />
+        <View className="flex-1 h-px bg-divider" />
       </View>
 
       {/* Social Auth Buttons */}
       <SocialAuthButtons variant="continue" />
 
       <View className="flex-row justify-center mt-auto pt-10">
-        <AppText className="text-gray-500">
+        <AppText className="text-text-secondary">
           Don&apos;t have an account?{" "}
         </AppText>
         <Pressable onPress={() => replace("/auth/register")}>

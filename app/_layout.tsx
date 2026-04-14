@@ -1,7 +1,15 @@
 import { Sheets } from "@/src/components/UI/actionSheet/Sheets";
 import { ToastMessage } from "@/src/components/UI/ToastMessage/ToastMessage";
-import AuthProvider, { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
-import { QueryClient, focusManager, useIsRestoring, QueryCache, MutationCache } from "@tanstack/react-query";
+import AuthProvider, {
+  useAuthContext,
+} from "@/src/features/Auth/provider/AuthProvider";
+import {
+  QueryClient,
+  focusManager,
+  useIsRestoring,
+  QueryCache,
+  MutationCache,
+} from "@tanstack/react-query";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import { createMMKV } from "react-native-mmkv";
@@ -106,50 +114,47 @@ function RootContent() {
         <RealtimeSync />
         <SheetProvider>
           <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="index" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="onboarding/onboardingScreen"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="auth/login"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="auth/register"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="auth/forgot-password"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="auth/email-sent"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="transaction/[id]"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="profile/edit"
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="modal"
-                options={{ presentation: "modal", title: "Modal" }}
-              />
-            </Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="onboarding/onboardingScreen"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="auth/register"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="auth/forgot-password"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="auth/email-sent"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="transaction/[id]"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="profile/edit"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="modal"
+              options={{ presentation: "modal", title: "Modal" }}
+            />
+          </Stack>
 
-            <StatusBar style={theme === "dark" ? "light" : "dark"} />
+          <StatusBar style={theme === "dark" ? "light" : "dark"} />
 
-            <Sheets />
-          </SheetProvider>
+          <Sheets />
+        </SheetProvider>
 
-          <MagicModalPortal />
-          <ToastMessage />
-        </SafeAreaProvider>
+        <MagicModalPortal />
+        <ToastMessage />
+      </SafeAreaProvider>
     </View>
   );
 }

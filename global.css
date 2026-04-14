@@ -20,6 +20,7 @@
   --color-surface-card: #FFFFFF; 
   /* Transaction list dividers */
   --color-border-subtle: #F0EEF6;     
+  --color-divider: #F0EEF6;     
   
   /* Icon Background Overlays */
   --color-overlay-white-light: rgba(255,255,255,0.05);
@@ -74,6 +75,7 @@
   --color-surface-main: #0B0B0B;
   --color-surface-card: #1C1C1E;
   --color-border-subtle: #2C2C2E;
+  --color-divider: #2C2C2E;
 
   /* Icon Background Overlays */
   --color-overlay-white-light: rgba(255,255,255,0.05);

@@ -5,7 +5,7 @@ export const onboardingData = [
     description:
       "Easily log your income and expenses to see exactly where your money goes.",
     image: require("../../assets/images/onboarding_1.png"),
-    backgroundColor: "bg-teal-900",
+    backgroundColor: "bg-brand-bg-dark",
     imageSize: "aspect-square",
   },
   {

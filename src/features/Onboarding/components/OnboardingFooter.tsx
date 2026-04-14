@@ -6,6 +6,8 @@ import { TouchableOpacity, View } from "react-native";
 import { Extrapolation, interpolate } from "react-native-reanimated";
 import { Pagination } from "react-native-reanimated-carousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { Colors } from "@/src/constants/Colors";
 
 export default function OnboardingFooter({
   progress,
@@ -16,8 +18,8 @@ export default function OnboardingFooter({
   onPressPagination,
 }: OnboardingFooterProps) {
   const insets = useSafeAreaInsets();
-  // const dotColor = useThemeColor({}, "textMuted");
-  // const activeDotColor = useThemeColor({}, "brand");
+  const { theme } = useTheme();
+  const colors = Colors[theme];
 
   return (
     <View
@@ -33,14 +35,14 @@ export default function OnboardingFooter({
             height: 8,
             width: 8,
             borderRadius: 100,
-            backgroundColor: "#555555",
+            backgroundColor: colors.textMuted,
             opacity: 0.3,
           }}
           activeDotStyle={{
             height: 8,
             width: 26,
             borderRadius: 100,
-            backgroundColor: "#2F2E7E",
+            backgroundColor: colors.brandMain,
           }}
           containerStyle={{
             gap: 6,

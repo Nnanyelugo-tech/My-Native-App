@@ -8,8 +8,12 @@ export type ThemeColors = {
   brandMain: string;
   brandIndigo: string;
   brandBgMedium: string;
-  success: string;
+  brandBgDark: string;
+  textMuted: string;
+  placeholder: string;
+  divider: string;
   successMuted: string;
+  success: string;
   danger: string;
   dangerMuted: string;
   warning: string;
@@ -30,6 +34,10 @@ export const Colors: Record<"light" | "dark", ThemeColors> = {
     brandMain: "#1A237E",
     brandIndigo: "#283593",
     brandBgMedium: "#E8EAF6",
+    brandBgDark: "#EDE7F6",
+    textMuted: "#555555",
+    placeholder: "#9CA3AF",
+    divider: "#F0EEF6",
     success: "#00E676",
     successMuted: "#4CAF50",
     danger: "#FF1744",
@@ -51,6 +59,10 @@ export const Colors: Record<"light" | "dark", ThemeColors> = {
     brandMain: "#5E5CE6",
     brandIndigo: "#4B4ACF",
     brandBgMedium: "#2C2C2E",
+    brandBgDark: "#3A3A3C",
+    textMuted: "#8E8E93",
+    placeholder: "#555557",
+    divider: "#2C2C2E",
     success: "#30D158",
     successMuted: "#34C759",
     danger: "#FF453A",
