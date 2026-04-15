@@ -21,6 +21,7 @@ const MAPPING = {
   "bell.fill": "notifications",
   "arrow.down": "arrow-downward",
   "arrow.up": "arrow-upward",
+  "exclamationmark.triangle.fill": "warning",
   "cart.fill": "shopping-cart",
   "cup.and.saucer.fill": "local-cafe",
   "briefcase.fill": "work",
@@ -100,5 +101,4 @@ export function IconSymbol({
 
   return icon;
 }
-
 

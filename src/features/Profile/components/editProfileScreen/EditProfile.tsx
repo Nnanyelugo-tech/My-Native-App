@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, TextInput, ScrollView } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
 import { Ionicons } from "@expo/vector-icons";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
@@ -9,6 +15,7 @@ import { useAvatar } from "../../hook/useAvatar";
 import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 import { router } from "expo-router";
 import ScreenContainer from "@/src/components/Global/ScreenContainer";
+import { supabase } from "@/src/lib/supabase";
 
 export default function EditProfile() {
   const { profile, user } = useAuthContext();
@@ -26,7 +33,6 @@ export default function EditProfile() {
     setImageError(false);
   }, [avatarUrl]);
 
-  // Sync state when profile data arrives
   useEffect(() => {
     if (profile?.full_name && !fullName) {
       setFullName(profile.full_name);
@@ -37,17 +43,34 @@ export default function EditProfile() {
   }, [profile, user, fullName, email]);
 
   const handleSave = async () => {
-    setIsSaving(true);
-    // TODO: Connect this to Supabase profile updates using profile hook
-    setTimeout(() => {
-      setIsSaving(false);
+    if (!user?.id) return;
+
+    try {
+      setIsSaving(true);
+
+      const { error } = await supabase
+        .from("profiles")
+        .update({
+          full_name: fullName,
+          nickname: nickname,
+        })
+        .eq("id", user.id);
+
+      if (error) {
+        console.error("Profile update error:", error);
+        throw error;
+      }
+
       router.back();
-    }, 1000);
+    } catch (err: any) {
+      Alert.alert("Update Failed", err.message);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
     <ScreenContainer className="bg-surface-main">
-      {/* Header (Sticky) */}
       <View className="flex-row items-center px-4 mt-2 ">
         <TouchableOpacity
           activeOpacity={0.9}
@@ -130,7 +153,7 @@ export default function EditProfile() {
               placeholder="Enter your full name"
               placeholderTextColor="#9E9E9E"
               editable={false}
-              className="bg-brand-bg-light border border-border-subtle rounded-[16px] px-4 py-4 text-text-primary font-lato-regular opacity-70 text-[15px]"
+              className="bg-brand-bg-light border border-border-subtle rounded-2xl px-4 py-4 text-text-primary font-lato-regular opacity-70 text-[15px]"
             />
           </View>
 
@@ -139,7 +162,7 @@ export default function EditProfile() {
             <AppText className="text-[10px] font-bold text-text-muted mb-2 tracking-wider">
               NICKNAME
             </AppText>
-            <View className="flex-row items-center bg-brand-bg-light border border-border-subtle rounded-[16px] px-4 mb-1">
+            <View className="flex-row items-center bg-brand-bg-light border border-border-subtle rounded-2xl px-4 mb-1">
               <TextInput
                 value={nickname}
                 onChangeText={setNickname}
@@ -167,7 +190,7 @@ export default function EditProfile() {
               keyboardType="email-address"
               autoCapitalize="none"
               editable={false}
-              className="bg-brand-bg-light border border-border-subtle rounded-[16px] px-4 py-4 text-text-primary font-lato-regular opacity-70 text-[15px]"
+              className="bg-brand-bg-light border border-border-subtle rounded-2xl px-4 py-4 text-text-primary font-lato-regular opacity-70 text-[15px]"
             />
           </View>
         </View>
@@ -179,7 +202,7 @@ export default function EditProfile() {
             disabled={isSaving}
             activeOpacity={0.9}
             accessibilityRole="button"
-            className="bg-brand-indigo w-full py-[18px] rounded-full items-center mb-6 flex-row justify-center"
+            className="bg-brand-indigo w-full py-4.5 rounded-full items-center mb-6 flex-row justify-center"
           >
             {isSaving ? (
               <AnimatedSpinner color="#FFF" size={24} />

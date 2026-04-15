@@ -1,23 +1,23 @@
 import { AppText } from "@/src/components/Global/AppText";
-import { IconSymbol } from "@/src/components/UI/IconSymbol";
-import { greet } from "@/src/utils/greet";
-import { Pressable, TouchableOpacity, View } from "react-native";
-import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
-import { Image } from "expo-image";
 import { useTheme } from "@/src/components/Global/ThemeContext";
+import { IconSymbol } from "@/src/components/UI/IconSymbol";
 import { Colors } from "@/src/constants/Colors";
-import { useState, useEffect } from "react";
+import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
+import { greet } from "@/src/utils/greet";
+import { Image } from "expo-image";
 import { router } from "expo-router";
-
+import { useEffect, useState } from "react";
+import { Pressable, TouchableOpacity, View } from "react-native";
 
 export const HomeHeader = () => {
   const { theme } = useTheme();
   const colors = Colors[theme];
-  const {push} = router;
+  const { push } = router;
   const { profile, user, avatarUrl } = useAuthContext();
   const [imageError, setImageError] = useState(false);
-  
-  const displayName = profile?.full_name || user?.user_metadata?.full_name || "User";
+
+  const displayName =
+    profile?.full_name || user?.user_metadata?.full_name || "User";
   const firstName = displayName.split(" ")[0];
 
   useEffect(() => {
@@ -28,20 +28,23 @@ export const HomeHeader = () => {
     <View className="px-5 flex-row items-center pb-3 justify-between">
       <View className="flex-row items-center">
         <Pressable onPress={() => push("/profile/edit")}>
-
-        <View className="w-11 h-11 rounded-full bg-brand-bg-medium items-center justify-center mr-3 overflow-hidden">
-          {avatarUrl && !imageError ? (
-            <Image
-              source={{ uri: avatarUrl }}
-              style={{ width: "100%", height: "100%" }}
-              contentFit="cover"
-              transition={200}
-              onError={() => setImageError(true)}
-            />
-          ) : (
-            <IconSymbol name="person.fill" size={20} color={colors.brandIndigo} />
-          )}
-        </View>
+          <View className="w-11 h-11 rounded-full bg-brand-bg-medium items-center justify-center mr-3 overflow-hidden">
+            {avatarUrl && !imageError ? (
+              <Image
+                source={{ uri: avatarUrl }}
+                style={{ width: "100%", height: "100%" }}
+                contentFit="cover"
+                transition={200}
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <IconSymbol
+                name="person.fill"
+                size={20}
+                color={colors.brandIndigo}
+              />
+            )}
+          </View>
         </Pressable>
         <View>
           <AppText className="text-text-muted text-xs font-roboto">
@@ -54,9 +57,11 @@ export const HomeHeader = () => {
       </View>
 
       <TouchableOpacity
+        onPress={() => push("/notification/notification")}
         activeOpacity={0.9}
         accessibilityRole="button"
         className="w-11 h-11 rounded-full bg-brand-bg-light items-center justify-center shadow-sm"
+        accessibilityLabel="Open notifications"
       >
         <IconSymbol name="bell.fill" size={20} color={colors.brandMain} />
       </TouchableOpacity>
