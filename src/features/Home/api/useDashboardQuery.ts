@@ -13,7 +13,7 @@ export const useDashboardQuery = () => {
       return fetchDashboardData(user.id);
     },
     enabled: !!user?.id,
-    staleTime: 0, 
-    placeholderData: keepPreviousData, 
+    staleTime: 0,
+    placeholderData: keepPreviousData,
   });
 };

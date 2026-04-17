@@ -23,7 +23,7 @@ export const persister = createAsyncStoragePersister({
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
-    onError: (error) => console.error("Global Query Error:", error),
+    onError: (error) => console.error("Global Mutation Error:", error)
   }),
   mutationCache: new MutationCache({
     onError: (error) => console.error("Global Mutation Error:", error),

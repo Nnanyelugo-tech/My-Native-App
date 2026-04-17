@@ -5,7 +5,7 @@ import { Redirect } from "expo-router";
 import { View } from "react-native";
 
 export default function Index() {
-  const isNewUser = storage.getString(MMKV_KEYS.IS_NEW_USER);
+  const hasSeenOnboarding = storage.getString(MMKV_KEYS.IS_NEW_USER);
   const { isLoggedIn, isLoading } = useAuthContext();
 
   if (isLoading) {
@@ -17,7 +17,7 @@ export default function Index() {
   }
 
   // First time - welcome screen
-  if (!isNewUser) {
+  if (!hasSeenOnboarding) {
     return <Redirect href="./onboarding/onboardingScreen" />;
   }
 

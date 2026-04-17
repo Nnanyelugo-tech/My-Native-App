@@ -24,7 +24,6 @@ export default function AuthProvider({
 
   useEffect(() => {
     let isMounted = true;
-    console.log("[Auth] Provider Mounted");
 
     const fetchProfile = async (userId: string, retries = 3) => {
       const { data, error } = await supabase
@@ -70,15 +69,12 @@ export default function AuthProvider({
           );
         }
       }
-
-      console.log("[Auth] No avatar found for user", userId);
     };
 
     supabase.auth.getSession().then(async ({ data }) => {
       if (!isMounted || initRef.current) return;
 
       const session = data.session;
-      console.log("[Auth] Initial Session Fetched:", !!session);
 
       if (session?.user) {
         initRef.current = true;

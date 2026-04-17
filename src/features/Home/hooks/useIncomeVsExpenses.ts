@@ -6,7 +6,6 @@ import {
   barWidth,
   barSpacing,
 } from "@/src/constants/chart";
-
 import { useTheme } from "@/src/components/Global/ThemeContext";
 import { Colors } from "@/src/constants/Colors";
 
@@ -51,7 +50,7 @@ export const useIncomeVsExpenses = (activeTab: TrendType = "Today") => {
     ];
   }, [income, expense, colors]);
 
-  // safe max (prevents zero crash + gives spacing)
+  // safe max prevents zero crash + gives spacing
   const maxValue = Math.max(income, expense, 1) * 1.2;
 
   return {

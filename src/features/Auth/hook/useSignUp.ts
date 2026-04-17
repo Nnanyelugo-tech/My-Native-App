@@ -24,7 +24,7 @@ export function useSignUp() {
 
   const onSubmit = async (data: RegisterFormValues) => {
     if (!agreeToTerms) {
-      return;
+      return Alert.alert("Please agree to terms");
     }
     setIsLoading(true);
     const { data: authData, error } = await supabase.auth.signUp({

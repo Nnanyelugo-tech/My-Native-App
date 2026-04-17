@@ -4,6 +4,7 @@ import { getIncomeVsExpense } from "../../Transaction/utils/getIncomeVsExpense";
 import { getCategoryColor } from "../../Transaction/utils/getCategoryColor";
 import { isSameDay, getStartOfWeek } from "@/src/utils/date";
 
+// This is the brain of the dashboard
 export const fetchDashboardData = async (userId: string): Promise<DashboardData> => {
   const transactions = await fetchTransactions(userId);
 

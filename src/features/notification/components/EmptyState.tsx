@@ -19,7 +19,7 @@ export const EmptyState = () => {
         className="text-base font-extrabold"
         style={{ color: colors.text }}
       >
-        You're all caught up
+        You&rsquo;re all caught up
       </AppText>
       <AppText
         className="mt-2 text-center text-sm leading-5"

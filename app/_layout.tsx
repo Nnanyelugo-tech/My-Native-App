@@ -107,7 +107,6 @@ function RootContent() {
 
           <Sheets />
         </SheetProvider>
-
         <MagicModalPortal />
         <ToastMessage />
       </SafeAreaProvider>
