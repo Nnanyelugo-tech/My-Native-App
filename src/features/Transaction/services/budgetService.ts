@@ -7,8 +7,7 @@ export const toBudget = (row: Record<string, unknown>): Budget => ({
   amount: Number(row.amount),
   month: row.month as string,
   category: row.category as string | undefined,
-});// Upsert a budget Create or Update.
-
+});
 
 export const fetchBudgets = async (userId: string): Promise<Budget[]> => {
   const { data, error } = await supabase

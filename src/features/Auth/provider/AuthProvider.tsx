@@ -72,11 +72,11 @@ export default function AuthProvider({
     };
 
     supabase.auth.getSession().then(async ({ data }) => {
-      if (!isMounted || initRef.current) return;
+      if (!isMounted) return;
 
       const session = data.session;
 
-      if (session?.user) {
+      if (session?.user && !initRef.current) {
         initRef.current = true;
         setSession(session);
         setUser(session.user);
@@ -86,7 +86,7 @@ export default function AuthProvider({
         ]);
       }
 
-      setIsLoading(false);
+      if (isMounted) setIsLoading(false);
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange(

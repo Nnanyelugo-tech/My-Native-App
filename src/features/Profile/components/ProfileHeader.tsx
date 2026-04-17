@@ -9,7 +9,7 @@ export default function ProfileHeader() {
   const colors = Colors[theme];
 
   return (
-    <View className="flex-row items-center justify-between py-2 px-4 bg-surface-main">
+    <View className="flex-row items-center justify-between pb-2 px-4 bg-surface-main">
       <AppText className="text-[20px] text-text-primary" style={{ fontWeight: "700" }}>
         Settings
       </AppText>
