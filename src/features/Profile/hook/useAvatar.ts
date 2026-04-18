@@ -56,7 +56,7 @@ export const useAvatar = () => {
         throw new Error("Failed to read image file");
       }
 
-      // Optional: check file size
+      // check file size
       const approxBytes = Math.round((base64.length * 3) / 4);
       if (approxBytes > 5 * 1024 * 1024) {
         console.warn(
@@ -85,7 +85,7 @@ export const useAvatar = () => {
         throw uploadError;
       }
 
-      //  Signed URL (with fallback)
+      //  Signed URL with fallback
       const tryPaths = [filePath, `avatars/${filePath}`];
       let signedUrl: string | null = null;
 

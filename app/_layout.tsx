@@ -32,8 +32,8 @@ function onAppStateChange(status: AppStateStatus) {
 
 function RootContent() {
   const { theme } = useTheme();
-  const isRestoring = useIsRestoring();
   const { isLoading: isAuthLoading } = useAuthContext();
+  const isRestoring = useIsRestoring();
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
@@ -41,16 +41,19 @@ function RootContent() {
     return () => subscription.remove();
   }, []);
 
-  const isAppReady = !isRestoring && !isAuthLoading;
-
+  // Normal path auth resolved and cache rehydrated
   useEffect(() => {
-    if (isAppReady) {
-      const timeout = setTimeout(() => {
-        setShowLoader(false);
-      }, 300);
+    if (!isAuthLoading && !isRestoring) {
+      const timeout = setTimeout(() => setShowLoader(false), 300);
       return () => clearTimeout(timeout);
     }
-  }, [isAppReady]);
+  }, [isAuthLoading, isRestoring]);
+
+  // Safety net never hang longer than 5s no matter what
+  useEffect(() => {
+    const timeout = setTimeout(() => setShowLoader(false), 5000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   if (showLoader) {
     return (
