@@ -1,16 +1,19 @@
 import { View, TextInput } from "react-native";
 import { AppText } from "@/src/components/Global/AppText";
 import { Controller, FieldValues } from "react-hook-form";
-import { cleanAmount, formatNumber, getCurrencySymbol } from "@/src/utils/formatCurrency";
+import {
+  cleanAmount,
+  formatNumber,
+  getCurrencySymbol,
+} from "@/src/utils/formatCurrency";
 import { AmountInputProps } from "@/src/features/PlusScreen/types/transactionForm";
-export function AmountInput<T extends FieldValues>({ 
-  activeTab, 
-  activeColor, 
+export function AmountInput<T extends FieldValues>({
+  activeTab,
+  activeColor,
   control,
   name,
-  error
+  error,
 }: AmountInputProps<T>) {
-
   return (
     <View className="items-center mb-6">
       <AppText className="text-[10px] font-bold text-text-secondary tracking-widest mb-1 uppercase">
@@ -21,17 +24,20 @@ export function AmountInput<T extends FieldValues>({
         control={control}
         name={name}
         render={({ field: { onChange, onBlur, value } }) => {
-          const displayValue = !value 
-            ? "" 
-            : value.endsWith(".") 
-              ? value 
-              : isNaN(parseFloat(value)) 
-                ? value 
+          const displayValue = !value
+            ? ""
+            : value.endsWith(".")
+              ? value
+              : isNaN(parseFloat(value))
+                ? value
                 : formatNumber(parseFloat(value));
 
           return (
             <View className="flex-row items-center justify-center">
-              <AppText className="text-3xl font-bold mr-1" style={{ color: activeColor }}>
+              <AppText
+                className="text-3xl font-bold mr-1"
+                style={{ color: activeColor }}
+              >
                 {getCurrencySymbol()}
               </AppText>
               <TextInput
@@ -42,7 +48,13 @@ export function AmountInput<T extends FieldValues>({
                 placeholderTextColor={activeColor}
                 keyboardType="numeric"
                 className="text-3xl font-extrabold text-center py-0"
-                style={{ color: activeColor, height: 80 }}
+                style={{
+                  color: activeColor,
+                  height: 80,
+                  borderBottomWidth: 2,
+                  borderBottomColor: activeColor,
+                  minWidth: 80,
+                }}
                 selectionColor={activeColor}
                 cursorColor={activeColor}
               />

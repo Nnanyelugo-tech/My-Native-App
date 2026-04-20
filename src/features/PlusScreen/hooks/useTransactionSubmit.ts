@@ -11,6 +11,9 @@ import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransact
 import { Transaction, NewTransaction } from "@/src/features/Transaction/types/transactionType";
 import { AddTransactionFormValues, SubmitDeps } from "../types/AddTransaction";
 
+
+const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
+
 export function useTransactionSubmit(deps: SubmitDeps) {
     const {
         activeTab,
@@ -46,12 +49,13 @@ export function useTransactionSubmit(deps: SubmitDeps) {
                     amount: parseFloat(data.amount),
                     month: currentMonthKey,
                 });
-                router.back();
                 Toast.show({
                     type: "success",
                     text1: "Success",
                     text2: "Budget saved successfully",
                 });
+                await delay(400);
+                router.back();
                 return;
             }
 
@@ -94,6 +98,7 @@ export function useTransactionSubmit(deps: SubmitDeps) {
 
             resetAfterSubmit(activeTab);
             setActiveTab("Expense");
+            await delay(400);
             router.back();
         } catch (err) {
             console.error("Submission error:", err);

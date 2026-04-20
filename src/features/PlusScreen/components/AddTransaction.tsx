@@ -13,6 +13,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from "react-native-reanimated";
+import { useEffect } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@/src/components/Global/ThemeContext";
 import { Colors } from "@/src/constants/Colors";
@@ -28,8 +34,6 @@ const editLabel = {
   Expense: "Update Expense",
   Budget: "Update Budget",
 } as const;
-
-
 
 export default function AddTransactionScreen() {
   const { theme } = useTheme();
@@ -52,6 +56,19 @@ export default function AddTransactionScreen() {
     handleSubmit,
     isSubmitting,
   } = useAddTransaction();
+
+  const scale = useSharedValue(1);
+
+  useEffect(() => {
+    scale.value = withSpring(isSubmitting ? 0.96 : 1, {
+      damping: 15,
+      stiffness: 200,
+    });
+  }, [isSubmitting, scale]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   const title = isEditMode
     ? activeTab === "Budget"
@@ -117,15 +134,18 @@ export default function AddTransactionScreen() {
         </View>
       </ScrollView>
 
-      <View
+      <Animated.View
+        style={[animatedStyle, { paddingBottom: bottom + 8 }]}
         className="w-full px-6 pt-2 bg-surface-main/95"
-        style={{ paddingBottom: bottom + 8 }}
       >
         <TouchableOpacity
           activeOpacity={0.9}
           accessibilityRole="button"
           className="flex-row justify-center items-center py-4 rounded-full"
-          style={{ backgroundColor: activeColor, opacity: isSubmitting ? 0.9 : 1 }}
+          style={{
+            backgroundColor: activeColor,
+            opacity: isSubmitting ? 0.9 : 1,
+          }}
           onPress={handleSubmit}
           disabled={isSubmitting}
         >
@@ -145,8 +165,7 @@ export default function AddTransactionScreen() {
             </>
           )}
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     </KeyboardAvoidingView>
   );
 }
-
