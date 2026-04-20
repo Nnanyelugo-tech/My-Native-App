@@ -23,6 +23,12 @@ const submitLabel = {
   Budget: "Set Budget",
 } as const;
 
+const editLabel = {
+  Income: "Update Income",
+  Expense: "Update Expense",
+  Budget: "Update Budget",
+} as const;
+
 
 
 export default function AddTransactionScreen() {
@@ -47,10 +53,14 @@ export default function AddTransactionScreen() {
     isSubmitting,
   } = useAddTransaction();
 
-  const title =
-    isEditMode && activeTab === "Budget" ? "Edit Budget" : "Add Transactions";
-  const buttonLabel =
-    activeTab === "Budget"
+  const title = isEditMode
+    ? activeTab === "Budget"
+      ? "Edit Budget"
+      : "Edit Transaction"
+    : "Add Transactions";
+  const buttonLabel = isEditMode
+    ? editLabel[activeTab]
+    : activeTab === "Budget"
       ? hasBudget
         ? "Update Budget"
         : "Set Budget"

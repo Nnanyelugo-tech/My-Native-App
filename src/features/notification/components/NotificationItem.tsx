@@ -17,15 +17,10 @@ export const NotificationItem = ({
       onPress={onPress}
       activeOpacity={0.88}
       className="mb-3 rounded-2xl border p-4"
-      style={{
-        backgroundColor: item.read ? colors.surface : tone.unreadBackground,
-        borderColor: item.read ? colors.border : tone.unreadBorder,
-      }}
     >
       <View className="flex-row items-start">
         <View
           className="mr-3 h-10 w-10 items-center justify-center rounded-xl"
-          style={{ backgroundColor: tone.iconBackground }}
         >
           <IconSymbol name={tone.icon} size={18} color={tone.accent} />
         </View>

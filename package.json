@@ -53,7 +53,6 @@
     "react-native-reanimated-carousel": "^4.0.3",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.16.0",
-    "react-native-social-buttons": "^1.4.2",
     "react-native-svg": "15.12.1",
     "react-native-toast-message": "^2.3.3",
     "react-native-web": "~0.21.2",
@@ -74,12 +73,12 @@
     "react-native-nitro-modules": "0.35.2"
   },
   "overrides": {
-    "react-native-reanimated": "4.1.6",
-    "@react-navigation/native": "7.2.2",
+    "react-native-reanimated": "$react-native-reanimated",
+    "@react-navigation/native": "$@react-navigation/native",
     "@react-navigation/core": "7.17.2",
-    "@react-navigation/bottom-tabs": "7.15.9",
-    "@react-navigation/elements": "2.9.14",
-    "react-native-nitro-modules": "0.35.2"
+    "@react-navigation/bottom-tabs": "$@react-navigation/bottom-tabs",
+    "@react-navigation/elements": "$@react-navigation/elements",
+    "react-native-nitro-modules": "$react-native-nitro-modules"
   },
   "devDependencies": {
     "@types/react": "~19.1.17",

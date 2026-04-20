@@ -1,14 +1,21 @@
 import { AppText } from "@/src/components/Global/AppText";
-import { router } from "expo-router";
-import React from "react";
-import { TouchableOpacity, View, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-import ScreenContainer from "@/src/components/Global/ScreenContainer";
+import { useTheme } from "@/src/components/Global/ThemeContext";
+import { AnimatedSpinner } from "@/src/components/UI/AnimatedSpinner";
 import { IconSymbol } from "@/src/components/UI/IconSymbol";
+import { Colors } from "@/src/constants/Colors";
+import { useDeleteTransactionMutation } from "@/src/features/Transaction/api/useTransactionMutations";
 import { Transaction } from "@/src/features/Transaction/types/transactionType";
 import { formatDateGroup, formatTime } from "@/src/utils/date";
 import { formatCurrency } from "@/src/utils/formatCurrency";
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
+import { TouchableOpacity, View, ScrollView } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Toast from "react-native-toast-message";
+import { magicModal } from "react-native-magic-modal";
+import { ConfirmDeleteModal } from "./ConfirmDeleteModal";
+
+import ScreenContainer from "@/src/components/Global/ScreenContainer";
 
 interface DetailsProps {
   transaction: Transaction;
@@ -21,24 +28,69 @@ const statusColors: Record<Transaction["status"], string> = {
 };
 
 const Details = ({ transaction }: DetailsProps) => {
-  const { back } = router;
+  const router = useRouter();
+  const { theme } = useTheme();
+  const colors = Colors[theme];
   const { bottom } = useSafeAreaInsets();
   const isExpense = transaction.type === "expense";
   const statusColor = statusColors[transaction.status] ?? "#9c27b0";
 
+  const { mutateAsync: deleteTransaction } = useDeleteTransactionMutation();
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const formattedType =
     transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1);
+
+  const handleEdit = () => {
+    router.push({
+      pathname: "/plus",
+      params: {
+        mode: "edit",
+        type: transaction.type === "income" ? "Income" : "Expense",
+        id: transaction.id,
+      },
+    });
+  };
+
+const handleDelete = () => {
+  magicModal.show(() => (
+    <ConfirmDeleteModal
+      title={transaction.title}
+      onConfirm={async () => {
+        setIsDeleting(true);
+        try {
+          await deleteTransaction(transaction.id);
+          Toast.show({
+            type: "success",
+            text1: "Deleted",
+            text2: "Transaction deleted successfully",
+          });
+          router.back();
+        } catch (err) {
+          console.error("Delete error:", err);
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2: "Failed to delete transaction. Please try again.",
+          });
+        } finally {
+          setIsDeleting(false);
+        }
+      }}
+    />
+  ));
+};
 
   return (
     <ScreenContainer scrollable={false}>
       <View className="flex-row items-center px-5 pb-4 bg-surface-main">
         <TouchableOpacity
-          onPress={() => back()}
+          onPress={() => router.back()}
           activeOpacity={0.8}
           accessibilityRole="button"
           className="w-10 h-10 items-center justify-center -ml-2"
         >
-          <IconSymbol name="arrow.left" size={24} color="#1A237E" />
+          <IconSymbol name="arrow.left" size={24} color={colors.brandMain} />
         </TouchableOpacity>
 
         <AppText className="ml-2 text-xl font-bold text-brand-main">
@@ -114,7 +166,7 @@ const Details = ({ transaction }: DetailsProps) => {
         </View>
 
         {/* Notes */}
-        <View className="mb-8">
+        <View className="mb-6">
           <AppText className="text-text-muted font-bold mb-3 ml-1">
             Notes
           </AppText>
@@ -125,6 +177,40 @@ const Details = ({ transaction }: DetailsProps) => {
             </AppText>
           </View>
         </View>
+
+        {/* Edit Button */}
+        <TouchableOpacity
+          onPress={handleEdit}
+          activeOpacity={0.9}
+          accessibilityRole="button"
+          className="py-4 rounded-full items-center justify-center mb-4 border-2"
+          style={{ borderColor: colors.brandMain }}
+        >
+          <AppText className="text-brand-main text-base font-bold">
+            Edit Transaction
+          </AppText>
+        </TouchableOpacity>
+
+        {/* Delete Button */}
+        <TouchableOpacity
+          onPress={handleDelete}
+          activeOpacity={0.9}
+          accessibilityRole="button"
+          disabled={isDeleting}
+          className="py-4 rounded-full items-center justify-center mb-8"
+          style={{
+            backgroundColor: colors.danger,
+            opacity: isDeleting ? 0.9 : 1,
+          }}
+        >
+          {isDeleting ? (
+            <AnimatedSpinner size="small" color="#fff" />
+          ) : (
+            <AppText className="text-white text-base font-bold">
+              Delete Transaction
+            </AppText>
+          )}
+        </TouchableOpacity>
       </ScrollView>
     </ScreenContainer>
   );

@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react";
 import { Category, TransactionMode } from "../constants/transactions";
 
 export type AddTransactionFormValues = {
@@ -16,4 +17,5 @@ export interface SubmitDeps {
     currentMonthKey: string;
     resetAfterSubmit: (tab: TransactionMode) => void;
     setActiveTab: (tab: TransactionMode) => void;
+    editingId: MutableRefObject<string | null>;
 }

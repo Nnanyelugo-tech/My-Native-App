@@ -64,6 +64,7 @@ const MAPPING = {
   "arrow.right.square.fill": "logout",
   "iphone": "phone-iphone",
   "apple": "apps", 
+  "trash.fill": "delete-forever",
 } satisfies Record<string, keyof typeof MaterialIcons.glyphMap>;
 
 /**

@@ -72,9 +72,12 @@ export const updateTransactionById = async (
   transaction: Transaction,
   userId: string
 ): Promise<Transaction> => {
+  const row = toRow(transaction, userId);
+  delete row.id;
+
   const { data, error } = await supabase
     .from("transactions")
-    .update(toRow(transaction, userId))
+    .update(row)
     .eq("id", transaction.id)
     .select()
     .single();

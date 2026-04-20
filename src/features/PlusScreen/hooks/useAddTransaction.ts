@@ -21,6 +21,7 @@ export function useAddTransaction() {
         hasBudget,
         existingBudget,
         currentMonthKey,
+        editingId,
     } = useTransactionForm(activeTab);
 
     const { onSubmit, isSubmitting } = useTransactionSubmit({
@@ -31,6 +32,7 @@ export function useAddTransaction() {
         currentMonthKey,
         resetAfterSubmit,
         setActiveTab,
+        editingId,
     });
 
     const handleTabChange = (tab: TransactionMode) => {

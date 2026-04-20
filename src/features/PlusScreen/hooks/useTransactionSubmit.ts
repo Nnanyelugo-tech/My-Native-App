@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import Toast from "react-native-toast-message";
 import { IconSymbolName } from "@/src/components/UI/IconSymbol";
 import {
@@ -20,11 +20,10 @@ export function useTransactionSubmit(deps: SubmitDeps) {
         currentMonthKey,
         resetAfterSubmit,
         setActiveTab,
+        editingId,
     } = deps;
 
     const router = useRouter();
-    const params = useLocalSearchParams<{ mode?: string; id?: string }>();
-    const isEditMode = params.mode === "edit";
 
     const { data: transactions = [] } = useTransactionsQuery();
     const { mutateAsync: addTransaction } = useAddTransactionMutation();
@@ -35,6 +34,11 @@ export function useTransactionSubmit(deps: SubmitDeps) {
 
     const onSubmit = async (data: AddTransactionFormValues) => {
         setIsSubmitting(true);
+
+        // Read the edit state from the ref at submit time
+        const currentEditingId = editingId.current;
+        const isEditing = !!currentEditingId;
+
         try {
             if (activeTab === "Budget") {
                 await setBudget({
@@ -54,13 +58,13 @@ export function useTransactionSubmit(deps: SubmitDeps) {
             const categoryObj = categories.find((c) => c.id === data.category);
 
             const transactionData: NewTransaction = {
-                ...(isEditMode && params.id ? { id: params.id } : {}),
+                ...(isEditing ? { id: currentEditingId } : {}),
                 title: data.title,
                 amount: parseFloat(data.amount),
                 category: categoryObj?.name || "Others",
                 date:
-                    isEditMode && params.id
-                        ? transactions.find((t) => t.id === params.id)?.date ||
+                    isEditing
+                        ? transactions.find((t) => t.id === currentEditingId)?.date ||
                         new Date().toISOString()
                         : new Date().toISOString(),
                 type: activeTab === "Income" ? "income" : "expense",
@@ -72,7 +76,7 @@ export function useTransactionSubmit(deps: SubmitDeps) {
                 note: data.notes,
             };
 
-            if (isEditMode && params.id) {
+            if (isEditing) {
                 await updateTransaction(transactionData as Transaction);
                 Toast.show({
                     type: "success",

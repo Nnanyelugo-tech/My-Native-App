@@ -64,7 +64,7 @@ export const TransactionList = () => {
           return (
             <TouchableOpacity
               key={t.id}
-              activeOpacity={0.7}
+              activeOpacity={0.9}
               accessibilityRole="button"
               onPress={() =>
                 push({

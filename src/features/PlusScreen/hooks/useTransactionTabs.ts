@@ -17,8 +17,10 @@ export function useTransactionTabs() {
     );
 
     useEffect(() => {
-        if (isEditMode && params.type === "Budget") {
-            setActiveTab("Budget");
+        if (isEditMode && params.type) {
+            if (params.type === "Budget") setActiveTab("Budget");
+            else if (params.type === "Income") setActiveTab("Income");
+            else setActiveTab("Expense");
         }
     }, [isEditMode, params.type]);
 

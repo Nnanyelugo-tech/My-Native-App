@@ -52,6 +52,8 @@ export function useTransactionForm(activeTab: TransactionMode) {
         },
     });
 
+    const editingId = useRef<string | null>(null);
+
     const prefillKey = useRef<string | null>(null);
     const paramFingerprint = `${params.mode}-${params.type}-${params.amount}-${params.id}`;
 
@@ -73,9 +75,23 @@ export function useTransactionForm(activeTab: TransactionMode) {
             if (transaction) {
                 setValue("amount", transaction.amount.toString());
                 setValue("title", transaction.title);
-                setValue("category", transaction.category);
+
+                const sourceArray =
+                    transaction.type === "income" ? incomeSources : expenseCategories;
+                const matchedCategory = sourceArray.find(
+                    (c) => c.name === transaction.category
+                );
+
+                if (matchedCategory) {
+                    setValue("category", matchedCategory.id);
+                } else {
+                    setValue("category", sourceArray[0].id);
+                }
+
                 setValue("description", transaction.description || "");
                 setValue("notes", transaction.note || "");
+
+                editingId.current = params.id;
             }
             prefillKey.current = paramFingerprint;
         }
@@ -93,6 +109,8 @@ export function useTransactionForm(activeTab: TransactionMode) {
     const resetForTab = (tab: TransactionMode) => {
         const first =
             tab === "Income" ? incomeSources[0].id : expenseCategories[0].id;
+
+        editingId.current = null;
 
         if (tab === "Budget" && existingBudget && existingBudget.amount > 0) {
             reset({
@@ -125,7 +143,8 @@ export function useTransactionForm(activeTab: TransactionMode) {
             description: "",
             notes: "",
         });
-        prefillKey.current = null;
+        prefillKey.current = paramFingerprint;
+        editingId.current = null;
     };
 
     const hasBudget = !!(existingBudget && existingBudget.amount > 0);
@@ -141,5 +160,6 @@ export function useTransactionForm(activeTab: TransactionMode) {
         hasBudget,
         existingBudget,
         currentMonthKey,
+        editingId,
     };
 }
