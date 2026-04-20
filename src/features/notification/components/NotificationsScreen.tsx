@@ -8,17 +8,15 @@ import { useNotifications } from "../hooks/useNotifications";
 import { NotificationTabs } from "./NotificationTabs";
 import { NotificationItem } from "./NotificationItem";
 import { EmptyState } from "./EmptyState";
-
 export default function NotificationsScreen() {
   const { theme } = useTheme();
   const colors = Colors[theme];
   const isDark = theme === "dark";
 
-  const { filtered, activeTab, setActiveTab, markAsRead } =
-    useNotifications();
+  const { filtered, activeTab, setActiveTab, markAsRead } = useNotifications();
 
   return (
-    <View className="flex-1" style={{ backgroundColor: colors.background }}>
+    <View className="flex-1 bg-surface-main">
       <Stack.Screen
         options={{
           title: "Notifications",
@@ -29,23 +27,17 @@ export default function NotificationsScreen() {
       />
 
       <ScrollView
-        style={{ backgroundColor: colors.background }}
+        className="flex-1"
         contentContainerStyle={{ paddingBottom: 40 }}
         showsVerticalScrollIndicator={false}
       >
         <View className="px-5 pt-5">
           <View className="mb-6">
-            <AppText
-              className="text-[24px] font-extrabold"
-              style={{ color: colors.text }}
-            >
+            <AppText className="text-[24px] font-extrabold text-text-primary">
               Stay In Sync
             </AppText>
-            <AppText
-              className="mt-1 text-sm leading-5"
-              style={{ color: colors.textMuted }}
-            >
-              Alerts, security updates, and spending nudges in one place.
+            <AppText className="mt-1 text-sm leading-5 text-text-secondary">
+              Alerts, security updates and spending nudges in one place.
             </AppText>
           </View>
 
@@ -65,9 +57,7 @@ export default function NotificationsScreen() {
                 item={item}
                 colors={colors}
                 isDark={isDark}
-                onPress={() => {
-                  markAsRead(item.id);
-                }}
+                onPress={() => markAsRead(item.id)}
               />
             ))
           )}
@@ -76,3 +66,70 @@ export default function NotificationsScreen() {
     </View>
   );
 }
+// export default function NotificationsScreen() {
+//   const { theme } = useTheme();
+//   const colors = Colors[theme];
+//   const isDark = theme === "dark";
+
+//   const { filtered, activeTab, setActiveTab, markAsRead } =
+//     useNotifications();
+
+//   return (
+//     <View className="flex-1" style={{ backgroundColor: colors.background }}>
+//       <Stack.Screen
+//         options={{
+//           title: "Notifications",
+//           headerStyle: { backgroundColor: colors.background },
+//           headerTintColor: colors.text,
+//           headerShadowVisible: false,
+//         }}
+//       />
+
+//       <ScrollView
+//         style={{ backgroundColor: colors.background }}
+//         contentContainerStyle={{ paddingBottom: 40 }}
+//         showsVerticalScrollIndicator={false}
+//       >
+//         <View className="px-5 pt-5">
+//           <View className="mb-6">
+//             <AppText
+//               className="text-[24px] font-extrabold"
+//               style={{ color: colors.text }}
+//             >
+//               Stay In Sync
+//             </AppText>
+//             <AppText
+//               className="mt-1 text-sm leading-5"
+//               style={{ color: colors.textMuted }}
+//             >
+//               Alerts, security updates, and spending nudges in one place.
+//             </AppText>
+//           </View>
+
+//           <NotificationTabs
+//             activeTab={activeTab}
+//             setActiveTab={setActiveTab}
+//             colors={colors}
+//             isDark={isDark}
+//           />
+
+//           {filtered.length === 0 ? (
+//             <EmptyState />
+//           ) : (
+//             filtered.map((item) => (
+//               <NotificationItem
+//                 key={item.id}
+//                 item={item}
+//                 colors={colors}
+//                 isDark={isDark}
+//                 onPress={() => {
+//                   markAsRead(item.id);
+//                 }}
+//               />
+//             ))
+//           )}
+//         </View>
+//       </ScrollView>
+//     </View>
+//   );
+// }

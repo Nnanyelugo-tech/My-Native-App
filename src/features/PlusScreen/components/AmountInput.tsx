@@ -48,13 +48,7 @@ export function AmountInput<T extends FieldValues>({
                 placeholderTextColor={activeColor}
                 keyboardType="numeric"
                 className="text-3xl font-extrabold text-center py-0"
-                style={{
-                  color: activeColor,
-                  height: 80,
-                  borderBottomWidth: 2,
-                  borderBottomColor: activeColor,
-                  minWidth: 80,
-                }}
+                style={{ color: activeColor, height: 80 }}
                 selectionColor={activeColor}
                 cursorColor={activeColor}
               />
@@ -64,7 +58,7 @@ export function AmountInput<T extends FieldValues>({
       />
 
       {error && (
-        <AppText className="text-danger text-[12px] mt-1 font-medium">
+        <AppText className="text-red-600 text-[12px] mt-1 font-medium">
           {error}
         </AppText>
       )}
