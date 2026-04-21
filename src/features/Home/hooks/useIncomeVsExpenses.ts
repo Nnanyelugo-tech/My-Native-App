@@ -32,6 +32,7 @@ export const useIncomeVsExpenses = (activeTab: TrendType = "Today") => {
     }
   }, [dashboardData, activeTab]);
 
+  // Chart dimension calculations
   const chartWidth = width - chartHorizontalPadding;
   const totalBarWidth = barWidth * 2 + barSpacing;
   const initialSpacing = (chartWidth - totalBarWidth) / 2;

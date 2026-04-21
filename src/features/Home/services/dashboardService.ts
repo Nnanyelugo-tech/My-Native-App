@@ -13,18 +13,21 @@ export const fetchDashboardData = async (userId: string): Promise<DashboardData>
   const endOfWeek = new Date(startOfWeek);
   endOfWeek.setDate(startOfWeek.getDate() + 7);
 
-  
+  // Calculate total income and expenses
   const { income, expense } = getIncomeVsExpense(transactions);
   
+  // Get recent transactions
   const recentTransactions = [...transactions]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 5);
 
+  // Get current month transactions
   const currentMonthTransactions = transactions.filter(t => {
     const tDate = new Date(t.date);
     return tDate.getMonth() === now.getMonth() && tDate.getFullYear() === now.getFullYear();
   });
 
+  // Calculate expense breakdown
   const categories: Record<string, number> = {};
   let monthlyExpenses = 0;
 
@@ -33,7 +36,8 @@ export const fetchDashboardData = async (userId: string): Promise<DashboardData>
     monthlyExpenses += t.amount;
     categories[t.category] = (categories[t.category] ?? 0) + t.amount;
   });
-
+  
+  // Get expense breakdown
   const expenseBreakdown = Object.entries(categories)
     .map(([label, value]) => ({ label, value }))
     .sort((a, b) => b.value - a.value)
@@ -45,7 +49,10 @@ export const fetchDashboardData = async (userId: string): Promise<DashboardData>
         ? (item.value / monthlyExpenses) * 100
         : 0,
     }));
+  
+  // Get today's transactions
   const todayTransactions = transactions.filter(t => isSameDay(new Date(t.date), now));
+  // Get week's transactions
   const weekTransactions = transactions.filter(t => {
     const tDate = new Date(t.date);
     return tDate >= startOfWeek && tDate < endOfWeek;

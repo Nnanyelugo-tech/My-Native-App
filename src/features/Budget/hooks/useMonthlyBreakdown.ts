@@ -11,6 +11,7 @@ export function useCategoryBreakdown() {
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
 
+    // Get current month transactions
     const expenses = transactions.filter((t) => {
       const tDate = new Date(t.date);
       return (
@@ -19,11 +20,13 @@ export function useCategoryBreakdown() {
         tDate.getFullYear() === currentYear
       );
     });
-
+ 
+    // Calculate total spent
     const totalSpent = expenses.reduce((sum, t) => sum + t.amount, 0);
 
     const categories: Record<string, Omit<CategoryBreakdownItem, "name">> = {};
 
+    // Calculate category breakdown
     expenses.forEach((t) => {
       if (!categories[t.category]) {
         categories[t.category] = {
@@ -37,7 +40,8 @@ export function useCategoryBreakdown() {
       categories[t.category].total += t.amount;
       categories[t.category].count += 1;
     });
-
+   
+    // Get category breakdown
     const categoryBreakdown: CategoryBreakdownItem[] = Object.entries(categories)
       .map(([name, data]) => ({ name, ...data }))
       .sort((a, b) => b.total - a.total);

@@ -11,11 +11,12 @@ import { NewTransaction, Transaction } from "../types/transactionType";
 import { sortTransactions } from "../utils/cacheHelpers";
 import { queryKeys } from "./queryKeys";
 
+// Add transaction mutation
 export const useAddTransactionMutation = () => {
   const { user } = useAuthContext();
   const queryClient = useQueryClient();
   const userId = user?.id;
-
+  
   return useMutation({
     mutationFn: (transaction: NewTransaction) => {
       if (!userId) throw new Error("User not authenticated");

@@ -2,8 +2,8 @@ import { createClient, Session, User } from "@supabase/supabase-js";
 import Constants from "expo-constants";
 import { storage } from "@/src/constants/mmkvStore";
 
-// Read from process.env first (available in dev via .env file),
-// fall back to expo-constants extra (always available in builds via app.config.ts)
+// Read from process.env first available in dev via .env file,
+// fall back to expo-constants extra always available in builds via app.config.ts
 const supabaseUrl =
   process.env.EXPO_PUBLIC_SUPABASE_URL ||
   Constants.expoConfig?.extra?.supabaseUrl;

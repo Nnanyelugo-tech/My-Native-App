@@ -124,6 +124,7 @@ export default function AuthProvider({
       },
     );
 
+    // App state listener
     const appStateListener = AppState.addEventListener(
       "change",
       (nextAppState) => {
@@ -132,7 +133,8 @@ export default function AuthProvider({
         }
       },
     );
-
+ 
+    // Cleanup
     return () => {
       isMounted = false;
       listener.subscription.unsubscribe();
