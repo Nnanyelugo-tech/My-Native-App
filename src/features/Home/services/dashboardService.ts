@@ -1,3 +1,4 @@
+// Service for fetching and processing dashboard data.
 import { fetchTransactions } from "../../Transaction/services/transactionService";
 import { DashboardData } from "../types/dashboard.types";
 import { getIncomeVsExpense } from "../../Transaction/utils/getIncomeVsExpense";

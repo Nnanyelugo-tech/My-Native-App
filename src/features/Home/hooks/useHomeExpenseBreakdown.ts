@@ -1,3 +1,4 @@
+// Custom hook for calculating expense breakdown from dashboard data.
 import { useDashboardQuery } from "../api/useDashboardQuery";
 import type { ExpenseBreakdownItem } from "../types/dashboard.types";
 

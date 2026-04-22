@@ -1,3 +1,6 @@
+// This custom hook combines transaction data with search and filter logic.
+// It fetches transactions using useTransactionsQuery, filters them based on user input, 
+// groups them by date, and flattens the structure for display.
 import { useMemo, useState } from "react";
 import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import {
@@ -11,8 +14,7 @@ import { FilterLabel } from "@/src/features/Transaction/types/transaction.types"
 export const useTransactions = () => {
   const { data: transactions = [], isLoading } = useTransactionsQuery();
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilter, setActiveFilter] =
-    useState<FilterLabel>("All");
+  const [activeFilter, setActiveFilter] = useState<FilterLabel>("All");
 
   const flatListData = useMemo(() => {
     const filtered = transactions.filter(

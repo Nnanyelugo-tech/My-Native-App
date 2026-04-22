@@ -1,3 +1,4 @@
+// Defines constants for MMKV storage.
 import { createMMKV } from "react-native-mmkv";
 
 export const storage = createMMKV({ id: "myAppStorage" });

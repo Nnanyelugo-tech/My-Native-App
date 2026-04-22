@@ -1,3 +1,4 @@
+// useLiveClock.ts - Custom hook that updates the date and time every minute.
 import { useEffect, useRef, useState } from "react";
 import { getTodayDate, getCurrentTime } from "@/src/utils/date";
 

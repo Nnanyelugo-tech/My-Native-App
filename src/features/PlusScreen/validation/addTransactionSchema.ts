@@ -1,3 +1,4 @@
+// Yup validation schemas for transaction and budget forms.
 import * as Yup from "yup";
 
 export const transactionSchema = Yup.object().shape({

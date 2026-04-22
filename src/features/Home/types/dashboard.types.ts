@@ -1,3 +1,4 @@
+// types/dashboard.types.ts
 import { Transaction } from "../../Transaction/types/transactionType";
 
 export type DashboardSummary = {

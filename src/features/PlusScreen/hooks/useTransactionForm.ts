@@ -1,3 +1,4 @@
+// Custom hook for managing transaction form state and logic.
 import { useEffect, useRef } from "react";
 import { Resolver, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

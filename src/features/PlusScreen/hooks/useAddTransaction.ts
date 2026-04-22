@@ -1,3 +1,4 @@
+// Custom hook that orchestrates the entire add transaction flow.
 import { TransactionMode } from "@/src/features/PlusScreen/constants/transactions";
 import { useLiveClock } from "./useLiveClock";
 import { useTransactionTabs } from "./useTransactionTabs";

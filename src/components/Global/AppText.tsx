@@ -1,3 +1,4 @@
+// Reusable text component with custom styling.
 import React from "react";
 import { StyleProp, Text, TextStyle } from "react-native";
 

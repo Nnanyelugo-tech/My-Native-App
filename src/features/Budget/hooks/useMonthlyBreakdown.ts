@@ -1,7 +1,7 @@
+// Hook to calculate monthly category breakdown from transactions.
 import { useMemo } from "react";
 import { useTransactionsQuery } from "@/src/features/Transaction/api/useTransactionsQuery";
 import { CategoryBreakdownItem } from "@/src/features/Budget/types/budgetProps";
-
 
 export function useCategoryBreakdown() {
   const { data: transactions = [] } = useTransactionsQuery();

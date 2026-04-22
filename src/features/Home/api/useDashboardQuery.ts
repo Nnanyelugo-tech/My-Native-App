@@ -1,3 +1,5 @@
+// useDashboardQuery.ts - Custom hook for fetching dashboard data using react-query.
+// It leverages useQuery with the queryKeys.dashboard key and enables caching.
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
 import { queryKeys } from "../../Transaction/api/queryKeys";

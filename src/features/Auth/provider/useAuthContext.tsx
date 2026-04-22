@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { Session, User } from "@supabase/supabase-js";
 
+// Type definitions for authentication context.
 export type Profile = {
   id: string;
   full_name: string | null;
@@ -18,6 +19,7 @@ export type AuthData = {
   setAvatarUrl: (url: string | null) => void;
 };
 
+//  Defines the authentication context.
 export const AuthContext = createContext<AuthData>({
   session: null,
   user: null,

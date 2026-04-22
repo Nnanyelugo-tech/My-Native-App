@@ -1,3 +1,5 @@
+// Custom hook for fetching budgets using react-query.
+// It leverages useQuery with the queryKeys.budgets key and enables caching.
 import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBudgets } from "../services/budgetService";

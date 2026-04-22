@@ -1,9 +1,10 @@
+// AuthProvider.tsx
 import { queryClient } from "@/src/lib/queryClient";
 import { Session, supabase, User } from "@/src/lib/supabase";
 import React, {
   PropsWithChildren,
   useContext,
-  useEffect,
+  useEffect,  
   useRef,
   useState,
 } from "react";

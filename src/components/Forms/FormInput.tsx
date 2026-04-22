@@ -1,3 +1,4 @@
+// Reusable form input component with validation and password visibility toggle.
 import { AppText } from "@/src/components/Global/AppText";
 import { FormInputProps } from "@/src/types/forms";
 import { Ionicons } from "@expo/vector-icons";

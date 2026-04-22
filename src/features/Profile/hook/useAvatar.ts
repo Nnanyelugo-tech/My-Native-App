@@ -1,3 +1,4 @@
+// Custom hook for handling user profile image upload.
 import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";
 import { supabase } from "@/src/lib/supabase";
 import { decode } from "base64-arraybuffer";

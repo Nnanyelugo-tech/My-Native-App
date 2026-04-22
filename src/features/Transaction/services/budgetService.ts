@@ -1,7 +1,8 @@
+// This file handles all database operations for budgets fetching and saving.
 import { supabase } from "@/src/lib/supabase";
 import { Budget } from "../types/budgetType";
 
-//  Maps a Supabase row snakecase to frontend Budget camelCase.
+// Maps a Supabase row snakecase to frontend Budget camelCase.
 export const toBudget = (row: Record<string, unknown>): Budget => ({
   id: row.id as string,
   amount: Number(row.amount),

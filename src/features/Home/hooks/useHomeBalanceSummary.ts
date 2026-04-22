@@ -1,3 +1,4 @@
+// Custom hook for calculating balance summary from dashboard data.
 import { useDashboardQuery } from "../api/useDashboardQuery";
 
 export type BalanceSummary = {

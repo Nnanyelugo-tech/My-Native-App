@@ -1,3 +1,4 @@
+// Defines theme colors for light and dark modes.
 export type ThemeColors = {
   text: string;
   textSecondary: string;

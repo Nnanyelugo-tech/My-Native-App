@@ -1,3 +1,4 @@
+// Hook for handling user sign-up and profile creation.
 import { useState } from "react";
 import { Alert } from "react-native";
 import { useRouter } from "expo-router";

@@ -1,3 +1,4 @@
+// Hook for managing transaction tab state.
 import { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { useTheme } from "@/src/components/Global/ThemeContext";

@@ -1,3 +1,4 @@
+// Custom hook for handling transaction submission logic.
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import Toast from "react-native-toast-message";

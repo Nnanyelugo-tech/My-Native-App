@@ -1,3 +1,5 @@
+// useTransactionsQuery.ts: Custom hook for fetching transactions using react-query.
+// It leverages useQuery with the queryKeys.transactions key and enables caching.
 import { useQuery } from "@tanstack/react-query";
 import { fetchTransactions } from "../services/transactionService";
 import { useAuthContext } from "@/src/features/Auth/provider/AuthProvider";

@@ -1,3 +1,4 @@
+// Hook for managing notification state.
 import { useState } from "react";
 import { initialNotifications } from "../data/notifications";
 import type { NotificationFilter } from "../types";

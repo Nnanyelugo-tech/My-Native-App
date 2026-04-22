@@ -1,3 +1,4 @@
+// This file handles all four database operations for transactions fetch, create, update, delete
 import { supabase } from "@/src/lib/supabase";
 import { Transaction, NewTransaction } from "../types/transactionType";
 

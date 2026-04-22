@@ -1,3 +1,4 @@
+// Custom hook for calculating income vs expenses from dashboard data.
 import { useMemo } from "react";
 import { useWindowDimensions } from "react-native";
 import { useDashboardQuery } from "../api/useDashboardQuery";

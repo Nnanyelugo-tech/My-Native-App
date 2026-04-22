@@ -1,3 +1,4 @@
+// Type definitions for budget screen components.
 export type BudgetCardProps = {
   budgetLimit: number;
   totalSpent: number;
@@ -5,6 +6,7 @@ export type BudgetCardProps = {
   onEdit?: () => void;
 };
 
+// Type definitions for budget screen components.
 export type StatTileProps = {
   label: string;
   value: number;
